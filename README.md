@@ -1,7 +1,7 @@
 <img src="https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/logo.png" align="left" height="144px"/>
 
 # Hajimari :sunrise:
-_... *The beginning of a pleasant experience*
+*...The beginning of a pleasant experience*
 
 <br />
 

@@ -1,5 +1,10 @@
-# Hajimari
-*The beginning of a pleasant experience*
+<img src="https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/logo.png" align="left" height="144px"/>
+
+# Hajimari :sunrise:
+*...The beginning of a pleasant experience*
+
+<br />
+<br />
 
 ![Hajimari](https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/screen01.png)
 

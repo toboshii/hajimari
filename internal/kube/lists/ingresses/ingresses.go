@@ -1,7 +1,7 @@
 package ingresses
 
 import (
-	"github.com/toboshii/hajimari/pkg/config"
+	"github.com/toboshii/hajimari/internal/config"
 	"k8s.io/api/extensions/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"

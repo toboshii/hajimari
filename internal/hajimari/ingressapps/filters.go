@@ -1,9 +1,9 @@
 package ingressapps
 
 import (
-	"github.com/toboshii/hajimari/pkg/annotations"
-	"github.com/toboshii/hajimari/pkg/config"
-	"github.com/toboshii/hajimari/pkg/util/strings"
+	"github.com/toboshii/hajimari/internal/annotations"
+	"github.com/toboshii/hajimari/internal/config"
+	"github.com/toboshii/hajimari/internal/util/strings"
 	"k8s.io/api/extensions/v1beta1"
 )
 

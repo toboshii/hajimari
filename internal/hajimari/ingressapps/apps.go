@@ -1,12 +1,12 @@
 package ingressapps
 
 import (
-	"github.com/toboshii/hajimari/pkg/annotations"
-	"github.com/toboshii/hajimari/pkg/config"
-	"github.com/toboshii/hajimari/pkg/hajimari"
-	"github.com/toboshii/hajimari/pkg/kube/lists/ingresses"
-	"github.com/toboshii/hajimari/pkg/kube/wrappers"
-	"github.com/toboshii/hajimari/pkg/log"
+	"github.com/toboshii/hajimari/internal/annotations"
+	"github.com/toboshii/hajimari/internal/config"
+	"github.com/toboshii/hajimari/internal/hajimari"
+	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
+	"github.com/toboshii/hajimari/internal/kube/wrappers"
+	"github.com/toboshii/hajimari/internal/log"
 	"k8s.io/api/extensions/v1beta1"
 	"k8s.io/client-go/kubernetes"
 )

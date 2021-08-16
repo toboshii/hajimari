@@ -4,13 +4,14 @@ import (
 	"embed"
 	"errors"
 	"fmt"
+	"io/fs"
 	"net/http"
 	"text/template"
 
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/pkg/config"
-	"github.com/toboshii/hajimari/pkg/handlers"
-	"github.com/toboshii/hajimari/pkg/log"
+	"github.com/toboshii/hajimari/internal/config"
+	"github.com/toboshii/hajimari/internal/handlers"
+	"github.com/toboshii/hajimari/internal/log"
 )
 
 var (
@@ -29,24 +30,24 @@ func init() {
 	}
 }
 
-//go:embed templates
+//go:embed web/template
 var indexHTML embed.FS
 
-//go:embed assets
+//go:embed web/static
 var staticFiles embed.FS
 
-var tpl = template.Must(template.ParseFS(indexHTML, "templates/index.html.tmpl"))
+var tpl = template.Must(template.ParseFS(indexHTML, "web/template/index.html.tmpl"))
 
 func main() {
 
 	appConfig, err := config.GetConfig()
 	if err != nil {
 		logger.Fatal("Failed to read configuration for hajimari", err)
-		//http.Error(responseWriter, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	http.Handle("/assets/", http.FileServer(http.FS(staticFiles)))
+	staticFiles, _ := fs.Sub(staticFiles, "web")
+	http.Handle("/static/", http.FileServer(http.FS(staticFiles)))
 
 	page := handlers.NewPage(appConfig, tpl)
 	http.HandleFunc("/", page.FrontpageHandler)

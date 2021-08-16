@@ -6,12 +6,12 @@ import (
 	"text/template"
 	"time"
 
-	"github.com/toboshii/hajimari/pkg/config"
-	"github.com/toboshii/hajimari/pkg/hajimari"
-	"github.com/toboshii/hajimari/pkg/hajimari/ingressapps"
-	"github.com/toboshii/hajimari/pkg/kube"
-	"github.com/toboshii/hajimari/pkg/kube/util"
-	"github.com/toboshii/hajimari/pkg/log"
+	"github.com/toboshii/hajimari/internal/config"
+	"github.com/toboshii/hajimari/internal/hajimari"
+	"github.com/toboshii/hajimari/internal/hajimari/ingressapps"
+	"github.com/toboshii/hajimari/internal/kube"
+	"github.com/toboshii/hajimari/internal/kube/util"
+	"github.com/toboshii/hajimari/internal/log"
 )
 
 var (

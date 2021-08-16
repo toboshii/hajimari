@@ -3,8 +3,8 @@ package wrappers
 import (
 	"net/url"
 
-	"github.com/toboshii/hajimari/pkg/annotations"
-	"github.com/toboshii/hajimari/pkg/log"
+	"github.com/toboshii/hajimari/internal/annotations"
+	"github.com/toboshii/hajimari/internal/log"
 	"k8s.io/api/extensions/v1beta1"
 )
 

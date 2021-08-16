@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/tidwall/gjson"
-	"github.com/toboshii/hajimari/pkg/log"
+	"github.com/toboshii/hajimari/internal/log"
 )
 
 var (

@@ -1,7 +1,7 @@
 package util
 
 import (
-	"github.com/toboshii/hajimari/pkg/config"
+	"github.com/toboshii/hajimari/internal/config"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/client-go/kubernetes"

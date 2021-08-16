@@ -2,6 +2,7 @@ package wrappers
 
 import (
 	"net/url"
+	"strings"
 
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/log"
@@ -114,7 +115,7 @@ func (iw *IngressWrapper) getIngressSubPath() string {
 	rule := iw.ingress.Spec.Rules[0]
 	if rule.HTTP != nil {
 		if rule.HTTP.Paths != nil && len(rule.HTTP.Paths) > 0 {
-			return rule.HTTP.Paths[0].Path
+			return strings.TrimRight(rule.HTTP.Paths[0].Path, "/")
 		}
 	}
 	return ""

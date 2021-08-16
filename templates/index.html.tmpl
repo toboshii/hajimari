@@ -85,7 +85,7 @@
                 {{range .Apps}}
                     <div class="apps_item">
                         <div class="apps_icon">
-                            <span class="iconify icon" data-icon="mdi-{{.Icon}}"></span>
+                            <span class="iconify icon" data-icon="mdi-{{or .Icon "application"}}"></span>
                         </div>
                         <div class="apps_text">
                             <a href="{{.URL}}">{{.Name}}</a>

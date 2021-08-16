@@ -8,6 +8,7 @@ import (
 
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/hajimari"
+	"github.com/toboshii/hajimari/internal/hajimari/customapps"
 	"github.com/toboshii/hajimari/internal/hajimari/ingressapps"
 	"github.com/toboshii/hajimari/internal/kube"
 	"github.com/toboshii/hajimari/internal/kube/util"
@@ -60,7 +61,7 @@ func (p *Page) StartpageHandler(w http.ResponseWriter, r *http.Request) {
 
 	appConfig, err := config.GetConfig()
 	if err != nil {
-		logger.Error("Failed to read configuration for forecastle", err)
+		logger.Error("Failed to read configuration for hajimari", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -79,10 +80,21 @@ func (p *Page) StartpageHandler(w http.ResponseWriter, r *http.Request) {
 	hajimariApps, err = ingressAppsList.Populate(namespaces...).Get()
 
 	if err != nil {
-		logger.Error("An error occurred while looking for forceastle apps", err)
+		logger.Error("An error occurred while looking for hajimari apps", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
+	customAppsList := customapps.NewList(*appConfig)
+
+	customHajimariApps, err := customAppsList.Populate().Get()
+	if err != nil {
+		logger.Error("An error occured while populating custom hajimari apps", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+
+	// Append both generated and custom apps
+	hajimariApps = append(hajimariApps, customHajimariApps...)
 
 	w.Header().Add("Content-Type", "text/html")
 

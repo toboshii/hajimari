@@ -58,7 +58,7 @@ type NamespaceSelector struct {
 	LabelSelector *metav1.LabelSelector
 }
 
-// GetConfig returns forecastle configuration
+// GetConfig returns hajimari configuration
 func GetConfig() (*Config, error) {
 	var c Config
 	err := viper.Unmarshal(&c)

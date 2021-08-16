@@ -5,7 +5,10 @@ namespaceSelector:
   - downloads
 title: null
 name: "you"
-customApps: {}
+customApps:
+- name: Test
+  url: https://example.com
+  icon: test-tube
 groups:
 - name: Communicate
   links:

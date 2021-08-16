@@ -1,6 +1,7 @@
 .git
 .github/
 .gitignore
+docs/
 Dockerfile
 LICENSE
 README.md

@@ -12,11 +12,6 @@ import (
 	"github.com/toboshii/hajimari/internal/hajimari/ingressapps"
 	"github.com/toboshii/hajimari/internal/kube"
 	"github.com/toboshii/hajimari/internal/kube/util"
-	"github.com/toboshii/hajimari/internal/log"
-)
-
-var (
-	logger = log.New()
 )
 
 type Page struct {

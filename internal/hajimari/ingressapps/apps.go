@@ -59,7 +59,7 @@ func (al *List) Get() ([]hajimari.App, error) {
 
 func convertIngressesToHajimariApps(ingresses []v1beta1.Ingress) (apps []hajimari.App) {
 	for _, ingress := range ingresses {
-		logger.Infof("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
+		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
 		apps = append(apps, hajimari.App{

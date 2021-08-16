@@ -3,11 +3,14 @@ package main
 import (
 	"embed"
 	"errors"
-	"fmt"
 	"io/fs"
 	"net/http"
 	"text/template"
+	"time"
 
+	loggerMiddleware "github.com/chi-middleware/logrus-logger"
+	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/chi/v5"
 	"github.com/spf13/viper"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/handlers"
@@ -46,12 +49,24 @@ func main() {
 		return
 	}
 
+	r := chi.NewRouter()
+
+	r.Use(middleware.RequestID)
+	r.Use(middleware.RealIP)
+	r.Use(loggerMiddleware.Logger("router", logger))
+	r.Use(middleware.Recoverer)
+
+	r.Use(middleware.Timeout(60 * time.Second))
+
 	staticFiles, _ := fs.Sub(staticFiles, "web")
-	http.Handle("/static/", http.FileServer(http.FS(staticFiles)))
+	r.Handle("/static/*", http.FileServer(http.FS(staticFiles)))
 
 	page := handlers.NewPage(appConfig, tpl)
-	http.HandleFunc("/", page.FrontpageHandler)
+
+	r.Route("/", func(r chi.Router) {
+		r.Get("/", page.StartpageHandler)
+	})
 
 	logger.Printf("Listening on :%d\n", 3000)
-	logger.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", 3000), nil))
+	logger.Fatal(http.ListenAndServe(":3000", r))
 }

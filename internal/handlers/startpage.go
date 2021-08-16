@@ -53,8 +53,7 @@ func NewPage(conf *config.Config, tpl *template.Template) *Page {
 // 	}()
 // }
 
-func (p *Page) FrontpageHandler(w http.ResponseWriter, r *http.Request) {
-	start := time.Now()
+func (p *Page) StartpageHandler(w http.ResponseWriter, r *http.Request) {
 	kubeClient := kube.GetClient()
 
 	var hajimariApps []hajimari.App
@@ -76,7 +75,7 @@ func (p *Page) FrontpageHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	logger.Info("Namespaces to look for hajimari apps: ", namespaces)
+	logger.Debug("Namespaces to look for hajimari apps: ", namespaces)
 	hajimariApps, err = ingressAppsList.Populate(namespaces...).Get()
 
 	if err != nil {
@@ -109,9 +108,6 @@ func (p *Page) FrontpageHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-
-	elapsed := time.Since(start)
-	logger.Printf("Served %s in %s", r.URL.Path, elapsed)
 }
 
 // greet returns the greeting to be used in the h1 heading

@@ -5,6 +5,8 @@
 
 <br />
 
+![Hajimari](https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/screen01.png)
+
 ## Installation
 
 Clone the repo and run the following command to generate the `hajimari` binary:

@@ -1,6 +1,8 @@
 package ingresses
 
 import (
+	"context"
+
 	"github.com/toboshii/hajimari/internal/config"
 	"k8s.io/api/extensions/v1beta1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -30,7 +32,7 @@ func NewList(kubeClient kubernetes.Interface, appConfig config.Config, items ...
 // Populate function returns a list of ingresses
 func (il *List) Populate(namespaces ...string) *List {
 	for _, namespace := range namespaces {
-		ingresses, err := il.kubeClient.ExtensionsV1beta1().Ingresses(namespace).List(metav1.ListOptions{})
+		ingresses, err := il.kubeClient.ExtensionsV1beta1().Ingresses(namespace).List(context.Background(), metav1.ListOptions{})
 		if err != nil {
 			il.err = err
 		}

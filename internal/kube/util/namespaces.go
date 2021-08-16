@@ -1,6 +1,8 @@
 package util
 
 import (
+	"context"
+
 	"github.com/toboshii/hajimari/internal/config"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
@@ -23,7 +25,7 @@ func PopulateNamespaceList(kubeClient kubernetes.Interface, namespaceSelector co
 
 		set := labels.Set(labelsMap)
 		nsOptions := metav1.ListOptions{LabelSelector: set.AsSelector().String()}
-		nsList, err := kubeClient.CoreV1().Namespaces().List(nsOptions)
+		nsList, err := kubeClient.CoreV1().Namespaces().List(context.Background(), nsOptions)
 		if err != nil {
 			return nil, err
 		}

@@ -4,6 +4,7 @@
 *...The beginning of a pleasant experience*
 
 <br />
+<br />
 
 ![Hajimari](https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/screen01.png)
 

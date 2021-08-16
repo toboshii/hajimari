@@ -19,7 +19,7 @@ var (
 
 func init() {
 	viper.SetConfigName("config")          // name of config file (without extension)
-	viper.AddConfigPath("/etc/hajimari/")  // path to look for the config file in
+	viper.AddConfigPath("/config")         // path to look for the config file in
 	viper.AddConfigPath("$HOME/.hajimari") // call multiple times to add many search paths
 	viper.AddConfigPath(".")               // optionally look for config in the working directory
 	viper.AutomaticEnv()

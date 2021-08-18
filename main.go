@@ -12,9 +12,10 @@ import (
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/handlers"
 	"github.com/toboshii/hajimari/internal/log"
+	"github.com/toboshii/hajimari/internal/services"
+	"github.com/toboshii/hajimari/internal/stores"
 )
 
 var (
@@ -43,11 +44,11 @@ var tpl = template.Must(template.ParseFS(indexHTML, "web/template/index.html.tmp
 
 func main() {
 
-	appConfig, err := config.GetConfig()
-	if err != nil {
-		logger.Fatal("Failed to read configuration for hajimari", err)
-		return
-	}
+	// appConfig, err := config.GetConfig()
+	// if err != nil {
+	// 	logger.Fatal("Failed to read configuration for hajimari", err)
+	// 	return
+	// }
 
 	r := chi.NewRouter()
 
@@ -61,11 +62,9 @@ func main() {
 	staticFiles, _ := fs.Sub(staticFiles, "web")
 	r.Handle("/static/*", http.FileServer(http.FS(staticFiles)))
 
-	page := handlers.NewPage(appConfig, tpl)
+	service := services.NewStartpageService(stores.NewFileStore(), logger)
 
-	r.Route("/", func(r chi.Router) {
-		r.Get("/", page.StartpageHandler)
-	})
+	r.Mount("/", handlers.NewStartpageResource(service, tpl).StartpageRoutes())
 
 	logger.Printf("Listening on :%d\n", 3000)
 	logger.Fatal(http.ListenAndServe(":3000", r))

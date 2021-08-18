@@ -4,7 +4,12 @@ import (
 	"time"
 
 	"github.com/spf13/viper"
+	"github.com/toboshii/hajimari/internal/log"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+)
+
+var (
+	logger = log.New()
 )
 
 // Config struct for hajimari

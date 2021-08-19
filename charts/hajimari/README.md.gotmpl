@@ -97,6 +97,8 @@ ingress:
 persistence:
   data:
     enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
 ```
 
 {{ template "chart.sourcesSection" . }}

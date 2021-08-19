@@ -101,6 +101,8 @@ ingress:
 persistence:
   data:
     enabled: true
+    accessMode: ReadWriteOnce
+    size: 1Gi
 ```
 
 ## Source Code
@@ -122,8 +124,9 @@ Kubernetes: `>=1.16.0-0`
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | hajimari | object | See below | Configures Hajimari settings for this instance. |
-| hajimari.customApps | object | `{}` | Add custom applications to the discovered application list |
+| hajimari.customApps | list | `[]` | Add custom applications to the discovered application list |
 | hajimari.defaultEnable | bool | `false` | Set to true to show all discovered applications by default. |
+| hajimari.groups | list | `[]` | Set default bookmarks |
 | hajimari.instanceName | string | `nil` | The name of this instance, this allows running multiple  instances of Hajimari on the same cluster |
 | hajimari.name | string | `"You"` | Default name for welcome message |
 | hajimari.namespaceSelector | object | `{"matchNames":["media"]}` | Namespace selector to use for discovering applications |

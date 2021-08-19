@@ -14,3 +14,8 @@
 # Project specific
 /config.yaml
 /hajimari
+
+# Chart dependencies
+charts/hajimari/charts
+charts/hajimari/Chart.lock
+charts/hajimari/local.yaml

@@ -36,12 +36,13 @@ hajimari:
   # -- Default name for welcome message
   name: "You"
   # -- Add custom applications to the discovered application list
-  customApps: {}
+  customApps: []
   # - name: Test
   #   url: https://example.com
   #   icon: test-tube
+  
   # -- Set default bookmarks
-  groups: {}
+  groups: []
   # - name: Communicate
   #   links:
   #   - name: Discord

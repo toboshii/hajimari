@@ -1,4 +1,4 @@
-name: Release Chart
+name: release chart
 
 on:
   push:

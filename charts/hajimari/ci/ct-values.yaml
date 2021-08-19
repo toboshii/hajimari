@@ -1,0 +1,40 @@
+hajimari:
+  namespaceSelector:
+    matchNames:
+    - downloads
+    - media
+  customApps:
+  - name: Test
+    url: https://example.com
+    icon: test-tube
+  - name: Example
+    url: https://example.org
+    icon: test-tube
+  groups:
+  - name: Communicate
+    links:
+    - name: Discord
+      url: 'https://discord.com'
+    - name: Gmail
+      url: 'http://gmail.com'
+    - name: Slack
+      url: 'https://slack.com/signin'
+  - name: Cloud
+    links:
+    - name: Box
+      url: 'https://box.com'
+    - name: Dropbox
+      url: 'https://dropbox.com'
+    - name: Drive
+      url: 'https://drive.google.com'
+ingress:
+  main:
+    enabled: true
+    hosts:
+      - host: hajimari.domain.tld
+        paths:
+          - path: /
+            pathType: Prefix
+persistence:
+  data:
+    enabled: true

@@ -11,7 +11,7 @@ image:
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: main-668ba9c
+  tag: v0.1.0
 
 # -- environment variables.
 # @default -- See below

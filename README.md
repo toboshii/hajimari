@@ -10,6 +10,16 @@
 
 ## Installation
 
+### Helm
+
+`helm repo add hajimari https://hajimari.io`
+`helm repo update`
+`helm install hajimari hajimari/hajimari`
+
+![Helm docs](charts/hajimari)
+
+### Locally
+
 Clone the repo and run the following command to generate the `hajimari` binary:
 
 ```bash
@@ -18,7 +28,7 @@ make build
 
 You will need to have `go` installed.
 
-## Usage
+#### Usage
 
 Copy the binary and edit `config.yaml`. Then run:
 

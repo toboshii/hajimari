@@ -54,7 +54,7 @@ Hajimari looks for specific annotations on ingresses.
 | Annotation                                   | Description                                                                                                                                                 | Required |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `hajimari.io/enable`             | Add this with value `true` to the ingress of the app you want to show in Hajimari                                                                                       | `true`   |
-| `hajimari.io/icon`               | Icon name from ![MDI icons](https://materialdesignicons.com/)                                                                                                           | `false`  |
+| `hajimari.io/icon`               | Icon name from [MDI icons](https://materialdesignicons.com/)                                                                                                           | `false`  |
 | `hajimari.io/appName`            | A custom name for your application. Use if you don't want to use the name of the ingress                                                                                | `false`  |
 | `hajimari.io/group`              | A custom group name. Use if you want the application to show in a different group than the namespace it is running in                                                   | `false`  |
 | `hajimari.io/instance`           | A comma separated list of name/s of the Hajimari instance/s where you want this application to appear. Use when you have multiple Hajimari instances                    | `false`  |
@@ -116,7 +116,7 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 
 1. Open Hajimari in your browser, click the hamburger menu in the lower lefthand corner.
 2. Modify the options you wish to change in the built-in YAML editor.
-3. Click `Save` and you'll be redirected to your new custom page with a random ID on the URL. Set this page as your homepage/new tab page. For Firefox I recommend the [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) extension for the best experience.
+3. Click `Save` and you'll be redirected to your new custom page with a random ID on the URL. Set this page as your homepage/new tab page. For the best experience in Firefox I recommend the [New Tab Override](https://addons.mozilla.org/en-US/firefox/addon/new-tab-override/) extension; for Chrome [Custom New Tab URL](https://chrome.google.com/webstore/detail/custom-new-tab-url/mmjbdbjnoablegbkcklggeknkfcjkjia).
 4. You can make further modifications to this page at anytime under the hamburger menu.
 
 Please note there is no authentication. You might want to run this behind ingress with access restrictions.

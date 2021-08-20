@@ -66,7 +66,7 @@ Hajimari supports the following configuration options that can be modified by ei
 
 |       Field       |                                                Description                                                 |         Default         | Type              |
 | :---------------: | :--------------------------------------------------------------------------------------------------------: | :---------------------: | ----------------- |
-| defaultEnable     |                  Set to true to expose all ingresses in selected namespaces by default                     |          false          | boolean
+| defaultEnable     |                  Set to true to expose all ingresses in selected namespaces by default                     |          false          | bool
 | namespaceSelector |      Namespace selector which uses a combination of hardcoded namespaces as well as label selectors        |        any: true        | NamespaceSelector |
 | title             |                                     Title for the Hajimari instance                                        |        "Hajimari"       | string            |
 | instanceName      |                                      Name of the Hajimari instance                                         |           ""            | string            |

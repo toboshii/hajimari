@@ -1,6 +1,6 @@
 # hajimari
 
-![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-informational?style=flat-square) ![AppVersion: v0.0.1](https://img.shields.io/badge/AppVersion-v0.0.1-informational?style=flat-square)
+![Version: 1.1.1](https://img.shields.io/badge/Version-1.1.1-informational?style=flat-square) ![AppVersion: v0.1.0](https://img.shields.io/badge/AppVersion-v0.1.0-informational?style=flat-square)
 
 Hajimari is a beautiful & customizable browser startpage/dashboard with
 Kubernetes application discovery
@@ -133,7 +133,7 @@ Kubernetes: `>=1.16.0-0`
 | hajimari.title | string | `nil` | Override the title of the Hajimari pages |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
 | image.repository | string | `"ghcr.io/toboshii/hajimari"` | image repository |
-| image.tag | string | `"main-668ba9c"` | image tag |
+| image.tag | string | `"v0.1.0"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |
 | service | object | See values.yaml | Configures service settings for the chart. |

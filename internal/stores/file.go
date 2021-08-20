@@ -31,7 +31,7 @@ func (s *fileStore) NewStartpage(startpage *models.Startpage) (string, error) {
 		return "", err2
 	}
 
-	err3 := ioutil.WriteFile(id+".yaml", data, 0600)
+	err3 := ioutil.WriteFile("/data/"+id+".yaml", data, 0600)
 	if err3 != nil {
 		return "", err
 	}
@@ -40,7 +40,7 @@ func (s *fileStore) NewStartpage(startpage *models.Startpage) (string, error) {
 }
 
 func (s *fileStore) GetStartpage(id string) (*models.Startpage, error) {
-	file, err := ioutil.ReadFile(id + ".yaml")
+	file, err := ioutil.ReadFile("/data/" + id + ".yaml")
 	if err != nil {
 		return nil, errors.New("startpage not found")
 	}
@@ -55,7 +55,7 @@ func (s *fileStore) GetStartpage(id string) (*models.Startpage, error) {
 }
 
 func (s *fileStore) UpdateStartpage(id string, startpage *models.Startpage) (*models.Startpage, error) {
-	_, err := ioutil.ReadFile(id + ".yaml")
+	_, err := ioutil.ReadFile("/data/" + id + ".yaml")
 	if err != nil {
 		return nil, errors.New("startpage not found")
 	}
@@ -65,7 +65,7 @@ func (s *fileStore) UpdateStartpage(id string, startpage *models.Startpage) (*mo
 		return nil, err2
 	}
 
-	err3 := ioutil.WriteFile(id+".yaml", data, 0600)
+	err3 := ioutil.WriteFile("/data/"+id+".yaml", data, 0600)
 	if err3 != nil {
 		return nil, err
 	}
@@ -74,7 +74,7 @@ func (s *fileStore) UpdateStartpage(id string, startpage *models.Startpage) (*mo
 }
 
 func (s *fileStore) RemoveStartpage(id string) (*models.Startpage, error) {
-	file, err := ioutil.ReadFile(id + ".yaml")
+	file, err := ioutil.ReadFile("/data/" + id + ".yaml")
 	if err != nil {
 		return nil, errors.New("startpage not found")
 	}
@@ -85,7 +85,7 @@ func (s *fileStore) RemoveStartpage(id string) (*models.Startpage, error) {
 		return nil, err2
 	}
 
-	err3 := os.Remove(id + ".yaml")
+	err3 := os.Remove("/data/" + id + ".yaml")
 	if err3 != nil {
 		return nil, err3
 	}

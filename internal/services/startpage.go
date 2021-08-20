@@ -13,6 +13,7 @@ type StartpageService interface {
 	UpdateStartpage(id string, startpage *models.Startpage) (*models.Startpage, error)
 	RemoveStartpage(id string) (*models.Startpage, error)
 	ConvertStartpageToConfig(appConfig *config.Config, startpage *models.Startpage)
+	ConvertConfigToStartpage(appConfig *config.Config, startpage *models.Startpage)
 }
 
 type startpageService struct {
@@ -56,6 +57,24 @@ func (s *startpageService) ConvertStartpageToConfig(appConfig *config.Config, st
 		}
 
 		appConfig.Groups = append(appConfig.Groups, config.Group{
+			Name:  g.Name,
+			Links: links,
+		})
+	}
+}
+
+func (s *startpageService) ConvertConfigToStartpage(appConfig *config.Config, startpage *models.Startpage) {
+	startpage.Name = appConfig.Name
+	startpage.Groups = []models.Group{}
+
+	for _, g := range appConfig.Groups {
+		links := []models.Link{}
+
+		for _, l := range g.Links {
+			links = append(links, models.Link(l))
+		}
+
+		startpage.Groups = append(startpage.Groups, models.Group{
 			Name:  g.Name,
 			Links: links,
 		})

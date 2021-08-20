@@ -1,7 +1,7 @@
 package models
 
 type Startpage struct {
-	ID     string  `json:"id"`
+	ID     string  `json:"id,omitempty"`
 	Name   string  `json:"name"`
 	Groups []Group `json:"groups"`
 }

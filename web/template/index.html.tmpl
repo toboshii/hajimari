@@ -7,8 +7,12 @@
     <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <link type="text/css" rel="stylesheet" href="./static/css/styles.css"  media="screen,projection"/>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
-    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/lint/lint.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/theme/dracula.min.css" rel="stylesheet" type="text/css">
+    <link href="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/fold/foldgutter.min.css" rel="stylesheet" type="text/css">
+    <script src="//code.iconify.design/1/1.0.7/iconify.min.js"></script>
 </head>
 
 <body>
@@ -20,6 +24,21 @@
                     <span class="iconify" data-icon="mdi-close"></span>
                 </a>
             </header>
+
+            <!-- <section id="providers">
+                <table>
+                    <tr>
+                        <th>Website</th>
+                        <th>Prefix</th>
+                    </tr>
+                    {{range .Providers}}
+                    <tr>
+                        <td><a href="{{.URL}}">{{.Name}}</a></td>
+                        <td>{{.Prefix}}</td>
+                    </tr>
+                    {{end}}
+                </table>
+            </section> -->
 
             <h2>Color themes</h2>
 
@@ -37,25 +56,15 @@
                 <button data-theme="paper" class="theme-button theme-paper">Paper</button>
             </div>
 
-            <h2>Search options</h2>
+            <section id="config">
+                <textarea id="editor">
+                </textarea>
 
-            <section id="providers">
-                <table>
-                    <tr>
-                        <th>Website</th>
-                        <th>Prefix</th>
-                    </tr>
-                    {{range .Providers}}
-                    <tr>
-                        <td><a href="{{.URL}}">{{.Name}}</a></td>
-                        <td>{{.Prefix}}</td>
-                    </tr>
-                    {{end}}
-                </table>
+                <button id="save-config" class="save-button">Save</button>
             </section>
 
             <header id="modal-footer">
-                <a href="https://github.com/jeroenpardon/"><span class="iconify" data-icon="mdi-github-box"></span></a>
+                <a href="https://github.com/toboshii/hajimari"><span class="iconify" data-icon="mdi-github-box"></span></a>
                 <a href="https://materialdesignicons.com/"><span class="iconify" data-icon="mdi-material-design"></a></span>
             </header>
 
@@ -117,7 +126,16 @@
         </a>
     </div>
 
+    <script src="./static/js/main.js" type="text/javascript"></script>
     <script src="./static/js/themer.js" type="text/javascript"></script>
     <script src="./static/js/search.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/codemirror.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/mode/yaml/yaml.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/lint/yaml-lint.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/lint/lint.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/fold/foldcode.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/fold/foldgutter.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.2/addon/fold/indent-fold.min.js" type="text/javascript"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js" type="text/javascript"></script>
 </body>
 </html>

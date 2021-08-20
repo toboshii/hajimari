@@ -1,0 +1,80 @@
+#
+# IMPORTANT NOTE
+#
+# This chart inherits from the k8s@home library chart. You can check the default values/options here:
+# https://github.com/k8s-at-home/library-charts/tree/main/charts/stable/common/values.yaml
+#
+
+image:
+  # -- image repository
+  repository: ghcr.io/toboshii/hajimari
+  # -- image pull policy
+  pullPolicy: IfNotPresent
+  # -- image tag
+  tag: v0.1.0
+
+# -- environment variables.
+# @default -- See below
+env:
+  # -- Set the container timezone
+  TZ: UTC
+
+# -- Configures Hajimari settings for this instance.
+# @default -- See below
+hajimari:
+  # -- The name of this instance, this allows running multiple 
+  # instances of Hajimari on the same cluster
+  instanceName: null
+  # -- Set to true to show all discovered applications by default.
+  defaultEnable: false
+  # -- Namespace selector to use for discovering applications
+  namespaceSelector:
+    matchNames:
+    - media
+  # -- Override the title of the Hajimari pages
+  title: null
+  # -- Default name for welcome message
+  name: "You"
+  # -- Add custom applications to the discovered application list
+  customApps: []
+  # - name: Test
+  #   url: https://example.com
+  #   icon: test-tube
+  
+  # -- Set default bookmarks
+  groups: []
+  # - name: Communicate
+  #   links:
+  #   - name: Discord
+  #     url: 'https://discord.com'
+  #   - name: Gmail
+  #     url: 'http://gmail.com'
+  #   - name: Slack
+  #     url: 'https://slack.com/signin'
+
+
+# -- Configures service settings for the chart.
+# @default -- See values.yaml
+service:
+  main:
+    ports:
+      http:
+        port: 3000
+
+# -- Configures service account needed for reading k8s ingress objects
+# @default -- See below
+serviceAccount:
+  # -- Create service account
+  create: true
+
+ingress:
+  # -- Enable and configure ingress settings for the chart under this key.
+  # @default -- See values.yaml
+  main:
+    enabled: false
+
+# -- Configure persistence settings for the chart under this key.
+# @default -- See values.yaml
+persistence:
+  data:
+    enabled: false

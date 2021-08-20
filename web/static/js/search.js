@@ -20,29 +20,6 @@ function handleKeyPress(e) {
     if (key == 13) { // Search functions
         search(text);
     }
-    if (key == 9) { // Tab Completion Functions
-        e.preventDefault();
-        e.stopPropagation();
-        if (text[0] === ';') {
-            switch (option) {
-                case 't':
-                    var streamers = ['admiralbahroo', 'moonmoon_ow', 'witwix'];
-                    if (!subtext || cycle) {
-                        cycle = true;
-                        if (sindex > streamers.length - 1) sindex = 0;
-                        document.getElementById("keywords").value = ';t ' + streamers[sindex++];
-                        return;
-                    }
-                    for (var streamer of streamers) {
-                        if (subtext === streamer.substr(0, subtext.length)) {
-                            document.getElementById("keywords").value = ';t ' + streamer;
-                            return;
-                        }
-                    }
-                    break;
-            }
-        }
-    }
     if(key == 32){ //Space to go to search
         document.getElementById("keywords").focus();
     }
@@ -73,7 +50,7 @@ function search(text) {
             var option = text.substr(1);
             switch (option) {
                 case "d":
-                    window.location = "https://www.dukduckgo.com";
+                    window.location = "https://www.duckduckgo.com";
                     break;
                 case "y":
                     window.location = "https://www.youtube.com";

@@ -32,6 +32,7 @@ func NewStartpageResource(service services.StartpageService, tpl *template.Templ
 func (rs *startpageResource) StartpageRoutes() chi.Router {
 	router := chi.NewRouter()
 	router.Get("/", rs.GetStartpage)
+	router.Get("/config", rs.GetDefaultConfig)
 	router.Post("/", rs.CreateStartpage)
 
 	router.Route("/{startpageID}", func(r chi.Router) {
@@ -143,6 +144,24 @@ func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request
 	}
 }
 
+func (sr *startpageResource) GetDefaultConfig(w http.ResponseWriter, r *http.Request) {
+	startpage := models.Startpage{}
+
+	appConfig, err := config.GetConfig()
+	if err != nil {
+		logger.Error("Failed to read configuration for hajimari", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	sr.service.ConvertConfigToStartpage(appConfig, &startpage)
+
+	if err := render.Render(w, r, NewStartpageResponse(&startpage)); err != nil {
+		render.Render(w, r, ErrRender(err))
+		return
+	}
+}
+
 func (sr *startpageResource) GetStartpageConfig(w http.ResponseWriter, r *http.Request) {
 	startpage := r.Context().Value("startpage").(*models.Startpage)
 
@@ -202,7 +221,7 @@ type StartpageRequest struct {
 
 func (s *StartpageRequest) Bind(r *http.Request) error {
 	if s.Startpage == nil {
-		return errors.New("missing required Startpage fields.")
+		return errors.New("missing required Startpage fields")
 	}
 
 	return nil

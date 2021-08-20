@@ -13,7 +13,9 @@
 ### Helm
 
 `helm repo add hajimari https://hajimari.io`
+
 `helm repo update`
+
 `helm install hajimari hajimari/hajimari`
 
 ![Helm docs](charts/hajimari)

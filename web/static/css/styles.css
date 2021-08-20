@@ -8,6 +8,7 @@ html{
 ::-webkit-scrollbar-thumb {background: var(--color-text-acc); border: 5px solid var(--color-background); border-radius: 10px;}
 ::-webkit-scrollbar-track {background: var(--color-text-acc); border: 7px solid var(--color-background);}
 ::-webkit-scrollbar {width: 15px;}
+::-webkit-scrollbar-corner { background: var(--color-background); }
 
 html,
 body{

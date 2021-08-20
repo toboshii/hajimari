@@ -8,6 +8,8 @@
 
 ![Hajimari](https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/screen01.png)
 
+![User config](https://raw.githubusercontent.com/toboshii/hajimari/main/docs/static/img/screen02.png)
+
 ## Installation
 
 ### Helm

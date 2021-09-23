@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+tmp
 
 # Test binary, built with `go test -c`
 *.test
@@ -19,3 +20,9 @@
 charts/hajimari/charts
 charts/hajimari/Chart.lock
 charts/hajimari/local.yaml
+
+# UI dependencies
+node_modules
+public/build/
+
+.DS_Store

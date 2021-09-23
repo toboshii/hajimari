@@ -34,8 +34,8 @@ type CustomApp struct {
 }
 
 type Group struct {
-	Name  string
-	Links []Link
+	Name  string `json:"name"`
+	Links []Link `json:"links"`
 }
 
 type Provider struct {
@@ -52,8 +52,8 @@ type Module struct {
 }
 
 type Link struct {
-	Name string
-	URL  string
+	Name string `json:"name"`
+	URL  string `json:"url"`
 }
 
 // NamespaceSelector struct for selecting namespaces based on labels and names

@@ -7,7 +7,7 @@ import (
 	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
 	"github.com/toboshii/hajimari/internal/kube/wrappers"
 	"github.com/toboshii/hajimari/internal/log"
-	"k8s.io/api/extensions/v1beta1"
+	v1 "k8s.io/api/networking/v1"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -57,7 +57,7 @@ func (al *List) Get() ([]hajimari.App, error) {
 	return al.items, al.err
 }
 
-func convertIngressesToHajimariApps(ingresses []v1beta1.Ingress) (apps []hajimari.App) {
+func convertIngressesToHajimariApps(ingresses []v1.Ingress) (apps []hajimari.App) {
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
 

@@ -1,6 +1,9 @@
 package tplutil
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 // greet returns the greeting to be used in the h1 heading
 func Greet(name string, currentHour int) (greet string) {
@@ -20,4 +23,15 @@ func Greet(name string, currentHour int) (greet string) {
 	}
 
 	return fmt.Sprintf("%s!", greet)
+}
+
+func IsStatusCheckEnabled(app interface{}) bool {
+	rv := reflect.ValueOf(app)
+	if rv.Kind() == reflect.Ptr {
+		rv = rv.Elem()
+	}
+	if rv.Kind() != reflect.Struct {
+		return false
+	}
+	return rv.FieldByName("Status").IsValid()
 }

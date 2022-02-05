@@ -4,7 +4,7 @@
     <title>{{or .Title "Hajimari"}}</title>
     <meta charset="utf-8">
     <meta http-equiv="Default-Style" content="">
-    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon"> 
+    <link rel="shortcut icon" href="data:image/x-icon;," type="image/x-icon">
     <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <link type="text/css" rel="stylesheet" href="./static/css/styles.css"  media="screen,projection"/>
     <link href="//fonts.googleapis.com/css?family=Roboto:400,500,700,900" rel="stylesheet">
@@ -95,6 +95,8 @@
                     <div class="apps_item">
                         <div class="apps_icon">
                             <span class="iconify icon" data-icon="mdi-{{or .Icon "application"}}"></span>
+                            {{if .IsStatusCheckEnabled(.)}}
+                            <hr class="apps_status" label="{{ .Status }}"/>
                         </div>
                         <div class="apps_text">
                             <a href="{{.URL}}">{{.Name}}</a>

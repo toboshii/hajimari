@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/toboshii/hajimari/internal/annotations"
+	utilStrings "github.com/toboshii/hajimari/internal/util/strings"
 	"github.com/toboshii/hajimari/internal/log"
 	v1 "k8s.io/api/networking/v1"
 )
@@ -52,6 +53,15 @@ func (iw *IngressWrapper) GetGroup() string {
 		return groupFromAnnotation
 	}
 	return iw.GetNamespace()
+}
+
+// GetStatusCheckEnabled func extracts statusCheck feature gate from the ingress
+// @default false
+func (iw *IngressWrapper) GetStatusCheckEnabled() bool {
+	if statusCheckEnabledFromAnnotation := iw.GetAnnotationValue(annotations.HajimariStatusCheckEnabledAnnotation); statusCheckEnabledFromAnnotation != "" {
+		return utilStrings.ParseBool(statusCheckEnabledFromAnnotation)
+	}
+	return false
 }
 
 // GetURL func extracts url of the ingress wrapped by the object

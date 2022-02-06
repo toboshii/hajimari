@@ -251,11 +251,11 @@ table a{
 	text-transform: uppercase;
 }
 
-.apps_status#online hr{
+hr.apps_status#True{
 	border-bottom: 3px solid var(--color-status-online);
 }
 
-.apps_status#offline hr{
+hr.apps_status#False{
 	border-bottom: 3px solid var(--color-status-offline);
 }
 

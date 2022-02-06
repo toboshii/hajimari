@@ -6,5 +6,5 @@ type App struct {
 	Icon   string
 	Group  string
 	URL    string
-	Status bool
+	Status string
 }

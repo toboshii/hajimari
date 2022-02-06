@@ -1,8 +1,6 @@
 package ingressapps
 
 import (
-	"strings"
-
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/hajimari"
@@ -50,7 +48,7 @@ func (al *List) Populate(namespaces ...string) *List {
 		al.err = err
 	}
 
-	al.items = convertIngressesToHajimariApps(ingressList, *util.NewServiceStatusGetter(al.kubeClient))
+	al.items = convertIngressesToHajimariApps(ingressList, *util.NewStatusGetter(al.kubeClient))
 
 	return al
 }
@@ -60,7 +58,7 @@ func (al *List) Get() ([]hajimari.App, error) {
 	return al.items, al.err
 }
 
-func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.ServiceStatusGetter) (apps []hajimari.App) {
+func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGetter) (apps []hajimari.App) {
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
 
@@ -71,7 +69,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.ServiceStat
 				Group:  wrapper.GetGroup(),
 				Icon:   wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 				URL:    wrapper.GetURL(),
-				Status: strings.EqualFold(ssg.GetServiceStatus(ingress).Get(), "Healthy"),
+				Status: ssg.GetDeploymentStatus(ingress).Get(),
 			})
 		} else {
 			apps = append(apps, hajimari.App{

@@ -56,12 +56,12 @@ func (iw *IngressWrapper) GetGroup() string {
 }
 
 // GetStatusCheckEnabled func extracts statusCheck feature gate from the ingress
-// @default false
+// @default true
 func (iw *IngressWrapper) GetStatusCheckEnabled() bool {
 	if statusCheckEnabledFromAnnotation := iw.GetAnnotationValue(annotations.HajimariStatusCheckEnabledAnnotation); statusCheckEnabledFromAnnotation != "" {
 		return utilStrings.ParseBool(statusCheckEnabledFromAnnotation)
 	}
-	return false
+	return true
 }
 
 // GetURL func extracts url of the ingress wrapped by the object

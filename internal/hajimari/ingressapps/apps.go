@@ -1,10 +1,13 @@
 package ingressapps
 
 import (
+	"strings"
+
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/hajimari"
 	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
+	"github.com/toboshii/hajimari/internal/kube/util"
 	"github.com/toboshii/hajimari/internal/kube/wrappers"
 	"github.com/toboshii/hajimari/internal/log"
 	v1 "k8s.io/api/networking/v1"
@@ -47,7 +50,7 @@ func (al *List) Populate(namespaces ...string) *List {
 		al.err = err
 	}
 
-	al.items = convertIngressesToHajimariApps(ingressList)
+	al.items = convertIngressesToHajimariApps(ingressList, *util.NewServiceStatusGetter(al.kubeClient))
 
 	return al
 }
@@ -57,17 +60,28 @@ func (al *List) Get() ([]hajimari.App, error) {
 	return al.items, al.err
 }
 
-func convertIngressesToHajimariApps(ingresses []v1.Ingress) (apps []hajimari.App) {
+func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.ServiceStatusGetter) (apps []hajimari.App) {
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
-		apps = append(apps, hajimari.App{
-			Name:  wrapper.GetName(),
-			Group: wrapper.GetGroup(),
-			Icon:  wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
-			URL:   wrapper.GetURL(),
-		})
+		if wrapper.GetStatusCheckEnabled() {
+			apps = append(apps, hajimari.App{
+				Name:   wrapper.GetName(),
+				Group:  wrapper.GetGroup(),
+				Icon:   wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+				URL:    wrapper.GetURL(),
+				Status: strings.EqualFold(ssg.GetServiceStatus(ingress).Get(), "Healthy"),
+			})
+		} else {
+			apps = append(apps, hajimari.App{
+				Name:  wrapper.GetName(),
+				Group: wrapper.GetGroup(),
+				Icon:  wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+				URL:   wrapper.GetURL(),
+			})
+		}
+
 	}
 	return
 }

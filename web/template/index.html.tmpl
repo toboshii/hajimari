@@ -95,8 +95,9 @@
                     <div class="apps_item">
                         <div class="apps_icon">
                             <span class="iconify icon" data-icon="mdi-{{or .Icon "application"}}"></span>
-                            {{if .IsStatusCheckEnabled(.)}}
+                            
                             <hr class="apps_status" label="{{ .Status }}"/>
+
                         </div>
                         <div class="apps_text">
                             <a href="{{.URL}}">{{.Name}}</a>

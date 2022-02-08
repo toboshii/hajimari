@@ -62,7 +62,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGette
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
 		status := ssg.GetDeploymentStatus(ingress).Get()
-		var emptyStatus *string
+		var emptyStatus string = "undefined"
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
 		if wrapper.GetStatusCheckEnabled() && len(status)>0 {
@@ -71,7 +71,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGette
 				Group:  wrapper.GetGroup(),
 				Icon:   wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 				URL:    wrapper.GetURL(),
-				Status: &status,
+				Status: status,
 			})
 		} else {
 			apps = append(apps, hajimari.App{

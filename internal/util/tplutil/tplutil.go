@@ -27,5 +27,5 @@ func Greet(name string, currentHour int) (greet string) {
 
 // Checks if status is null indicating disabled status check
 func IsStatusCheckEnabled(app hajimari.App) bool {
-	return app.Status != nil
+	return app.Status != "undefined"
 }

@@ -13,7 +13,7 @@ func TestIsStatusCheckEnabled(t *testing.T) {
 		Icon : "mdi:flower",
 		Group : "myGroup",
 		URL : "www",
-		Status : &status,
+		Status : status,
 	}
 	want := true
 	check := IsStatusCheckEnabled(app)
@@ -30,6 +30,7 @@ func TestIsStatusCheckEnabledOnEmpty(t *testing.T) {
 		Icon : "mdi:flower",
 		Group : "myGroup",
 		URL : "www",
+		Status: "undefined",
 	}
 	want := false
 	check := IsStatusCheckEnabled(app)

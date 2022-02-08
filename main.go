@@ -16,7 +16,6 @@ import (
 	"github.com/toboshii/hajimari/internal/log"
 	"github.com/toboshii/hajimari/internal/services"
 	"github.com/toboshii/hajimari/internal/stores"
-	"github.com/toboshii/hajimari/internal/util/tplutil"
 )
 
 var (
@@ -41,7 +40,7 @@ var indexHTML embed.FS
 //go:embed web/static
 var staticFiles embed.FS
 
-var tpl = template.Must(template.New("").Funcs(tplutil.TplfuncMap).ParseFS(indexHTML, "web/template/index.html.tmpl"))
+var tpl = template.Must(template.ParseFS(indexHTML, "web/template/index.html.tmpl"))
 
 func main() {
 

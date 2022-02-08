@@ -29,6 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setValueFromLocalStorage('color-background');
     setValueFromLocalStorage('color-text-pri');
     setValueFromLocalStorage('color-text-acc');
+    setValueFromLocalStorage('color-status-online');
+    setValueFromLocalStorage('color-status-offline');
 });
 
 const dataThemeButtons = document.querySelectorAll('[data-theme]');

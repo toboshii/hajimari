@@ -251,12 +251,16 @@ table a{
 	text-transform: uppercase;
 }
 
-hr.apps_status#True{
-	border-bottom: 3px solid var(--color-status-online);
+hr.apps_status.available{
+	border-width: 0 0 3px 0;
+	border-style: solid;
+	border-color: var(--color-status-online);
 }
 
-hr.apps_status#False{
-	border-bottom: 3px solid var(--color-status-offline);
+hr.apps_status.notready{
+	border-width: 0 0 3px 0;
+	border-style: solid;
+	border-color: var(--color-status-offline);
 }
 
 #links_loop{

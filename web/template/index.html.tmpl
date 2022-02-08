@@ -95,12 +95,12 @@
                     <div class="apps_item">
                         <div class="apps_icon">
                             <span class="iconify icon" data-icon="mdi-{{or .Icon "application"}}"></span>
-
-                            <hr class="apps_status {{if eq .Status "true"}} available {{else}} notready {{end}}"/>
-
+                            {{/* {{if (Deref .Status) ne nil}}
+                            <hr class="apps_status {{if eq (Deref .Status) "true"}} available {{else}} notready {{end}}"/>
+                            {{end}} */}}
                         </div>
                         <div class="apps_text">
-                            <a href="{{.URL}}">{{.Status}} {{.Name}}</a>
+                            <a href="{{.URL}}">{{.Name}}</a>
                             <span id="app-address">{{.URL}}</span>
                         </div>
                     </div>

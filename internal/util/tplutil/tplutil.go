@@ -2,7 +2,7 @@ package tplutil
 
 import (
 	"fmt"
-	"reflect"
+	"github.com/toboshii/hajimari/internal/hajimari"
 )
 
 // greet returns the greeting to be used in the h1 heading
@@ -25,13 +25,7 @@ func Greet(name string, currentHour int) (greet string) {
 	return fmt.Sprintf("%s!", greet)
 }
 
-func IsStatusCheckEnabled(app interface{}) bool {
-	rv := reflect.ValueOf(app)
-	if rv.Kind() == reflect.Ptr {
-		rv = rv.Elem()
-	}
-	if rv.Kind() != reflect.Struct {
-		return false
-	}
-	return rv.FieldByName("Status").IsValid()
+// Checks if status is null indicating disabled status check
+func IsStatusCheckEnabled(app hajimari.App) bool {
+	return app.Status != nil
 }

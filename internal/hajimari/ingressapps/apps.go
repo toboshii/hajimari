@@ -61,8 +61,8 @@ func (al *List) Get() ([]hajimari.App, error) {
 func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGetter) (apps []hajimari.App) {
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
-		logger.Debug(ingress.Labels)
 		status := ssg.GetDeploymentStatus(ingress).Get()
+		var emptyStatus *string
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
 		if wrapper.GetStatusCheckEnabled() && len(status)>0 {
@@ -71,7 +71,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGette
 				Group:  wrapper.GetGroup(),
 				Icon:   wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 				URL:    wrapper.GetURL(),
-				Status: status,
+				Status: &status,
 			})
 		} else {
 			apps = append(apps, hajimari.App{
@@ -79,6 +79,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGette
 				Group: wrapper.GetGroup(),
 				Icon:  wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 				URL:   wrapper.GetURL(),
+				Status: emptyStatus,
 			})
 		}
 

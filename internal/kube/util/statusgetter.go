@@ -2,7 +2,6 @@ package util
 
 import (
 	"context"
-	// "fmt"
 	"strings"
 
 	"github.com/toboshii/hajimari/internal/log"

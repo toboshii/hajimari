@@ -44,7 +44,7 @@ func removeDuplicates(elements []string) []string {
 	result := []string{}
 
 	for v := range elements {
-		if encountered[elements[v]] == true {
+		if encountered[elements[v]] {
 			// Do not add duplicate.
 		} else {
 			// Record this element as an encountered element.

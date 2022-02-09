@@ -62,7 +62,7 @@ h1{
 h2{
 	font-size: 16px;
 	height: 30px;
-	
+
 }
 
 h3{
@@ -251,6 +251,17 @@ table a{
 	text-transform: uppercase;
 }
 
+hr.apps_status.available{
+	border-width: 0 0 3px 0;
+	border-style: solid;
+	border-color: var(--color-status-online);
+}
+
+hr.apps_status.notready{
+	border-width: 0 0 3px 0;
+	border-style: solid;
+	border-color: var(--color-status-offline);
+}
 
 #links_loop{
 	display: grid;
@@ -513,7 +524,7 @@ table a{
 		margin-right: auto;
 		width: 90%;
 	}
-    
+
 	#apps_loop{
 		grid-template-columns: 1fr 1fr 1fr;
 		width: 90vw;
@@ -582,7 +593,7 @@ table a{
 		font-size: 2em;
 		line-height: 2.5rem;
 	}
-    
+
 	#links_loop{
 		display: grid;
 		flex-wrap: nowrap;

@@ -1,6 +1,9 @@
 package tplutil
 
-import "fmt"
+import (
+	"fmt"
+	"github.com/toboshii/hajimari/internal/hajimari"
+)
 
 // greet returns the greeting to be used in the h1 heading
 func Greet(name string, currentHour int) (greet string) {
@@ -20,4 +23,9 @@ func Greet(name string, currentHour int) (greet string) {
 	}
 
 	return fmt.Sprintf("%s!", greet)
+}
+
+// Checks if status is null indicating disabled status check
+func IsStatusCheckEnabled(app hajimari.App) bool {
+	return app.Status != "undefined"
 }

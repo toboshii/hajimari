@@ -23,6 +23,7 @@ type Config struct {
 	Groups            []Group
 	Providers         []Provider
 	Modules           []Module
+	Experimental      []ExperimentalFeature
 }
 
 // CustomApp struct for specifying apps that are not generated using ingresses
@@ -61,6 +62,13 @@ type NamespaceSelector struct {
 	Any           bool
 	MatchNames    []string
 	LabelSelector *metav1.LabelSelector
+}
+
+// ExperimentalFeature struct for featureGating new experiments
+type ExperimentalFeature struct {
+	Enabled       bool
+	Name          string
+	Properties    map[string]bool
 }
 
 // GetConfig returns hajimari configuration

@@ -72,6 +72,7 @@ Hajimari supports the following configuration options that can be modified by ei
 | instanceName      |                                      Name of the Hajimari instance                                         |           ""            | string            |
 | customApps        |                A list of custom apps that you would like to add to the Hajimari instance                   |           {}            | []CustomApp       |
 | groups            |                A list of bookmark groups to add to the Hajimari instance                                   |           {}            | []groups          |
+| defaultThem       |                Default theme name. See previous image for a list of available themes                       |           "gazette"     | string            |
 
 #### NamespaceSelector
 

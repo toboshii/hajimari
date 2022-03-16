@@ -19,6 +19,7 @@ type Config struct {
 	Title             string
 	InstanceName      string
 	Name              string
+	DefaultTheme      string
 	CustomApps        []CustomApp
 	Groups            []Group
 	Providers         []Provider

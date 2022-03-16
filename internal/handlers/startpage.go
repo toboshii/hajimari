@@ -121,21 +121,23 @@ func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request
 	w.Header().Add("Content-Type", "text/html")
 
 	err = sr.tpl.Execute(w, struct {
-		Title     string
-		Greeting  string
-		Date      string
-		Apps      []hajimari.App
-		Groups    []config.Group
-		Providers []config.Provider
-		Modules   []config.Module
+		Title        string
+		Greeting     string
+		Date         string
+		DefaultTheme string
+		Apps         []hajimari.App
+		Groups       []config.Group
+		Providers    []config.Provider
+		Modules      []config.Module
 	}{
-		Title:     appConfig.Title,
-		Greeting:  tplutil.Greet(appConfig.Name, time.Now().Hour()),
-		Date:      time.Now().Format("Mon, Jan 02"),
-		Apps:      hajimariApps,
-		Groups:    appConfig.Groups,
-		Providers: appConfig.Providers,
-		Modules:   appConfig.Modules,
+		Title:        appConfig.Title,
+		Greeting:     tplutil.Greet(appConfig.Name, time.Now().Hour()),
+		Date:         time.Now().Format("Mon, Jan 02"),
+		DefaultTheme: appConfig.DefaultTheme,
+		Apps:         hajimariApps,
+		Groups:       appConfig.Groups,
+		Providers:    appConfig.Providers,
+		Modules:      appConfig.Modules,
 	})
 
 	if err != nil {

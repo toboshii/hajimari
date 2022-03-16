@@ -5,6 +5,7 @@ namespaceSelector:
   - downloads
 title: null
 name: "you"
+defaultTheme: "gazette"
 customApps:
 - name: Test
   url: https://example.com

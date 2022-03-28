@@ -9,7 +9,7 @@ import (
 	"time"
 
 	loggerMiddleware "github.com/chi-middleware/logrus-logger"
-	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/chi/v5"
 	"github.com/spf13/viper"
 	"github.com/toboshii/hajimari/internal/handlers"

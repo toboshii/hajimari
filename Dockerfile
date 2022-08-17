@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine as build
+FROM golang:1.19-alpine as build
 
 ARG TARGETPLATFORM
 ENV TARGETPLATFORM=${TARGETPLATFORM:-linux/amd64}
@@ -23,7 +23,7 @@ RUN \
     && \
     chmod +x hajimari
 
-FROM alpine:3.14
+FROM alpine:3.16
 
 RUN \
     apk add --no-cache \

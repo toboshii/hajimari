@@ -5,7 +5,7 @@ metadata:
   name: {{ include "common.names.fullname" . }}
   labels: {{- include "common.labels" . | nindent 4 }}
 rules:
-- apiGroups: ["", "extensions"]
+- apiGroups: ["", "extensions", "networking.k8s.io"]
   resources: ["ingresses", "namespaces"]
   verbs: ["get", "list"]
 ---

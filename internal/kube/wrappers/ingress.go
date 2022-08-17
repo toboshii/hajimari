@@ -6,7 +6,7 @@ import (
 
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/log"
-	"k8s.io/api/extensions/v1beta1"
+	v1 "k8s.io/api/networking/v1"
 )
 
 var (
@@ -15,11 +15,11 @@ var (
 
 // IngressWrapper struct wraps a kubernetes ingress object
 type IngressWrapper struct {
-	ingress *v1beta1.Ingress
+	ingress *v1.Ingress
 }
 
 // NewIngressWrapper func creates an instance of IngressWrapper
-func NewIngressWrapper(ingress *v1beta1.Ingress) *IngressWrapper {
+func NewIngressWrapper(ingress *v1.Ingress) *IngressWrapper {
 	return &IngressWrapper{
 		ingress: ingress,
 	}

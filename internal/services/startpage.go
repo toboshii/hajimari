@@ -74,16 +74,4 @@ func (s *startpageService) ConvertConfigToStartpage(appConfig *config.Config, st
 
 	mergedJson, _ := json.Marshal(startpageInterface)
 	json.Unmarshal(mergedJson, &startpage)
-
-	// // TODO: make this inherit defaults from global config
-	// startpage.Name = appConfig.Name
-	// startpage.Title = appConfig.Title
-	// startpage.Theme = appConfig.Theme
-	// startpage.LightTheme = appConfig.LightTheme
-	// startpage.DarkTheme = appConfig.DarkTheme
-	// startpage.Bookmarks = appConfig.GlobalBookmarks
-	// startpage.ShowGreeting = appConfig.ShowGreeting
-	// startpage.ShowAppGroups = appConfig.ShowAppGroups
-	// startpage.ShowBookmarkGroups = appConfig.ShowBookmarkGroups
-	// startpage.ShowGlobalBookmarks = false
 }

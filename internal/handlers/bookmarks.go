@@ -30,27 +30,9 @@ func (rs *bookmarkResource) ListBookmarks(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	defaultBookmarkGroups := appConfig.Groups
+	globalBookmarks := appConfig.GlobalBookmarks
 
-	bookmarkGroups := []models.BookmarkGroup{}
-
-	for _, bookmarkGroup := range defaultBookmarkGroups {
-		bookmarks := []models.Bookmark{}
-
-		for _, bookmark := range bookmarkGroup.Links {
-			bookmarks = append(bookmarks, models.Bookmark{
-				Name: bookmark.Name,
-				URL:  bookmark.URL,
-			})
-		}
-
-		bookmarkGroups = append(bookmarkGroups, models.BookmarkGroup{
-			Name:      bookmarkGroup.Name,
-			Bookmarks: bookmarks,
-		})
-	}
-
-	if err := render.RenderList(w, r, NewBookmarkListResponse(bookmarkGroups)); err != nil {
+	if err := render.RenderList(w, r, NewBookmarkListResponse(globalBookmarks)); err != nil {
 		render.Render(w, r, ErrServerError(err))
 		return
 	}

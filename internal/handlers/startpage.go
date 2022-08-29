@@ -1,229 +1,167 @@
 package handlers
 
-// import (
-// 	"context"
-// 	"encoding/json"
-// 	"errors"
-// 	"net/http"
-// 	"time"
+import (
+	"context"
+	"errors"
+	"net/http"
 
-// 	"github.com/go-chi/chi/v5"
-// 	"github.com/go-chi/render"
-// 	"github.com/toboshii/hajimari/internal/config"
-// 	"github.com/toboshii/hajimari/internal/models"
-// 	"github.com/toboshii/hajimari/internal/services"
-// 	"github.com/toboshii/hajimari/internal/util/tplutil"
-// )
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/render"
+	"github.com/toboshii/hajimari/internal/config"
+	"github.com/toboshii/hajimari/internal/models"
+	"github.com/toboshii/hajimari/internal/services"
+)
 
-// type startpageResource struct {
-// 	service services.StartpageService
-// }
+type startpageResource struct {
+	service services.StartpageService
+}
 
-// func NewStartpageResource(service services.StartpageService) *startpageResource {
-// 	return &startpageResource{service: service}
-// }
+func NewStartpageResource(service services.StartpageService) *startpageResource {
+	return &startpageResource{service: service}
+}
 
-// func (rs *startpageResource) StartpageRoutes() chi.Router {
-// 	router := chi.NewRouter()
-// 	router.Get("/", rs.GetStartpage)
-// 	router.Get("/config", rs.GetDefaultConfig)
-// 	router.Post("/", rs.CreateStartpage)
+func (rs *startpageResource) StartpageRoutes() chi.Router {
+	router := chi.NewRouter()
+	router.Get("/", rs.GetDefaultStartpage)
+	router.Post("/", rs.CreateStartpage)
 
-// 	router.Route("/{startpageID}", func(r chi.Router) {
-// 		r.Use(rs.StartpageCtx)
-// 		r.Get("/", rs.GetStartpage)
-// 		r.Get("/config", rs.GetStartpageConfig)
-// 		r.Put("/", rs.UpdateStartpage)
-// 		r.Delete("/", rs.DeleteStartpage)
-// 	})
+	router.Route("/{startpageID}", func(r chi.Router) {
+		r.Use(rs.StartpageCtx)
+		r.Get("/", rs.GetStartpage)
+		r.Put("/", rs.UpdateStartpage)
+		r.Delete("/", rs.DeleteStartpage)
+	})
 
-// 	return router
-// }
+	return router
+}
 
-// // StartpageCtx middleware is used to load a Startpage object from
-// // the URL parameters passed through as the request. In case
-// // the Startpage could not be found, we stop here and return a 404.
-// func (sr *startpageResource) StartpageCtx(next http.Handler) http.Handler {
-// 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-// 		var startpage *models.Startpage
-// 		var err error
+// StartpageCtx middleware is used to load a Startpage object from
+// the URL parameters passed through as the request. In case
+// the Startpage could not be found, we stop here and return a 404.
+func (sr *startpageResource) StartpageCtx(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		var startpage *models.Startpage
+		var err error
 
-// 		if startpageID := chi.URLParam(r, "startpageID"); startpageID != "" {
-// 			startpage, err = sr.service.GetStartpage(startpageID)
-// 		} else {
-// 			http.Error(w, err.Error(), http.StatusNotFound)
-// 			return
-// 		}
-// 		if err != nil {
-// 			render.Render(w, r, ErrNotFound)
-// 			return
-// 		}
+		if startpageID := chi.URLParam(r, "startpageID"); startpageID != "" {
+			startpage, err = sr.service.GetStartpage(startpageID)
+		} else {
+			http.Error(w, err.Error(), http.StatusNotFound)
+			return
+		}
+		if err != nil {
+			render.Render(w, r, ErrNotFound)
+			return
+		}
 
-// 		ctx := context.WithValue(r.Context(), "startpage", startpage)
-// 		next.ServeHTTP(w, r.WithContext(ctx))
-// 	})
-// }
+		ctx := context.WithValue(r.Context(), "startpage", startpage)
+		next.ServeHTTP(w, r.WithContext(ctx))
+	})
+}
 
-// func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request) {
-// 	appConfig, err := config.GetConfig()
-// 	if err != nil {
-// 		logger.Error("Failed to read configuration for hajimari", err)
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 		return
-// 	}
+func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request) {
+	startpage := r.Context().Value("startpage").(*models.Startpage)
+	appConfig, err := config.GetConfig()
+	if err != nil {
+		logger.Error("Failed to read configuration for hajimari", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-// 	if r.Context().Value("startpage") != nil {
-// 		startpage := r.Context().Value("startpage").(*models.Startpage)
+	sr.service.ConvertConfigToStartpage(appConfig, startpage)
 
-// 		sr.service.ConvertStartpageToConfig(appConfig, startpage)
-// 	}
+	if err := render.Render(w, r, NewStartpageResponse(startpage)); err != nil {
+		render.Render(w, r, ErrServerError(err))
+		return
+	}
+}
 
-// 	w.Header().Add("Content-Type", "application/json")
+func (sr *startpageResource) GetDefaultStartpage(w http.ResponseWriter, r *http.Request) {
+	startpage := models.Startpage{}
 
-// 	js, err := json.Marshal(struct {
-// 		Title     string            `json:"title"`
-// 		Greeting  string            `json:"greeting"`
-// 		Date      string            `json:"date"`
-// 		Groups    []config.Group    `json:"groups"`
-// 		Providers []config.Provider `json:"providers"`
-// 		Modules   []config.Module   `json:"modules"`
-// 	}{
-// 		Title:     appConfig.Title,
-// 		Greeting:  tplutil.Greet(appConfig.Name, time.Now().Hour()),
-// 		Date:      time.Now().Format("Mon, Jan 02"),
-// 		Groups:    appConfig.Groups,
-// 		Providers: appConfig.Providers,
-// 		Modules:   appConfig.Modules,
-// 	})
-// 	if err != nil {
-// 		logger.Error("An error occurred while marshalling apps to json: ", err)
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 		return
-// 	}
+	appConfig, err := config.GetConfig()
+	if err != nil {
+		logger.Error("Failed to read configuration for hajimari", err)
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
 
-// 	_, err = w.Write(js)
-// 	if err != nil {
-// 		logger.Error("An error occurred while rendering json to output: ", err)
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 	}
+	sr.service.ConvertConfigToStartpage(appConfig, &startpage)
 
-// 	// err = sr.tpl.Execute(w, struct {
-// 	// 	Title     string
-// 	// 	Greeting  string
-// 	// 	Date      string
-// 	// 	Apps      []hajimari.App
-// 	// 	Groups    []config.Group
-// 	// 	Providers []config.Provider
-// 	// 	Modules   []config.Module
-// 	// }{
-// 	// 	Title:     appConfig.Title,
-// 	// 	Greeting:  tplutil.Greet(appConfig.Name, time.Now().Hour()),
-// 	// 	Date:      time.Now().Format("Mon, Jan 02"),
-// 	// 	Apps:      hajimariApps,
-// 	// 	Groups:    appConfig.Groups,
-// 	// 	Providers: appConfig.Providers,
-// 	// 	Modules:   appConfig.Modules,
-// 	// })
+	startpage.Bookmarks = appConfig.GlobalBookmarks
 
-// 	// if err != nil {
-// 	// 	http.Error(w, err.Error(), http.StatusInternalServerError)
-// 	// 	return
-// 	// }
-// }
+	if err := render.Render(w, r, NewStartpageResponse(&startpage)); err != nil {
+		render.Render(w, r, ErrServerError(err))
+		return
+	}
+}
 
-// func (sr *startpageResource) GetDefaultConfig(w http.ResponseWriter, r *http.Request) {
-// 	startpage := models.Startpage{}
+func (sr *startpageResource) CreateStartpage(w http.ResponseWriter, r *http.Request) {
+	data := &StartpageRequest{}
+	if err := render.Bind(r, data); err != nil {
+		render.Render(w, r, ErrInvalidRequest(err))
+		return
+	}
 
-// 	appConfig, err := config.GetConfig()
-// 	if err != nil {
-// 		logger.Error("Failed to read configuration for hajimari", err)
-// 		http.Error(w, err.Error(), http.StatusInternalServerError)
-// 		return
-// 	}
+	startpage := data.Startpage
+	_, _ = sr.service.NewStartpage(startpage)
 
-// 	sr.service.ConvertConfigToStartpage(appConfig, &startpage)
+	render.Status(r, http.StatusCreated)
+	render.Render(w, r, NewStartpageResponse(startpage))
+}
 
-// 	if err := render.Render(w, r, NewStartpageResponse(&startpage)); err != nil {
-// 		render.Render(w, r, ErrServerError(err))
-// 		return
-// 	}
-// }
+func (sr *startpageResource) UpdateStartpage(w http.ResponseWriter, r *http.Request) {
+	startpage := r.Context().Value("startpage").(*models.Startpage)
 
-// func (sr *startpageResource) GetStartpageConfig(w http.ResponseWriter, r *http.Request) {
-// 	startpage := r.Context().Value("startpage").(*models.Startpage)
+	data := &StartpageRequest{Startpage: startpage}
+	if err := render.Bind(r, data); err != nil {
+		render.Render(w, r, ErrInvalidRequest(err))
+		return
+	}
+	startpage = data.Startpage
+	_, _ = sr.service.UpdateStartpage(startpage.ID, startpage)
 
-// 	if err := render.Render(w, r, NewStartpageResponse(startpage)); err != nil {
-// 		render.Render(w, r, ErrServerError(err))
-// 		return
-// 	}
-// }
+	render.Render(w, r, NewStartpageResponse(startpage))
+}
 
-// func (sr *startpageResource) CreateStartpage(w http.ResponseWriter, r *http.Request) {
-// 	data := &StartpageRequest{}
-// 	if err := render.Bind(r, data); err != nil {
-// 		render.Render(w, r, ErrInvalidRequest(err))
-// 		return
-// 	}
+func (sr *startpageResource) DeleteStartpage(w http.ResponseWriter, r *http.Request) {
+	var err error
 
-// 	startpage := data.Startpage
-// 	_, _ = sr.service.NewStartpage(startpage)
+	startpage := r.Context().Value("startpage").(*models.Startpage)
 
-// 	render.Status(r, http.StatusCreated)
-// 	render.Render(w, r, NewStartpageResponse(startpage))
-// }
+	startpage, err = sr.service.RemoveStartpage(startpage.ID)
+	if err != nil {
+		render.Render(w, r, ErrInvalidRequest(err))
+		return
+	}
 
-// func (sr *startpageResource) UpdateStartpage(w http.ResponseWriter, r *http.Request) {
-// 	startpage := r.Context().Value("startpage").(*models.Startpage)
+	render.Render(w, r, NewStartpageResponse(startpage))
+}
 
-// 	data := &StartpageRequest{Startpage: startpage}
-// 	if err := render.Bind(r, data); err != nil {
-// 		render.Render(w, r, ErrInvalidRequest(err))
-// 		return
-// 	}
-// 	startpage = data.Startpage
-// 	_, _ = sr.service.UpdateStartpage(startpage.ID, startpage)
+type StartpageRequest struct {
+	*models.Startpage
 
-// 	render.Render(w, r, NewStartpageResponse(startpage))
-// }
+	ProtectedID string `json:"id"`
+}
 
-// func (sr *startpageResource) DeleteStartpage(w http.ResponseWriter, r *http.Request) {
-// 	var err error
+func (s *StartpageRequest) Bind(r *http.Request) error {
+	if s.Startpage == nil {
+		return errors.New("missing required Startpage fields")
+	}
 
-// 	startpage := r.Context().Value("startpage").(*models.Startpage)
+	return nil
+}
 
-// 	startpage, err = sr.service.RemoveStartpage(startpage.ID)
-// 	if err != nil {
-// 		render.Render(w, r, ErrInvalidRequest(err))
-// 		return
-// 	}
+type StartpageResponse struct {
+	*models.Startpage
+}
 
-// 	render.Render(w, r, NewStartpageResponse(startpage))
-// }
+func NewStartpageResponse(startpage *models.Startpage) *StartpageResponse {
+	resp := &StartpageResponse{Startpage: startpage}
 
-// type StartpageRequest struct {
-// 	*models.Startpage
+	return resp
+}
 
-// 	ProtectedID string `json:"id"`
-// }
-
-// func (s *StartpageRequest) Bind(r *http.Request) error {
-// 	if s.Startpage == nil {
-// 		return errors.New("missing required Startpage fields")
-// 	}
-
-// 	return nil
-// }
-
-// type StartpageResponse struct {
-// 	*models.Startpage
-// }
-
-// func NewStartpageResponse(startpage *models.Startpage) *StartpageResponse {
-// 	resp := &StartpageResponse{Startpage: startpage}
-
-// 	return resp
-// }
-
-// func (rd *StartpageResponse) Render(w http.ResponseWriter, r *http.Request) error {
-// 	return nil
-// }
+func (rd *StartpageResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
+}

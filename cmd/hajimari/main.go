@@ -4,6 +4,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"github.com/toboshii/hajimari/internal/handlers"
 	"github.com/toboshii/hajimari/internal/log"
@@ -19,10 +20,20 @@ func init() {
 	viper.AddConfigPath("$HOME/.hajimari") // call multiple times to add many search paths
 	viper.AddConfigPath(".")               // optionally look for config in the working directory
 	viper.AutomaticEnv()
+
 	err := viper.ReadInConfig() // Find and read the config file
-	if err != nil {             // Handle errors reading the config file
+
+	if err != nil { // Handle errors reading the config file
 		panic(errors.New("Fatal error config file: " + err.Error()))
 	}
+
+	logger.Info("Using config file: ", viper.ConfigFileUsed())
+
+	viper.OnConfigChange(func(e fsnotify.Event) {
+		logger.Info("Reloading config: ", e.Name)
+	})
+
+	viper.WatchConfig()
 }
 
 // //go:embed web/template

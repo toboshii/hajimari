@@ -10,6 +10,8 @@ import (
 	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
 	"github.com/toboshii/hajimari/internal/log"
+	"github.com/toboshii/hajimari/internal/services"
+	"github.com/toboshii/hajimari/internal/stores"
 )
 
 var (
@@ -25,9 +27,7 @@ func NewHandler() http.Handler {
 	router.Use(middleware.Recoverer)
 	router.Use(middleware.Timeout(60 * time.Second))
 	router.Use(cors.Handler(cors.Options{
-		// AllowedOrigins:   []string{"https://foo.com"}, // Use this to allow specific origin hosts
-		AllowedOrigins: []string{"https://*", "http://*"},
-		// AllowOriginFunc:  func(r *http.Request, origin string) bool { return true },
+		AllowedOrigins:   []string{"https://*", "http://*"},
 		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowedHeaders:   []string{"Accept", "Authorization", "Content-Type", "X-CSRF-Token"},
 		ExposedHeaders:   []string{"Link"},
@@ -38,11 +38,12 @@ func NewHandler() http.Handler {
 	router.MethodNotAllowed(methodNotAllowedHandler)
 	router.NotFound(notFoundHandler)
 
-	// startpageService := services.NewStartpageService(stores.NewFileStore(), logger)
+	startpageService := services.NewStartpageService(stores.NewMemoryStore(), logger)
 
-	// router.Mount("/", NewStartpageResource(startpageService).StartpageRoutes())
+	// router.Mount("/config", NewConfigResource().ConfigRoutes())
 	router.Mount("/apps", NewAppResource().AppRoutes())
 	router.Mount("/bookmarks", NewBookmarkResource().BookmarkRoutes())
+	router.Mount("/startpage", NewStartpageResource(startpageService).StartpageRoutes())
 
 	return router
 }

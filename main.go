@@ -1,21 +1,12 @@
 package main
 
 import (
-	"embed"
 	"errors"
-	"io/fs"
 	"net/http"
-	"text/template"
-	"time"
 
-	loggerMiddleware "github.com/chi-middleware/logrus-logger"
-	"github.com/go-chi/chi/middleware"
-	"github.com/go-chi/chi/v5"
 	"github.com/spf13/viper"
 	"github.com/toboshii/hajimari/internal/handlers"
 	"github.com/toboshii/hajimari/internal/log"
-	"github.com/toboshii/hajimari/internal/services"
-	"github.com/toboshii/hajimari/internal/stores"
 )
 
 var (
@@ -34,13 +25,13 @@ func init() {
 	}
 }
 
-//go:embed web/template
-var indexHTML embed.FS
+// //go:embed web/template
+// var indexHTML embed.FS
 
-//go:embed web/static
-var staticFiles embed.FS
+// //go:embed web/static
+// var staticFiles embed.FS
 
-var tpl = template.Must(template.ParseFS(indexHTML, "web/template/index.html.tmpl"))
+// var tpl = template.Must(template.ParseFS(indexHTML, "web/template/index.html.tmpl"))
 
 func main() {
 
@@ -50,22 +41,8 @@ func main() {
 	// 	return
 	// }
 
-	r := chi.NewRouter()
-
-	r.Use(middleware.RequestID)
-	r.Use(middleware.RealIP)
-	r.Use(loggerMiddleware.Logger("router", logger))
-	r.Use(middleware.Recoverer)
-
-	r.Use(middleware.Timeout(60 * time.Second))
-
-	staticFiles, _ := fs.Sub(staticFiles, "web")
-	r.Handle("/static/*", http.FileServer(http.FS(staticFiles)))
-
-	service := services.NewStartpageService(stores.NewFileStore(), logger)
-
-	r.Mount("/", handlers.NewStartpageResource(service, tpl).StartpageRoutes())
+	httpHandler := handlers.NewHandler()
 
 	logger.Printf("Listening on :%d\n", 3000)
-	logger.Fatal(http.ListenAndServe(":3000", r))
+	logger.Fatal(http.ListenAndServe(":3000", httpHandler))
 }

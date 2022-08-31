@@ -2,8 +2,8 @@ package customapps
 
 import (
 	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari"
 	"github.com/toboshii/hajimari/internal/log"
+	"github.com/toboshii/hajimari/internal/models"
 )
 
 var (
@@ -14,7 +14,7 @@ var (
 type List struct {
 	appConfig config.Config
 	err       error // Used for forwarding errors
-	items     []hajimari.App
+	items     []models.AppGroup
 }
 
 // NewList func creates a new instance of apps lister
@@ -32,21 +32,38 @@ func (al *List) Populate() *List {
 }
 
 // Get function returns the apps currently present in List
-func (al *List) Get() ([]hajimari.App, error) {
+func (al *List) Get() ([]models.AppGroup, error) {
 	return al.items, al.err
 }
 
-func convertCustomAppsToHajimariApps(customApps []config.CustomApp) (apps []hajimari.App) {
+func convertCustomAppsToHajimariApps(customApps []config.CustomApp) (appGroups []models.AppGroup) {
 	for _, customApp := range customApps {
 		logger.Debugf("Found custom app with Name '%v'", customApp.Name)
 
-		apps = append(apps, hajimari.App{
-			Name:  customApp.Name,
-			URL:   customApp.URL,
-			Icon:  customApp.Icon,
-			Group: customApp.Group,
-		})
+		groupMap := make(map[string]int, len(appGroups))
+		for i, v := range appGroups {
+			groupMap[v.Name] = i
+		}
+
+		if _, ok := groupMap[customApp.Group]; !ok {
+			appGroups = append(appGroups, models.AppGroup{
+				Name: customApp.Group,
+			})
+		}
+
+		appMap := make(map[string]int, len(appGroups))
+		for i, v := range appGroups {
+			appMap[v.Name] = i
+		}
+
+		if i, ok := appMap[customApp.Group]; ok {
+			appGroups[i].Apps = append(appGroups[i].Apps, models.App{
+				Name: customApp.Name,
+				Icon: customApp.Icon,
+				URL:  customApp.URL,
+			})
+		}
 	}
 
-	return apps
+	return
 }

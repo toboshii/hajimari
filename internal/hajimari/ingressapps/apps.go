@@ -3,12 +3,16 @@ package ingressapps
 import (
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari"
 	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
 	"github.com/toboshii/hajimari/internal/kube/util"
 	"github.com/toboshii/hajimari/internal/kube/wrappers"
 	"github.com/toboshii/hajimari/internal/log"
+<<<<<<< HEAD
 	v1 "k8s.io/api/networking/v1"
+=======
+	"github.com/toboshii/hajimari/internal/models"
+	"k8s.io/api/extensions/v1beta1"
+>>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -20,7 +24,7 @@ var (
 type List struct {
 	appConfig  config.Config
 	err        error // Used for forwarding errors
-	items      []hajimari.App
+	items      []models.AppGroup
 	kubeClient kubernetes.Interface
 }
 
@@ -54,17 +58,22 @@ func (al *List) Populate(namespaces ...string) *List {
 }
 
 // Get function returns the apps currently present in List
-func (al *List) Get() ([]hajimari.App, error) {
+func (al *List) Get() ([]models.AppGroup, error) {
 	return al.items, al.err
 }
 
+<<<<<<< HEAD
 func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGetter) (apps []hajimari.App) {
+=======
+func convertIngressesToHajimariApps(ingresses []v1beta1.Ingress) (appGroups []models.AppGroup) {
+>>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
 		status := ssg.GetDeploymentStatus(ingress).Get()
 		var emptyStatus string = "undefined"
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
+<<<<<<< HEAD
 		if wrapper.GetStatusCheckEnabled() && len(status)>0 {
 			apps = append(apps, hajimari.App{
 				Name:   wrapper.GetName(),
@@ -80,6 +89,30 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, ssg util.StatusGette
 				Icon:  wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 				URL:   wrapper.GetURL(),
 				Status: emptyStatus,
+=======
+
+		groupMap := make(map[string]int, len(appGroups))
+		for i, v := range appGroups {
+			groupMap[v.Name] = i
+		}
+
+		if _, ok := groupMap[wrapper.GetGroup()]; !ok {
+			appGroups = append(appGroups, models.AppGroup{
+				Name: wrapper.GetGroup(),
+			})
+		}
+
+		appMap := make(map[string]int, len(appGroups))
+		for i, v := range appGroups {
+			appMap[v.Name] = i
+		}
+
+		if i, ok := appMap[wrapper.GetGroup()]; ok {
+			appGroups[i].Apps = append(appGroups[i].Apps, models.App{
+				Name: wrapper.GetName(),
+				Icon: wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+				URL:  wrapper.GetURL(),
+>>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754
 			})
 		}
 

@@ -37,6 +37,9 @@ body{
 
 :root{
 	module-spacing: 3vh;
+	--color-background: #242B33;
+    --color-text-pri: #EFFBFF;
+    --color-text-acc: #6EE2FF;
 }
 
 
@@ -165,10 +168,6 @@ table a{
 }
 
 .fade{
-	opacity: 0;
-}
-
-.fade{
 	animation: fadeseq .3s forwards;
 }
 
@@ -176,6 +175,7 @@ table a{
 	animation-delay: .4s;
 }
 
+<<<<<<< HEAD:web/static/css/styles.css
 
 /* LAYOUT */
 
@@ -301,6 +301,8 @@ hr.apps_status.notready{
 
 
 
+=======
+>>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754:web/public/global.css
 /* MODAL */
 
 
@@ -508,6 +510,7 @@ hr.apps_status.notready{
 
 /* MEDIA QUERIES */
 
+<<<<<<< HEAD:web/static/css/styles.css
 @media screen and (max-width: 1260px)
 {
 	#container
@@ -534,6 +537,10 @@ hr.apps_status.notready{
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 
+=======
+@media screen and (max-width: 1260px) {
+    
+>>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754:web/public/global.css
     #modal>div{
         margin-left: auto;
         margin-right: auto;
@@ -542,39 +549,27 @@ hr.apps_status.notready{
     }
 }
 
-@media screen and (max-width: 667px)
-{
-	html{
+@media screen and (max-width: 667px) {
+	html {
 		font-size: calc(16px + 6 * ((100vw - 320px) / 680));
 	}
 
-	#container{
-		align-items: stretch;
-		display: grid;
-		grid-column-gap: 20px;
-		grid-row-gap: 0px;
-		grid-template-columns: 1fr;
-		grid-template-rows: 80px auto;
-		justify-items: stretch;
-		margin-bottom: 1vh;
-		width: 90%;
-	}
-
-	h1{
+	h1 {
 		font-size: 4em;
 		height: auto;
 		margin-bottom: 0em;
 	}
 
-	h2{
+	h2 {
 		font-size: 1em;
 		height: auto;
 		margin-bottom: 0em;
 	}
 
-	h3{
+	h3 {
 		font-size: 1em;
 	}
+<<<<<<< HEAD:web/static/css/styles.css
 
 	#apps_loop{
 		grid-column-gap: 0px;
@@ -609,4 +604,6 @@ hr.apps_status.notready{
 	#app-address {
 		display: none;
 	}
+=======
+>>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754:web/public/global.css
 }

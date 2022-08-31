@@ -1,6 +1,6 @@
 package models
 
 type BookmarkGroup struct {
-	Name      string     `json:"name"`
+	Group     string     `json:"group"`
 	Bookmarks []Bookmark `json:"bookmarks"`
 }

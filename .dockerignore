@@ -1,6 +1,7 @@
 .git
 .github/
 .gitignore
+assets/
 docs/
 Dockerfile
 LICENSE

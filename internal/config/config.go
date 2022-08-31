@@ -3,43 +3,34 @@ package config
 import (
 	"time"
 
+	"github.com/creasty/defaults"
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/log"
+	"github.com/toboshii/hajimari/internal/models"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
-)
-
-var (
-	logger = log.New()
 )
 
 // Config struct for hajimari
 type Config struct {
-	NamespaceSelector NamespaceSelector
-	DefaultEnable     bool
-	Title             string
-	InstanceName      string
-	Name              string
-	CustomApps        []CustomApp
-	Groups            []Group
-	Providers         []Provider
-	Modules           []Module
+	NamespaceSelector   NamespaceSelector      `json:"namespaceSelector"`
+	DefaultEnable       bool                   `default:"false"      json:"defaultEnable"`
+	InstanceName        string                 `default:""           json:"instanceName"`
+	Title               string                 `default:"Hajimari"   json:"title"`
+	Name                string                 `default:"You"        json:"name"`
+	Theme               string                 `default:""           json:"theme"`
+	LightTheme          string                 `default:"gazette"    json:"lightTheme"`
+	DarkTheme           string                 `default:"blackboard" json:"darkTheme"`
+	ShowGreeting        bool                   `default:"true"       json:"showGreeting"`
+	ShowAppGroups       bool                   `default:"false"      json:"showAppGroups"`
+	ShowBookmarkGroups  bool                   `default:"true"       json:"showBookmarkGroups"`
+	ShowGlobalBookmarks bool                   `default:"false"      json:"showGlobalBookmarks"`
+	CustomApps          []models.AppGroup      `default:"[]"         json:"customApps"`
+	GlobalBookmarks     []models.BookmarkGroup `default:"[]"         json:"globalBookmarks"`
+	SearchProviders     []SearchProvider       `default:"[]"         json:"searchProviders"`
+	Modules             []Module               `default:"[]"         json:"modules"`
 	Experimental      []ExperimentalFeature
 }
 
-// CustomApp struct for specifying apps that are not generated using ingresses
-type CustomApp struct {
-	Name  string
-	Icon  string
-	URL   string
-	Group string
-}
-
-type Group struct {
-	Name  string `json:"name"`
-	Links []Link `json:"links"`
-}
-
-type Provider struct {
+type SearchProvider struct {
 	Name   string
 	URL    string
 	Prefix string
@@ -50,11 +41,6 @@ type Module struct {
 	UpdateInterval time.Duration
 	Data           map[string]string
 	Output         string
-}
-
-type Link struct {
-	Name string `json:"name"`
-	URL  string `json:"url"`
 }
 
 // NamespaceSelector struct for selecting namespaces based on labels and names
@@ -74,6 +60,7 @@ type ExperimentalFeature struct {
 // GetConfig returns hajimari configuration
 func GetConfig() (*Config, error) {
 	var c Config
+	defaults.Set(&c)
 	err := viper.Unmarshal(&c)
 	if err != nil {
 		return nil, err

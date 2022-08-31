@@ -31,20 +31,18 @@ func (rs *appResource) AppRoutes() chi.Router {
 func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 	appConfig, err := config.GetConfig()
 	if err != nil {
-		logger.Error("Failed to read configuration for hajimari", err)
+		logger.Error("Failed to read configuration for hajimari: ", err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	kubeClient := kube.GetClient()
 
-	var ingressApps []models.AppGroup
-
 	ingressAppsList := ingressapps.NewList(kubeClient, *appConfig)
 
 	namespaces, err := util.PopulateNamespaceList(kubeClient, appConfig.NamespaceSelector)
 	if err != nil {
-		logger.Error("An error occurred while populating namespaces", err)
+		logger.Error("An error occurred while populating namespaces: ", err)
 		render.Render(w, r, ErrServerError(err))
 		return
 	}
@@ -57,9 +55,9 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 		namespacesString = strings.Join(namespaces, ", ")
 	}
 
-	logger.Info("Looking for hajimari apps in the following namespaces: " + namespacesString)
+	logger.Debug("Looking for hajimari apps in the following namespaces: ", namespacesString)
 
-	ingressApps, err = ingressAppsList.Populate(namespaces...).Get()
+	ingressApps, err := ingressAppsList.Populate(namespaces...).Get()
 	if err != nil {
 		logger.Error("An error occurred while looking for hajimari apps", err)
 		render.Render(w, r, ErrServerError(err))
@@ -70,23 +68,15 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 
 	customApps, err := customAppsList.Populate().Get()
 	if err != nil {
-		logger.Error("An error occured while populating custom hajimari apps", err)
+		logger.Error("An error occured while populating custom hajimari apps: ", err)
 		render.Render(w, r, ErrServerError(err))
 	}
 
-	// logger.Info(apps)
-	// logger.Info(customApps)
-	// // Append both generated and custom apps
-	//mergo.Merge(&apps, customApps)
-	// logger.Info(apps)
-
-	// apps = append(apps, customApps...)
-
 	var apps []models.AppGroup
 
-	for i, appGroup := range ingressApps {
+	for i, ingressAppGroup := range ingressApps {
 		for x, customAppGroup := range customApps {
-			if customAppGroup.Name == appGroup.Name {
+			if customAppGroup.Group == ingressAppGroup.Group {
 				ingressApps[i].Apps = append(ingressApps[i].Apps, customAppGroup.Apps...)
 				customApps = append(customApps[:x], customApps[x+1:]...)
 			}

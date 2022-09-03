@@ -48,7 +48,7 @@ func (al *List) Populate(namespaces ...string) *List {
 		al.err = err
 	}
 
-	al.items = convertIngressesToHajimariApps(ingressList, *util.NewStatusGetter(al.kubeClient))
+	al.items = convertIngressesToHajimariApps(ingressList, *util.NewReplicaStatusGetter(al.kubeClient))
 
 	return al
 }
@@ -59,11 +59,10 @@ func (al *List) Get() ([]models.AppGroup, error) {
 }
 
 
-func convertIngressesToHajimariApps(ingresses []v1.Ingress , ssg util.StatusGetter) (appGroups []models.AppGroup) {
+func convertIngressesToHajimariApps(ingresses []v1.Ingress , rsg util.ReplicaStatusGetter) (appGroups []models.AppGroup) {
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
-		status := ssg.GetDeploymentStatus(ingress).Get()
-		var emptyStatus string = "undefined"
+		replicaStatus := rsg.GetEndpointStatuses(ingress)
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
 
@@ -84,19 +83,19 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress , ssg util.StatusGett
 		}
 
 		if i, ok := appMap[wrapper.GetGroup()]; ok {
-			if wrapper.GetStatusCheckEnabled() && len(status)>0 {
+			if wrapper.GetStatusCheckEnabled() && (replicaStatus.GetReplicas() != 0) {
 				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
 					Name: wrapper.GetName(),
 					Icon: wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 					URL:  wrapper.GetURL(),
-					Status: status,
+					Replicas: replicaStatus.GetReplicas(),
+					AvailableReplicas: replicaStatus.GetAvailableReplicas(),
 				})
 			} else {
 				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
 					Name: wrapper.GetName(),
 					Icon: wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 					URL:  wrapper.GetURL(),
-					Status: emptyStatus,
 				})
 			}
 		}

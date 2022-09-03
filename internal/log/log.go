@@ -19,7 +19,7 @@ func New() *logrus.Logger {
 		Hooks:     make(logrus.LevelHooks),
 		Out:       os.Stdout,
 		Formatter: &logrus.TextFormatter{},
-		Level:     logrus.InfoLevel,
+		Level:     logrus.DebugLevel,
 	}
 
 	log.Hooks.Add(filenameHook)

@@ -34,11 +34,12 @@
 
 <main id="container" class="fade">
 	<section id="search">
+		<!-- svelte-ignore a11y-autofocus -->
 		<input name="keywords" type="text" id="keywords" size="50" spellcheck="false" autofocus="true" onkeydown="handleKeyPress(event)">
 	</section>
 
 	<Header {greeting} {date} />
-	
+
 	<AppList apps = {$apps} />
 
 	<BookmarkList bookmarks = {$bookmarks} />

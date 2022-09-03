@@ -55,12 +55,12 @@ func (rsg *ReplicaStatusGetter) GetEndpointStatuses(ingress networkingV1.Ingress
 
 	if len(epslices.Items) > 1 {
 		// This scenario can happen if the metrics endpointslices are included in the ingress
-		logger.Info(ingress.Name, " Multiple EndpointSlices found. Will try using all of them.")
+		logger.Debug(ingress.Name, " Multiple EndpointSlices found. Will try using all of them.")
 	}
 
 	if len(epslices.Items)==0 {
 		// This is indication that labels are mismatched somewhere
-		logger.Info(ingress.Name, " No EndpointSlice Found")
+		logger.Debug(ingress.Name, " No EndpointSlice Found")
 	}
 
 	replicas := 0

@@ -7,3 +7,8 @@ type App struct {
 	Replicas			int `json:"replicas"`
 	AvailableReplicas	int `json:"availableReplicas"`
 }
+
+type ReplicaInfo struct {
+	Total		int
+	Available	int
+}

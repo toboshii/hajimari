@@ -1,21 +1,21 @@
 <script>
-import App from "../App.svelte";
 
     export let group;
+    console.log(group);
 </script>
 {#each group.apps as app}
-<div class="apps_item">
-    <div class="apps_icon">
-        <span class="iconify icon" data-icon="mdi:{app.icon}"></span>
-        {#if app?.status === "true"}
-            <span class="app_status">{app.status}</span>
-        {/if}
+    <div class="apps_item">
+        <div class="apps_icon">
+            <span class="iconify icon" data-icon="mdi:{app.icon}"></span>
+            {#if app?.replicas > 0}
+                <hr class="app_status"/>
+            {/if}
+        </div>
+        <div class="apps_text">
+            <a href="{app.url}">{app.name}</a>
+            <span class="app_address">{app.url}</span>
+        </div>
     </div>
-    <div class="apps_text">
-        <a href="{app.url}">{app.name}</a>
-        <span class="app_address">{app.url}</span>
-    </div>
-</div>
 {/each}
 
 <style>

@@ -1,34 +1,32 @@
 <script>
 	// import { session } from '$app/stores';
-	import App from './AppGroup.svelte';
+	import { group_outros } from 'svelte/internal';
+import AppGroup from './AppGroup.svelte';
 
 	export let apps;
-    let config = {'groupApps': false}
+    let config = {'groupApps': false};
+    console.log("groups")
+    console.log(apps)
 </script>
-
-{#if apps.length === 0}
-    <div class="apps">
-        <h3>Applications</h3>
+<div class="apps">
+    <h3>Applications</h3>
+    {#if apps.length === 0}
         <p>No apps here...yet</p>
-    </div>
-{:else}
-    <div class="apps">
-        <h3>Applications</h3>
+    {:else}
         <div class="apps_loop" class:grouped="{config.groupApps === true}">
             {#each apps as group}
                 {#if config.groupApps === true}
                     <div class="links_item">
                         <h4>{group.name}</h4>
-                        <App {group} />
+                        {#if group.apps.length>0}<AppGroup {group} />{/if}
                     </div>
                 {:else}
-                    <App {group} />
+                    <AppGroup {group} />
                 {/if}
             {/each}
         </div>
-    </div>
-{/if}
-
+    {/if}
+</div>
 <style>
     .apps_loop {
         border-bottom: 0px solid var(--color-text-acc);

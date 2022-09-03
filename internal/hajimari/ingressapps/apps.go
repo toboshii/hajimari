@@ -68,18 +68,18 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress , rsg util.ReplicaSta
 
 		groupMap := make(map[string]int, len(appGroups))
 		for i, v := range appGroups {
-			groupMap[v.Group] = i
+			groupMap[v.Name] = i
 		}
 
 		if _, ok := groupMap[wrapper.GetGroup()]; !ok {
 			appGroups = append(appGroups, models.AppGroup{
-				Group: wrapper.GetGroup(),
+				Name: wrapper.GetGroup(),
 			})
 		}
 
 		appMap := make(map[string]int, len(appGroups))
 		for i, v := range appGroups {
-			appMap[v.Group] = i
+			appMap[v.Name] = i
 		}
 
 		if i, ok := appMap[wrapper.GetGroup()]; ok {

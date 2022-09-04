@@ -18,11 +18,13 @@ import AppGroup from './AppGroup.svelte';
                 {#if config.groupApps === true}
                     <div class="links_item">
                         <h4>{group.name}</h4>
-                        {#if group.apps.length>0}<AppGroup {group} />{/if}
+                        <AppGroup {group} />
                     </div>
                 {:else}
                     <AppGroup {group} />
                 {/if}
+            {:else}
+                <div>??</div>
             {/each}
         </div>
     {/if}

@@ -1,14 +1,16 @@
 package ingressapps
 
 import (
+	"math"
+
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
 	"github.com/toboshii/hajimari/internal/kube/util"
 	"github.com/toboshii/hajimari/internal/kube/wrappers"
 	"github.com/toboshii/hajimari/internal/log"
-	"k8s.io/api/networking/v1"
 	"github.com/toboshii/hajimari/internal/models"
+	"k8s.io/api/networking/v1"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -88,8 +90,11 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress , rsg util.ReplicaSta
 					Name: wrapper.GetName(),
 					Icon: wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 					URL:  wrapper.GetURL(),
-					Replicas: replicaStatus.GetReplicas(),
-					AvailableReplicas: replicaStatus.GetAvailableReplicas(),
+					Replicas: models.ReplicaInfo{
+						Total: replicaStatus.GetReplicas(),
+						Available: replicaStatus.GetAvailableReplicas(),
+						PctReady: math.Round(replicaStatus.GetRatio()*100),
+					},
 				})
 			} else {
 				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
@@ -102,4 +107,8 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress , rsg util.ReplicaSta
 
 	}
 	return
+}
+
+func round(f float64, i int) {
+	panic("unimplemented")
 }

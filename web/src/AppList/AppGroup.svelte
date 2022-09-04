@@ -3,18 +3,22 @@
     export let group;
     console.log(group);
 </script>
-{#each group.apps as app}
+{#each group.apps || [] as app}
     <div class="apps_item">
         <div class="apps_icon">
             <span class="iconify icon" data-icon="mdi:{app.icon}"></span>
-            {#if app?.replicas > 0}
-                <hr class="app_status"/>
+            {#if app?.replicas}
+                <hr class="app_status" style="background-image: linear-gradient(to right, black 0 {app.replicas.pctReady}%, transparent {app.replicas.pctReady}% 100%);"/>
             {/if}
         </div>
         <div class="apps_text">
             <a href="{app.url}">{app.name}</a>
             <span class="app_address">{app.url}</span>
         </div>
+    </div>
+{:else}
+    <div class="apps_item">
+        <p>No Apps in this Group</p>
     </div>
 {/each}
 
@@ -57,6 +61,10 @@
         font-size: 0.8em;
         text-transform: uppercase;
     }
+
+    /* .app_status {
+        background-image: linear-gradient(to right, black 0 50%, transparent 50% 100%);
+    } */
 
     @media screen and (max-width: 667px) {
         .apps_icon {

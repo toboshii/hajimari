@@ -108,7 +108,3 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress , rsg util.ReplicaSta
 	}
 	return
 }
-
-func round(f float64, i int) {
-	panic("unimplemented")
-}

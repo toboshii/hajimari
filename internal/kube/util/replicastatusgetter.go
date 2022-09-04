@@ -11,12 +11,15 @@ import (
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/selection"
 	"k8s.io/client-go/kubernetes"
+	"github.com/toboshii/hajimari/internal/log"
 )
 
 const (
 	appNameLabelKey		= "app.kubernetes.io/name"
 	serviceNameLabelKey	= "kubernetes.io/service-name"
 )
+
+var logger = log.New()
 
 // struct for the ReplicaStatusGetter object
 type ReplicaStatusGetter struct {

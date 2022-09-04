@@ -5,8 +5,6 @@ import AppGroup from './AppGroup.svelte';
 
 	export let apps;
     let config = {'groupApps': false};
-    console.log("groups")
-    console.log(apps)
 </script>
 <div class="apps">
     <h3>Applications</h3>

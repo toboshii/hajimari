@@ -1,14 +1,13 @@
 <script>
 
     export let group;
-    console.log(group);
 </script>
 {#each group.apps || [] as app}
     <div class="apps_item">
         <div class="apps_icon">
             <span class="iconify icon" data-icon="mdi:{app.icon}"></span>
             {#if app?.replicas}
-                <hr class="app_status" style="background-image: linear-gradient(to right, black 0 {app.replicas.pctReady}%, transparent {app.replicas.pctReady}% 100%);"/>
+                <hr class="app_status" style="background-image: linear-gradient(to right, var(--color-text-acc) 0 {app.replicas.pctReady}%, currentcolor {app.replicas.pctReady}% 100%);"/>
             {/if}
         </div>
         <div class="apps_text">
@@ -62,9 +61,11 @@
         text-transform: uppercase;
     }
 
-    /* .app_status {
-        background-image: linear-gradient(to right, black 0 50%, transparent 50% 100%);
-    } */
+    .app_status {
+        /* background-image: linear-gradient(to right, black 0 50%, transparent 50% 100%); */
+        height: 1px;
+        border: 0;
+    }
 
     @media screen and (max-width: 667px) {
         .apps_icon {

@@ -175,7 +175,6 @@ table a{
 	animation-delay: .4s;
 }
 
-<<<<<<< HEAD:web/static/css/styles.css
 
 /* LAYOUT */
 
@@ -287,22 +286,6 @@ hr.apps_status.notready{
 	line-height: 2;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
->>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754:web/public/global.css
 /* MODAL */
 
 
@@ -510,9 +493,7 @@ hr.apps_status.notready{
 
 /* MEDIA QUERIES */
 
-<<<<<<< HEAD:web/static/css/styles.css
-@media screen and (max-width: 1260px)
-{
+@media screen and (max-width: 1260px) {
 	#container
 	{
 		align-items: stretch;
@@ -537,10 +518,6 @@ hr.apps_status.notready{
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 
-=======
-@media screen and (max-width: 1260px) {
-    
->>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754:web/public/global.css
     #modal>div{
         margin-left: auto;
         margin-right: auto;
@@ -569,7 +546,6 @@ hr.apps_status.notready{
 	h3 {
 		font-size: 1em;
 	}
-<<<<<<< HEAD:web/static/css/styles.css
 
 	#apps_loop{
 		grid-column-gap: 0px;
@@ -604,6 +580,4 @@ hr.apps_status.notready{
 	#app-address {
 		display: none;
 	}
-=======
->>>>>>> 97467966a4db33a45732f6f5d967b7ec5cb7a754:web/public/global.css
 }

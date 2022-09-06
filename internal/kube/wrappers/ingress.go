@@ -54,6 +54,14 @@ func (iw *IngressWrapper) GetGroup() string {
 	return iw.GetNamespace()
 }
 
+// GetGroup func extracts group name from the ingress
+func (iw *IngressWrapper) GetInfo() string {
+	if infoFromAnnotation := iw.GetAnnotationValue(annotations.HajimariInfoAnnotation); infoFromAnnotation != "" {
+		return infoFromAnnotation
+	}
+	return iw.GetURL()
+}
+
 // GetURL func extracts url of the ingress wrapped by the object
 func (iw *IngressWrapper) GetURL() string {
 

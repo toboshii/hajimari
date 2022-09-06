@@ -13,4 +13,6 @@ const (
 	HajimariInstanceAnnotation = "hajimari.io/instance"
 	// HajimariURLAnnotation const used for specifying the URL for the hajimari app
 	HajimariURLAnnotation = "hajimari.io/url"
+	// HajimariInfoAnnotation const used for specifying the information line
+	HajimariInfoAnnotation = "hajimari.io/info"
 )

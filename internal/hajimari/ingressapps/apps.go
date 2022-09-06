@@ -67,6 +67,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress) (apps []hajimari.App
 			Group: wrapper.GetGroup(),
 			Icon:  wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 			URL:   wrapper.GetURL(),
+			Info:  wrapper.GetInfo(),
 		})
 	}
 	return

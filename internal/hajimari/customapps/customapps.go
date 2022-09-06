@@ -45,6 +45,7 @@ func convertCustomAppsToHajimariApps(customApps []config.CustomApp) (apps []haji
 			URL:   customApp.URL,
 			Icon:  customApp.Icon,
 			Group: customApp.Group,
+			Info:  customApp.Info,
 		})
 	}
 

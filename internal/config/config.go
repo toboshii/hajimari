@@ -31,6 +31,7 @@ type CustomApp struct {
 	Icon  string
 	URL   string
 	Group string
+	Info  string
 }
 
 type Group struct {

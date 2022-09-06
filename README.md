@@ -54,11 +54,12 @@ Hajimari looks for specific annotations on ingresses.
 | Annotation                                   | Description                                                                                                                                                 | Required |
 | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `hajimari.io/enable`             | Add this with value `true` to the ingress of the app you want to show in Hajimari                                                                                       | `true`   |
-| `hajimari.io/icon`               | Icon name from [MDI icons](https://materialdesignicons.com/)                                                                                                           | `false`  |
+| `hajimari.io/icon`               | Icon name from [MDI icons](https://materialdesignicons.com/)                                                                                                            | `false`  |
 | `hajimari.io/appName`            | A custom name for your application. Use if you don't want to use the name of the ingress                                                                                | `false`  |
 | `hajimari.io/group`              | A custom group name. Use if you want the application to show in a different group than the namespace it is running in                                                   | `false`  |
 | `hajimari.io/instance`           | A comma separated list of name/s of the Hajimari instance/s where you want this application to appear. Use when you have multiple Hajimari instances                    | `false`  |
 | `hajimari.io/url`                | A URL for the Hajimari app (This will override the ingress URL). It MUST begin with a scheme i.e., `http://` or `https://`                                              | `false`  |
+| `hajimari.io/info`               | A HTML string to display instead of the URL below the application name (This will take the place of the URL).                                                           | `false`  |
 
 ### Config
 
@@ -95,6 +96,7 @@ If you want to add any apps that are not exposed through ingresses or are extern
 | icon              | URL of the icon for the custom app        | String            |
 | url               | URL of the custom app                     | String            |
 | group             | Group for the custom app                  | String            |
+| info              | Information line for the custom app       | String            |
 
 #### Bookmarks
 

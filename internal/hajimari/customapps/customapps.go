@@ -40,12 +40,19 @@ func convertCustomAppsToHajimariApps(customApps []config.CustomApp) (apps []haji
 	for _, customApp := range customApps {
 		logger.Debugf("Found custom app with Name '%v'", customApp.Name)
 
+		var info string
+		if customApp.Info != "" {
+			info = customApp.Info
+		} else {
+			info = customApp.URL
+		}
+
 		apps = append(apps, hajimari.App{
 			Name:  customApp.Name,
 			URL:   customApp.URL,
 			Icon:  customApp.Icon,
 			Group: customApp.Group,
-			Info:  customApp.Info,
+			Info:  customApp.Info == "" ? customApp.URL,
 		})
 	}
 

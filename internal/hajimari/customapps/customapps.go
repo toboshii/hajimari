@@ -26,9 +26,9 @@ func (al *List) Populate() *List {
 
 	var customApps []models.AppGroup
 
-	for _, v := range al.appConfig.CustomApps {
-		v.Group = strings.ToLower(v.Group)
-		customApps = append(customApps, v)
+	for _, group := range al.appConfig.CustomApps {
+		group.Name = strings.ToLower(group.Name)
+		customApps = append(customApps, group)
 	}
 
 	al.items = customApps

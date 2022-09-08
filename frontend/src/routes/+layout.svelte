@@ -13,6 +13,7 @@
 {#if visible}
 <main id="container" transition:fade>
 	<section id="search">
+		<!-- svelte-ignore a11y-autofocus -->
 		<input name="keywords" type="text" id="keywords" size="50" spellcheck="false" autofocus="true" onkeydown="handleKeyPress(event)">
 	</section>
 

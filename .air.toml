@@ -2,7 +2,7 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-  bin = "./tmp/hajimari"
+  full_bin = "LOG_LEVEL=debug ./tmp/hajimari"
   cmd = "go build -o ./tmp/hajimari ./cmd/hajimari/main.go"
   delay = 1000
   exclude_dir = ["web", "docs", "charts", "tmp", "vendor"]
@@ -10,7 +10,6 @@ tmp_dir = "tmp"
   exclude_regex = []
   exclude_unchanged = false
   follow_symlink = false
-  full_bin = ""
   include_dir = []
   include_ext = ["go", "tpl", "tmpl", "html"]
   kill_delay = "0s"

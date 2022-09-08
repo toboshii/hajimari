@@ -1,37 +1,32 @@
 <script lang="ts">
-    import App from './AppGroup.svelte';
+    import AppGroup from './AppGroup.svelte';
 
 	export let apps: any;
     export let showGroups: boolean;
     export let defaultIcon: string = 'mdi:application';
     export let showUrls: boolean = true;
 </script>
-
-{#if apps.length === 0}
-    <div class="apps">
-        <h3>Applications</h3>
+<div class="apps">
+    <h3>Applications</h3>
+    {#if apps.length === 0}
         <p>No apps here...yet</p>
-    </div>
-{:else}
-    <div class="apps">
-        <h3>Applications</h3>
+    {:else}
         <div class="apps_loop" class:grouped="{showGroups === true}">
             {#each apps as group}
                 {#if showGroups === true}
                     <div class="links_item">
                         <h4>{group.group}</h4>
                         <div class="apps_group">
-                            <App {group} showUrl={showUrls} defaultIcon={defaultIcon}/>
+                            <AppGroup {group} showUrl={showUrls} defaultIcon={defaultIcon}/>
                         </div>
                     </div>
                 {:else}
-                    <App {group} showUrl={showUrls} defaultIcon={defaultIcon}/>
+                    <AppGroup {group} showUrl={showUrls} defaultIcon={defaultIcon}/>
                 {/if}
             {/each}
         </div>
-    </div>
-{/if}
-
+    {/if}
+</div>
 <style>
     .apps_loop {
         display: grid;

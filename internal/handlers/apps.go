@@ -76,7 +76,7 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 
 	for i, ingressAppGroup := range ingressApps {
 		for x, customAppGroup := range customApps {
-			if customAppGroup.Name == ingressAppGroup.Name {
+			if customAppGroup.Group == ingressAppGroup.Group {
 				ingressApps[i].Apps = append(ingressApps[i].Apps, customAppGroup.Apps...)
 				customApps = append(customApps[:x], customApps[x+1:]...)
 			}

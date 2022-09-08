@@ -1,6 +1,6 @@
 package models
 
 type AppGroup struct {
-	Name string `json:"name"`
+	Group string `json:"group"`
 	Apps  []App  `json:"apps"`
 }

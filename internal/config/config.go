@@ -28,7 +28,7 @@ type Config struct {
 	GlobalBookmarks     []models.BookmarkGroup `default:"[]"         json:"globalBookmarks"`
 	SearchProviders     []SearchProvider       `default:"[]"         json:"searchProviders"`
 	Modules             []Module               `default:"[]"         json:"modules"`
-	Experimental      []ExperimentalFeature
+	Experimental        []ExperimentalFeature
 }
 
 type SearchProvider struct {
@@ -53,9 +53,9 @@ type NamespaceSelector struct {
 
 // ExperimentalFeature struct for featureGating new experiments
 type ExperimentalFeature struct {
-	Enabled       bool
-	Name          string
-	Properties    map[string]bool
+	Enabled    bool
+	Name       string
+	Properties map[string]bool
 }
 
 // GetConfig returns hajimari configuration

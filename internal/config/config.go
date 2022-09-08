@@ -21,6 +21,7 @@ type Config struct {
 	DarkTheme           string                 `default:"blackboard" json:"darkTheme"`
 	ShowGreeting        bool                   `default:"true"       json:"showGreeting"`
 	ShowAppGroups       bool                   `default:"false"      json:"showAppGroups"`
+	ShowAppUrls         bool                   `default:"true"       json:"showAppUrls"`
 	ShowBookmarkGroups  bool                   `default:"true"       json:"showBookmarkGroups"`
 	ShowGlobalBookmarks bool                   `default:"false"      json:"showGlobalBookmarks"`
 	CustomApps          []models.AppGroup      `default:"[]"         json:"customApps"`

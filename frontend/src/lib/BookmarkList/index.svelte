@@ -1,28 +1,28 @@
-<script>
-	// import { session } from '$app/stores';
+<script lang="ts">
 	import BookmarkGroup from './BookmarkGroup.svelte';
 
-	export let bookmarks;
-    let config = {'groupBookmarks': true}
+    export let header: string = "Bookmarks";
+	export let bookmarks: [];
+    export let showGroups: boolean;
 </script>
 
 {#if bookmarks.length === 0}
     <div class="links">
-        <h3>Bookmarks</h3>
+        <h3>{header}</h3>
         <p>No bookmarks here...yet</p>
     </div>
 {:else}
     <div class="links">
-        <h3>Bookmarks</h3>
+        <h3>{header}</h3>
         <div class="links_loop">
-            {#each bookmarks as group}
-                {#if config.groupBookmarks === true}
+            {#each bookmarks as bookmarkGroup}
+                {#if showGroups === true}
                     <div class="links_item">
-                        <h4>{group.name}</h4>
-                        <BookmarkGroup {group} />
+                        <h4>{bookmarkGroup.group}</h4>
+                        <BookmarkGroup {bookmarkGroup} />
                     </div>
                 {:else}
-                    <BookmarkGroup {group} />
+                    <BookmarkGroup {bookmarkGroup} />
                 {/if}
             {/each}
         </div>

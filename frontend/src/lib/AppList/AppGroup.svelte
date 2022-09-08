@@ -1,17 +1,33 @@
-<script>
-    export let group;
+<script lang="ts">
+    import Icon from '@iconify/svelte';
+
+    export let group: any;
+    export let defaultIcon: string = 'mdi:application';
+    export let showUrl: boolean = true;
 </script>
+
+
 {#each group.apps as app}
 <div class="apps_item">
     <div class="apps_icon">
-        <span class="iconify icon" data-icon="mdi:{app.icon}"></span>
+        <a href="{app.url}">
+            {#if app.icon.includes(':') || !app.icon}
+                <Icon icon="{app.icon ? app.icon : defaultIcon}"/>
+            {:else}
+                <!-- support old icon format to ease transition -->
+                <Icon icon="mdi:{app.icon ? app.icon: defaultIcon}"/>
+            {/if}
+        </a>
     </div>
     <div class="apps_text">
         <a href="{app.url}">{app.name}</a>
+        {#if showUrl === true}
         <span class="app_address">{app.url}</span>
+        {/if}
     </div>
 </div>
 {/each}
+
 
 <style>
     .apps_icon {
@@ -20,7 +36,7 @@
         padding-top: 15px;
     }
 
-    .apps_icon span {
+    .apps_icon :global(svg) {
         font-size: 2.5em;
         line-height: 3rem;
     }
@@ -31,6 +47,7 @@
         flex-wrap: wrap;
         height: 64px;
         margin: 0;
+        padding-right: 10px;
     }
 
     .apps_text {
@@ -53,6 +70,10 @@
         text-transform: uppercase;
     }
 
+    .app_address {
+        overflow-wrap: break-word;
+    }
+
     @media screen and (max-width: 667px) {
         .apps_icon {
             height: 64px;
@@ -60,7 +81,7 @@
             padding-top: 14px;
         }
 
-        .apps_icon span {
+        .apps_icon :global(svg) {
             font-size: 2em;
             line-height: 2.5rem;
         }

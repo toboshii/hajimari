@@ -10,9 +10,11 @@ import (
 
 var startpages = []*models.Startpage{
 	{
-		ID:                 "108ZTGB77K09P4QJfu4vG",
-		Name:               "Adam",
-		ShowBookmarkGroups: pointer.Of(true),
+		ID:                  "108ZTGB77K09P4QJfu4vG",
+		Name:                "Adam",
+		ShowAppGroups:       pointer.Of(false),
+		ShowGlobalBookmarks: pointer.Of(true),
+		ShowAppUrls:         pointer.Of(true),
 		Bookmarks: []models.BookmarkGroup{
 			{
 				Group: "Media",

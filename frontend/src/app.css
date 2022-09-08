@@ -1,3 +1,15 @@
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+@import '@fontsource/roboto/900.css';
+
+:root{
+	module-spacing: 3vh;
+	--color-background: #242B33;
+    --color-text-pri: #EFFBFF;
+    --color-text-acc: #6EE2FF;
+}
+
 html{
 	box-sizing: border-box;
 	moz-box-sizing: border-box;
@@ -34,14 +46,6 @@ body{
 	moz-box-sizing: inherit;
 	webkit-box-sizing: inherit;
 }
-
-:root{
-	module-spacing: 3vh;
-	--color-background: #242B33;
-    --color-text-pri: #EFFBFF;
-    --color-text-acc: #6EE2FF;
-}
-
 
 /* TEXT STYLES */
 
@@ -90,11 +94,6 @@ a:hover{
 	webkit-text-decoration-color: var(--color-text-acc);
 	webkit-text-decoration-skip: true;
 }
-
-.icon{
-	font-size: 2.5em;
-}
-
 
 /* FORMS */
 
@@ -154,29 +153,7 @@ table a{
 	color: #333333;
 }
 
-
-/* ANIMATION */
-
-.fade{
-	opacity: 0;
-}
-
-@keyframes fadeseq{
-	100%	{
-		opacity: 1;
-	}
-}
-
-.fade{
-	animation: fadeseq .3s forwards;
-}
-
-.fade:nth-child(2){
-	animation-delay: .4s;
-}
-
 /* MODAL */
-
 
 #modal{
 	overflow-y: auto;

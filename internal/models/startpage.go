@@ -9,6 +9,7 @@ type Startpage struct {
 	DarkTheme           string          `json:"darkTheme"`
 	ShowGreeting        *bool           `json:"showGreeting"`
 	ShowAppGroups       *bool           `json:"showAppGroups"`
+	ShowAppUrls         *bool           `json:"showAppUrls"`
 	ShowBookmarkGroups  *bool           `json:"showBookmarkGroups"`
 	ShowGlobalBookmarks *bool           `json:"showGlobalBookmarks"`
 	Bookmarks           []BookmarkGroup `json:"bookmarks"`

@@ -11,13 +11,15 @@ lightTheme: gazette
 darkTheme: blackboard
 showGreeting: true
 showAppGroups: false
+showAppInfo: true
 showBookmarkGroups: true
 customApps:
   - group: Media
-    links:
+    apps:
       - name: Test
         url: 'https://example.com'
         icon: test-tube
+        info: This is a test app
       - name: Test2
         url: 'https://example.net'
         icon: test-tube

@@ -15,7 +15,7 @@
 <Greeting name={data.startpage.name} />
 {/if}
 
-<AppList apps={data.apps} showGroups={data.startpage.showAppGroups} showUrls={data.startpage.showAppUrls}/>
+<AppList apps={data.apps} showGroups={data.startpage.showAppGroups} showUrls={data.startpage.showAppUrls} showInfo={data.startpage.showAppInfo}/>
 
 <BookmarkList bookmarks={data.startpage.bookmarks} showGroups={data.startpage.showBookmarkGroups}/>
 

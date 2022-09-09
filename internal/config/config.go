@@ -22,6 +22,7 @@ type Config struct {
 	ShowGreeting        bool                   `default:"true"       json:"showGreeting"`
 	ShowAppGroups       bool                   `default:"false"      json:"showAppGroups"`
 	ShowAppUrls         bool                   `default:"true"       json:"showAppUrls"`
+	ShowAppInfo         bool                   `default:"true"       json:"showAppInfo"`
 	ShowBookmarkGroups  bool                   `default:"true"       json:"showBookmarkGroups"`
 	ShowGlobalBookmarks bool                   `default:"false"      json:"showGlobalBookmarks"`
 	CustomApps          []models.AppGroup      `default:"[]"         json:"customApps"`

@@ -15,6 +15,7 @@ var startpages = []*models.Startpage{
 		ShowAppGroups:       pointer.Of(false),
 		ShowGlobalBookmarks: pointer.Of(true),
 		ShowAppUrls:         pointer.Of(true),
+		ShowAppInfo:         pointer.Of(true),
 		Bookmarks: []models.BookmarkGroup{
 			{
 				Group: "Media",

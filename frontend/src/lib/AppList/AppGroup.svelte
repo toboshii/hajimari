@@ -4,6 +4,7 @@
     export let group: any;
     export let defaultIcon: string = 'mdi:application';
     export let showUrl: boolean = true;
+    export let showInfo: boolean = true;
 </script>
 
 
@@ -26,6 +27,9 @@
             <a href="{app.url}">{app.name}</a>
             {#if showUrl === true}
             <span class="app_address">{app.url}</span>
+            {/if}
+            {#if showInfo === true}
+            <span class="app_info">{app.info}</span>
             {/if}
         </div>
     </div>
@@ -78,6 +82,10 @@
     }
 
     .app_address {
+        overflow-wrap: break-word;
+    }
+
+    .app_info {
         overflow-wrap: break-word;
     }
     

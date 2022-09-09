@@ -12,6 +12,7 @@ type Startpage = {
     showGreeting: boolean;
     showAppGroups: boolean;
     showAppUrls: boolean;
+    showAppInfo: boolean;
     showBookmarkGroups: boolean;
     showGlobalBookmarks: boolean;
     bookmarks: any;

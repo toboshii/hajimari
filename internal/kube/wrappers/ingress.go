@@ -60,8 +60,7 @@ func (iw *IngressWrapper) GetInfo() string {
 	if infoFromAnnotation := iw.GetAnnotationValue(annotations.HajimariInfoAnnotation); infoFromAnnotation != "" {
 		return infoFromAnnotation
 	}
-	// TODO: Empty instead of listing the URL?
-	return iw.GetURL()
+	return ""
 }
 
 // GetStatusCheckEnabled func extracts statusCheck feature gate from the ingress

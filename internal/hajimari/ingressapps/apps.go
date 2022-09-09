@@ -89,6 +89,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, rsg util.ReplicaStat
 					Name: wrapper.GetName(),
 					Icon: wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 					URL:  wrapper.GetURL(),
+					Info: wrapper.GetInfo(),
 					Replicas: models.ReplicaInfo{
 						Total:     replicaStatus.GetReplicas(),
 						Available: replicaStatus.GetAvailableReplicas(),
@@ -100,6 +101,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, rsg util.ReplicaStat
 					Name: wrapper.GetName(),
 					Icon: wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 					URL:  wrapper.GetURL(),
+					Info: wrapper.GetInfo(),
 				})
 			}
 		}

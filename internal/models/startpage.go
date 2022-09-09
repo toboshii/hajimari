@@ -10,6 +10,7 @@ type Startpage struct {
 	ShowGreeting        *bool           `json:"showGreeting"`
 	ShowAppGroups       *bool           `json:"showAppGroups"`
 	ShowAppUrls         *bool           `json:"showAppUrls"`
+	ShowAppInfo         *bool           `json:"showAppInfo"`
 	ShowBookmarkGroups  *bool           `json:"showBookmarkGroups"`
 	ShowGlobalBookmarks *bool           `json:"showGlobalBookmarks"`
 	Bookmarks           []BookmarkGroup `json:"bookmarks"`

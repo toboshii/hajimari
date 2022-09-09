@@ -5,6 +5,7 @@
     export let showGroups: boolean;
     export let defaultIcon: string = 'mdi:application';
     export let showUrls: boolean = true;
+    export let showInfo: boolean = true;
 </script>
 <div class="apps">
     <h3>Applications</h3>
@@ -17,11 +18,11 @@
                     <div class="links_item">
                         <h4>{group.group}</h4>
                         <div class="apps_group">
-                            <AppGroup {group} showUrl={showUrls} defaultIcon={defaultIcon}/>
+                            <AppGroup {group} showUrl={showUrls} showInfo={showInfo} defaultIcon={defaultIcon}/>
                         </div>
                     </div>
                 {:else}
-                    <AppGroup {group} showUrl={showUrls} defaultIcon={defaultIcon}/>
+                    <AppGroup {group} showUrl={showUrls} showInfo={showInfo} defaultIcon={defaultIcon}/>
                 {/if}
             {/each}
         </div>

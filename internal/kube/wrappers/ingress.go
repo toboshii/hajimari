@@ -55,6 +55,15 @@ func (iw *IngressWrapper) GetGroup() string {
 	return iw.GetNamespace()
 }
 
+// GetGroup func extracts group name from the ingress
+func (iw *IngressWrapper) GetInfo() string {
+	if infoFromAnnotation := iw.GetAnnotationValue(annotations.HajimariInfoAnnotation); infoFromAnnotation != "" {
+		return infoFromAnnotation
+	}
+	// TODO: Empty instead of listing the URL?
+	return iw.GetURL()
+}
+
 // GetStatusCheckEnabled func extracts statusCheck feature gate from the ingress
 // @default true
 func (iw *IngressWrapper) GetStatusCheckEnabled() bool {

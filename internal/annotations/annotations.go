@@ -13,6 +13,8 @@ const (
 	HajimariInstanceAnnotation = "hajimari.io/instance"
 	// HajimariURLAnnotation const used for specifying the URL for the hajimari app
 	HajimariURLAnnotation = "hajimari.io/url"
+	// HajimariInfoAnnotation const used for specifying the info line for the hajimari app
+	HajimariInfoAnnotation = "hajimari.io/info"
 	// HajimariStatusCheckAnnotation boolean used for enabling status indicators.
 	HajimariStatusCheckEnabledAnnotation = "hajimari.io/statusCheckEnabled"
 )

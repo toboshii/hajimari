@@ -1,5 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
+import { append } from 'svelte/internal';
 
     export let group: any;
     export let defaultIcon: string = 'mdi:application';
@@ -12,11 +13,15 @@
     <div class="apps_item">
         <div class="apps_icon">
             <a href="{app.url}">
-                {#if app.icon.includes(':') || !app.icon}
-                    <Icon icon="{app.icon ? app.icon : defaultIcon}"/>
+                {#if app.icon.includes('//')}
+                    <img src="{app.icon}" alt="app icon for {app.name}"/>
                 {:else}
-                    <!-- support old icon format to ease transition -->
-                    <Icon icon="mdi:{app.icon ? app.icon: defaultIcon}"/>
+                    {#if app.icon.includes(':') || !app.icon}
+                        <Icon icon="{app.icon ? app.icon : defaultIcon}"/>
+                    {:else}
+                        <!-- support old icon format to ease transition -->
+                        <Icon icon="mdi:{app.icon ? app.icon: defaultIcon}"/>
+                    {/if}
                 {/if}
             </a>
             {#if app?.replicas}
@@ -50,6 +55,12 @@
     .apps_icon :global(svg) {
         font-size: 2.5em;
         line-height: 3rem;
+    }
+
+    .apps_icon img {
+        width: 2.5em;
+        height: 2.5em;
+        padding: 2px;
     }
 
     .apps_item {

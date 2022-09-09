@@ -2,23 +2,21 @@ package handlers
 
 import (
 	"net/http"
-	"strings"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/hajimari/customapps"
-	"github.com/toboshii/hajimari/internal/hajimari/ingressapps"
-	"github.com/toboshii/hajimari/internal/kube"
-	"github.com/toboshii/hajimari/internal/kube/util"
 	"github.com/toboshii/hajimari/internal/models"
-	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"github.com/toboshii/hajimari/internal/services"
 )
 
-type appResource struct{}
+type appResource struct {
+	service services.AppService
+}
 
-func NewAppResource() *appResource {
-	return &appResource{}
+func NewAppResource(service services.AppService) *appResource {
+	return &appResource{service: service}
 }
 
 func (rs *appResource) AppRoutes() chi.Router {
@@ -36,33 +34,11 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	kubeClient := kube.GetClient()
+	cachedIngressApps := rs.service.GetCachedIngressApps()
 
-	ingressAppsList := ingressapps.NewList(kubeClient, *appConfig)
+	var ingressApps = make([]models.AppGroup, len(cachedIngressApps))
 
-	namespaces, err := util.PopulateNamespaceList(kubeClient, appConfig.NamespaceSelector)
-	if err != nil {
-		logger.Error("An error occurred while populating namespaces: ", err)
-		render.Render(w, r, ErrServerError(err))
-		return
-	}
-
-	var namespacesString string
-	// All Namespaces are selected
-	if len(namespaces) == 1 && namespaces[0] == metav1.NamespaceAll {
-		namespacesString = "* (All Namespaces)"
-	} else {
-		namespacesString = strings.Join(namespaces, ", ")
-	}
-
-	logger.Debug("Looking for hajimari apps in the following namespaces: ", namespacesString)
-
-	ingressApps, err := ingressAppsList.Populate(namespaces...).Get()
-	if err != nil {
-		logger.Error("An error occurred while looking for hajimari apps", err)
-		render.Render(w, r, ErrServerError(err))
-		return
-	}
+	copy(ingressApps, cachedIngressApps)
 
 	customAppsList := customapps.NewList(*appConfig)
 

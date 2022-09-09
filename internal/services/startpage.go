@@ -5,13 +5,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/log"
 	"github.com/toboshii/hajimari/internal/models"
 	"github.com/toboshii/hajimari/internal/stores"
-)
-
-var (
-	logger = log.New()
 )
 
 type StartpageService interface {

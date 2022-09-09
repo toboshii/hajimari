@@ -39,9 +39,10 @@ func NewHandler() http.Handler {
 	router.NotFound(notFoundHandler)
 
 	startpageService := services.NewStartpageService(stores.NewMemoryStore(), logger)
+	appService := services.NewAppService(logger)
 
 	// router.Mount("/config", NewConfigResource().ConfigRoutes())
-	router.Mount("/apps", NewAppResource().AppRoutes())
+	router.Mount("/apps", NewAppResource(appService).AppRoutes())
 	router.Mount("/bookmarks", NewBookmarkResource().BookmarkRoutes())
 	router.Mount("/startpage", NewStartpageResource(startpageService).StartpageRoutes())
 

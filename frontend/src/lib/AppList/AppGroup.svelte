@@ -1,20 +1,17 @@
 <script lang="ts">
     import { fade } from 'svelte/transition';
+    import { flip } from 'svelte/animate';
     import Icon from '@iconify/svelte';
 
     export let group: any;
     export let defaultIcon: string = 'mdi:application';
     export let showUrl: boolean = true;
     export let showInfo: boolean = true;
-    export let fadeOption = {
-        delay: 0,
-        duration: 300, 
-    };
 </script>
 
 
-{#each group.apps || [] as app}
-    <div class="apps_item" transition:fade={fadeOption || {}}>
+{#each group.apps || [] as app (app.name)}
+    <div class="apps_item" in:fade="{{duration: 300}}" animate:flip="{{duration: 300}}">
         <div class="apps_icon">
             <a href="{app.url}">
                 {#if app.icon.includes('//')}

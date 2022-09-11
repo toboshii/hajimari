@@ -1,16 +1,20 @@
 <script lang="ts">
+    import { fade } from 'svelte/transition';
     import Icon from '@iconify/svelte';
-import { append } from 'svelte/internal';
 
     export let group: any;
     export let defaultIcon: string = 'mdi:application';
     export let showUrl: boolean = true;
     export let showInfo: boolean = true;
+    export let fadeOption = {
+        delay: 0,
+        duration: 300, 
+    };
 </script>
 
 
 {#each group.apps || [] as app}
-    <div class="apps_item">
+    <div class="apps_item" transition:fade={fadeOption || {}}>
         <div class="apps_icon">
             <a href="{app.url}">
                 {#if app.icon.includes('//')}

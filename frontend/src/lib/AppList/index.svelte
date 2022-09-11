@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { fade } from 'svelte/transition';
     import AppGroup from './AppGroup.svelte';
 
 	export let apps: any;
@@ -6,6 +7,10 @@
     export let defaultIcon: string = 'mdi:application';
     export let showUrls: boolean = true;
     export let showInfo: boolean = true;
+    export let fadeOption = {
+        delay: 0,
+        duration: 300, 
+    };
 </script>
 <div class="apps">
     <h3>Applications</h3>
@@ -15,7 +20,7 @@
         <div class="apps_loop" class:grouped="{showGroups === true}">
             {#each apps as group}
                 {#if showGroups === true}
-                    <div class="links_item">
+                    <div class="links_item" transition:fade={fadeOption || {}}>
                         <h4>{group.group}</h4>
                         <div class="apps_group">
                             <AppGroup {group} showUrl={showUrls} showInfo={showInfo} defaultIcon={defaultIcon}/>

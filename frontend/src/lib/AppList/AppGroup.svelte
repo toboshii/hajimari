@@ -1,41 +1,47 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
-    import { flip } from 'svelte/animate';
-    import Icon from '@iconify/svelte';
+    import { fade } from "svelte/transition";
+    import { flip } from "svelte/animate";
+    import Icon from "@iconify/svelte";
 
     export let group: any;
-    export let defaultIcon: string = 'mdi:application';
+    export let defaultIcon: string = "mdi:application";
     export let showUrl: boolean = true;
     export let showInfo: boolean = true;
 </script>
 
-
 {#each group.apps || [] as app (app.name)}
-    <div class="apps_item" in:fade="{{duration: 300}}" animate:flip="{{duration: 300}}">
+    <div
+        class="apps_item"
+        in:fade={{ duration: 300 }}
+        animate:flip={{ duration: 300 }}
+    >
         <div class="apps_icon">
-            <a href="{app.url}">
-                {#if app.icon.includes('//')}
-                    <img src="{app.icon}" alt="app icon for {app.name}"/>
+            <a href={app.url}>
+                {#if app.icon.includes("//")}
+                    <img src={app.icon} alt="app icon for {app.name}" />
+                {:else if app.icon.includes(":") || !app.icon}
+                    <Icon icon={app.icon ? app.icon : defaultIcon} />
                 {:else}
-                    {#if app.icon.includes(':') || !app.icon}
-                        <Icon icon="{app.icon ? app.icon : defaultIcon}"/>
-                    {:else}
-                        <!-- support old icon format to ease transition -->
-                        <Icon icon="mdi:{app.icon ? app.icon: defaultIcon}"/>
-                    {/if}
+                    <!-- support old icon format to ease transition -->
+                    <Icon icon="mdi:{app.icon ? app.icon : defaultIcon}" />
                 {/if}
             </a>
             {#if app?.replicas}
-                <hr class="app_status" style="background-image: linear-gradient(to right, var(--color-text-acc) 0 {app.replicas.pctReady}%, currentcolor {app.replicas.pctReady}% 100%);"/>
+                <hr
+                    class="app_status"
+                    style="background-image: linear-gradient(to right, var(--color-text-acc) 0 {app
+                        .replicas.pctReady}%, currentcolor {app.replicas
+                        .pctReady}% 100%);"
+                />
             {/if}
         </div>
         <div class="apps_text">
-            <a href="{app.url}">{app.name}</a>
+            <a href={app.url}>{app.name}</a>
             {#if showUrl === true}
-            <span class="app_address">{app.url}</span>
+                <span class="app_address">{app.url}</span>
             {/if}
             {#if showInfo === true}
-            <span class="app_info">{app.info}</span>
+                <span class="app_info">{app.info}</span>
             {/if}
         </div>
     </div>
@@ -44,7 +50,6 @@
         <p>No Apps in this Group</p>
     </div>
 {/each}
-
 
 <style>
     .apps_icon {
@@ -100,7 +105,7 @@
     .app_info {
         overflow-wrap: break-word;
     }
-    
+
     .app_status {
         /* background-image: linear-gradient(to right, black 0 50%, transparent 50% 100%); */
         height: 1px;

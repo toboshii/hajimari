@@ -3,12 +3,13 @@ import { api } from '$lib/api';
 import type { PageLoad } from './$types';
 
 type Startpage = {
-	id: string;
+    id: string;
     name: string;
     title: string;
     theme: string;
     lightTheme: string;
     darkTheme: string;
+    customThemes: Array<Record<string, string>>;
     showGreeting: boolean;
     showAppGroups: boolean;
     showAppUrls: boolean;
@@ -21,15 +22,15 @@ type Startpage = {
 export const load: PageLoad = async ({ fetch, params }) => {
     const { slug } = params;
 
-	const [startpage, apps, bookmarks] = await Promise.all([
+    const [startpage, apps, bookmarks] = await Promise.all([
         api(fetch, 'GET', `startpage/${slug}`),
         api(fetch, 'GET', 'apps'),
         api(fetch, 'GET', 'bookmarks')
     ]);
 
     if (await startpage.status !== 200) {
-        let data = await startpage.json()
-        throw error(startpage.status, data.status)
+        let data = await startpage.json();
+        throw error(startpage.status, data.status);
     }
 
     return {

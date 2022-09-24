@@ -1,8 +1,8 @@
 <script lang="ts">
-	import BookmarkGroup from './BookmarkGroup.svelte';
+    import BookmarkGroup from "./BookmarkGroup.svelte";
 
     export let header: string = "Bookmarks";
-	export let bookmarks: [];
+    export let bookmarks: [];
     export let showGroups: boolean;
 </script>
 
@@ -50,7 +50,7 @@
     }
 
     @media screen and (max-width: 1260px) {
-        .links_loop	{
+        .links_loop {
             grid-template-columns: 1fr 1fr 1fr;
         }
     }

@@ -16,9 +16,9 @@ type Config struct {
 	InstanceName        string                 `default:""           json:"instanceName"`
 	Title               string                 `default:"Hajimari"   json:"title"`
 	Name                string                 `default:"You"        json:"name"`
-	Theme               string                 `default:""           json:"theme"`
 	LightTheme          string                 `default:"gazette"    json:"lightTheme"`
 	DarkTheme           string                 `default:"blackboard" json:"darkTheme"`
+	CustomThemes        []models.Theme         `default:"[]"         json:"customThemes"`
 	ShowGreeting        bool                   `default:"true"       json:"showGreeting"`
 	ShowAppGroups       bool                   `default:"false"      json:"showAppGroups"`
 	ShowAppUrls         bool                   `default:"true"       json:"showAppUrls"`

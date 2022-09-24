@@ -1,35 +1,46 @@
 <script lang="ts">
-    import { fade } from 'svelte/transition';
-    import { flip } from 'svelte/animate';
-    import AppGroup from './AppGroup.svelte';
+    import { fade } from "svelte/transition";
+    import AppGroup from "./AppGroup.svelte";
 
-	export let apps: any;
+    export let apps: any;
     export let showGroups: boolean;
-    export let defaultIcon: string = 'mdi:application';
+    export let defaultIcon: string = "mdi:application";
     export let showUrls: boolean = true;
     export let showInfo: boolean = true;
 </script>
+
 <div class="apps">
     <h3>Applications</h3>
     {#if apps.length === 0}
         <p>No apps here...yet</p>
     {:else}
-        <div class="apps_loop" class:grouped="{showGroups === true}">
+        <div class="apps_loop" class:grouped={showGroups === true}>
             {#each apps as group}
                 {#if showGroups === true}
-                    <div class="links_item" in:fade="{{duration: 300}}">
+                    <div class="links_item" in:fade={{ duration: 300 }}>
                         <h4>{group.group}</h4>
                         <div class="apps_group">
-                            <AppGroup {group} showUrl={showUrls} showInfo={showInfo} defaultIcon={defaultIcon}/>
+                            <AppGroup
+                                {group}
+                                showUrl={showUrls}
+                                {showInfo}
+                                {defaultIcon}
+                            />
                         </div>
                     </div>
                 {:else}
-                    <AppGroup {group} showUrl={showUrls} showInfo={showInfo} defaultIcon={defaultIcon}/>
+                    <AppGroup
+                        {group}
+                        showUrl={showUrls}
+                        {showInfo}
+                        {defaultIcon}
+                    />
                 {/if}
             {/each}
         </div>
     {/if}
 </div>
+
 <style>
     .apps_loop {
         display: grid;
@@ -66,7 +77,7 @@
     }
 
     @media screen and (max-width: 667px) {
-        .apps_loop{
+        .apps_loop {
             grid-column-gap: 0px;
             grid-row-gap: 0px;
             grid-template-columns: 1fr 1fr;

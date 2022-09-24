@@ -36,14 +36,6 @@ func init() {
 	viper.WatchConfig()
 }
 
-// //go:embed web/template
-// var indexHTML embed.FS
-
-// //go:embed web/static
-// var staticFiles embed.FS
-
-// var tpl = template.Must(template.ParseFS(indexHTML, "web/template/index.html.tmpl"))
-
 func main() {
 
 	// appConfig, err := config.GetConfig()

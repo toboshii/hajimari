@@ -1,28 +1,26 @@
 <script lang="ts">
-	import '../app.css';
-	import { fade } from 'svelte/transition';
-	import { onMount } from 'svelte';
+	import "../app.css";
+	import { fade } from "svelte/transition";
+	import { onMount } from "svelte";
 
 	let visible = false;
 
-	onMount(()=> {
-        visible = true;
+	onMount(() => {
+		visible = true;
 	});
 </script>
 
 {#if visible}
-<main id="container" transition:fade>
+	<main id="container" transition:fade>
+		<slot />
 
-	<slot />
-
-	<!-- <section id="modules">
-		<h3>Modules</h3>
-		{{range .Modules}}
-			<p><span style="color: var(--color-text-acc);">{{.Name}}</span> - {{.Output}}</p>
-		{{end}}
-	</section> -->
-
-</main>
+		<!-- <section id="modules">
+			<h3>Modules</h3>
+			{{range .Modules}}
+				<p><span style="color: var(--color-text-acc);">{{.Name}}</span> - {{.Output}}</p>
+			{{end}}
+		</section> -->
+	</main>
 {/if}
 
 <style>
@@ -40,8 +38,7 @@
 		width: 60%;
 	}
 
-	@media screen and (max-width: 1260px)
-	{
+	@media screen and (max-width: 1260px) {
 		main {
 			align-items: stretch;
 			display: grid;
@@ -57,8 +54,7 @@
 		}
 	}
 
-	@media screen and (max-width: 667px)
-	{
+	@media screen and (max-width: 667px) {
 		main {
 			align-items: stretch;
 			display: grid;

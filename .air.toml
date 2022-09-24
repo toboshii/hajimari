@@ -2,10 +2,10 @@ root = "."
 tmp_dir = "tmp"
 
 [build]
-  full_bin = "LOG_LEVEL=debug ./tmp/hajimari"
+  full_bin = "MEMORY=true LOG_LEVEL=debug ./tmp/hajimari"
   cmd = "go build -o ./tmp/hajimari ./cmd/hajimari/main.go"
   delay = 1000
-  exclude_dir = ["web", "docs", "charts", "tmp", "vendor"]
+  exclude_dir = ["frontend", "docs", "charts", "tmp", "vendor"]
   exclude_file = []
   exclude_regex = []
   exclude_unchanged = false

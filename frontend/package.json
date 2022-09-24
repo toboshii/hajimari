@@ -9,19 +9,23 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@iconify/svelte": "^2.2.1",
 		"@sveltejs/adapter-static": "1.0.0-next.40",
 		"@sveltejs/kit": "1.0.0-next.456",
-		"@types/cookie": "^0.5.1",
+		"@types/codemirror": "^5.60.5",
+		"@types/js-yaml": "^4.0.5",
 		"svelte": "^3.46.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.6",
 		"tslib": "^2.3.1",
 		"typescript": "^4.7.4",
-		"vite": "^3.1.0-beta.1",
-		"@iconify/svelte": "^2.2.1"
+		"vite": "^3.1.0-beta.1"
 	},
 	"type": "module",
 	"dependencies": {
-		"@fontsource/roboto": "^4.5.8"
+		"@fontsource/roboto": "^4.5.8",
+		"codemirror": "^5.65.8",
+		"js-yaml": "^4.1.0",
+		"svelte-portal": "^2.2.0"
 	}
 }

@@ -12,6 +12,10 @@ import (
 	"github.com/toboshii/hajimari/internal/services"
 )
 
+type contextKey int
+
+const contextKeyStartpage contextKey = iota
+
 type startpageResource struct {
 	service services.StartpageService
 }
@@ -54,13 +58,13 @@ func (sr *startpageResource) StartpageCtx(next http.Handler) http.Handler {
 			return
 		}
 
-		ctx := context.WithValue(r.Context(), "startpage", startpage)
+		ctx := context.WithValue(r.Context(), contextKeyStartpage, startpage)
 		next.ServeHTTP(w, r.WithContext(ctx))
 	})
 }
 
 func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request) {
-	startpage := r.Context().Value("startpage").(*models.Startpage)
+	startpage := r.Context().Value(contextKeyStartpage).(*models.Startpage)
 	appConfig, err := config.GetConfig()
 	if err != nil {
 		logger.Error("Failed to read configuration for hajimari", err)
@@ -111,7 +115,7 @@ func (sr *startpageResource) CreateStartpage(w http.ResponseWriter, r *http.Requ
 }
 
 func (sr *startpageResource) UpdateStartpage(w http.ResponseWriter, r *http.Request) {
-	startpage := r.Context().Value("startpage").(*models.Startpage)
+	startpage := r.Context().Value(contextKeyStartpage).(*models.Startpage)
 
 	data := &StartpageRequest{Startpage: startpage}
 	if err := render.Bind(r, data); err != nil {
@@ -127,7 +131,7 @@ func (sr *startpageResource) UpdateStartpage(w http.ResponseWriter, r *http.Requ
 func (sr *startpageResource) DeleteStartpage(w http.ResponseWriter, r *http.Request) {
 	var err error
 
-	startpage := r.Context().Value("startpage").(*models.Startpage)
+	startpage := r.Context().Value(contextKeyStartpage).(*models.Startpage)
 
 	startpage, err = sr.service.RemoveStartpage(startpage.ID)
 	if err != nil {

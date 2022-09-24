@@ -9,6 +9,7 @@ import (
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
+	"github.com/spf13/viper"
 	"github.com/toboshii/hajimari/internal/log"
 	"github.com/toboshii/hajimari/internal/services"
 	"github.com/toboshii/hajimari/internal/stores"
@@ -38,10 +39,17 @@ func NewHandler() http.Handler {
 	router.MethodNotAllowed(methodNotAllowedHandler)
 	router.NotFound(notFoundHandler)
 
-	startpageService := services.NewStartpageService(stores.NewMemoryStore(), logger)
+	var store stores.StartpageStore
+
+	if viper.GetBool("memory") {
+		store = stores.NewMemoryStore()
+	} else {
+		store = stores.NewFileStore()
+	}
+
+	startpageService := services.NewStartpageService(store, logger)
 	appService := services.NewAppService(logger)
 
-	// router.Mount("/config", NewConfigResource().ConfigRoutes())
 	router.Mount("/apps", NewAppResource(appService).AppRoutes())
 	router.Mount("/bookmarks", NewBookmarkResource().BookmarkRoutes())
 	router.Mount("/startpage", NewStartpageResource(startpageService).StartpageRoutes())
@@ -53,10 +61,4 @@ func methodNotAllowedHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-type", "application/json")
 	w.WriteHeader(405)
 	render.Render(w, r, ErrMethodNotAllowed)
-}
-
-func notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	w.Header().Set("Content-type", "application/json")
-	w.WriteHeader(404)
-	render.Render(w, r, ErrNotFound)
 }

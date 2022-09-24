@@ -12,10 +12,18 @@ var startpages = []*models.Startpage{
 	{
 		ID:                  "108ZTGB77K09P4QJfu4vG",
 		Name:                "Adam",
-		ShowAppGroups:       pointer.Of(false),
+		ShowAppGroups:       pointer.Of(true),
 		ShowGlobalBookmarks: pointer.Of(true),
 		ShowAppUrls:         pointer.Of(true),
 		ShowAppInfo:         pointer.Of(true),
+		CustomThemes: []models.Theme{
+			{
+				Name:            "danger",
+				BackgroundColor: "#0c0e0c",
+				PrimaryColor:    "#eaebea",
+				AccentColor:     "#d8323c",
+			},
+		},
 		Bookmarks: []models.BookmarkGroup{
 			{
 				Group: "Media",

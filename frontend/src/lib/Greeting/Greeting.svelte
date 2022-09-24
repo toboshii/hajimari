@@ -1,53 +1,65 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import { onMount } from "svelte";
 
     export let name: string;
 
     let now: Date = new Date();
 
-    let weekdays: string[] = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-    let months: string[] = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-        
+    let weekdays: string[] = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+    let months: string[] = [
+        "JAN",
+        "FEB",
+        "MAR",
+        "APR",
+        "MAY",
+        "JUN",
+        "JUL",
+        "AUG",
+        "SEP",
+        "OCT",
+        "NOV",
+        "DEC",
+    ];
+
     $: day = weekdays[now.getDay()];
     $: month = months[now.getMonth()];
     $: date = now.getDate().toString();
 
     $: {
-        if (date.length < 2) 
-            date = '0' + date;
+        if (date.length < 2) date = "0" + date;
     }
 
     $: greeting = greetingText(now.getHours(), name);
-    
+
     function greetingText(hours: number, name: string) {
         let greeting: string;
         switch (hours / 6) {
             case 0:
-                greeting = 'Good night';
+                greeting = "Good night";
                 break;
             case 1:
-                greeting = 'Good morning';
+                greeting = "Good morning";
                 break;
             case 2:
-                greeting = 'Good afternoon';
+                greeting = "Good afternoon";
                 break;
             default:
-                greeting = 'Good evening';
+                greeting = "Good evening";
                 break;
         }
 
-        return `${greeting}, ${name}!`
+        return `${greeting}, ${name}!`;
     }
 
-    onMount(()=> {
+    onMount(() => {
         const interval = setInterval(() => {
-			now = new Date();
-		}, 30000);
+            now = new Date();
+        }, 30000);
 
-		return () => {
-			clearInterval(interval);
-		};
-	});
+        return () => {
+            clearInterval(interval);
+        };
+    });
 </script>
 
 <section>

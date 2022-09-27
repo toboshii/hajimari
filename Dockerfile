@@ -1,4 +1,16 @@
-FROM golang:1.19-alpine as build
+FROM docker.io/node:16.17-alpine AS build-frontend
+
+WORKDIR /build
+
+COPY . .
+
+WORKDIR /build/frontend
+
+RUN npm install
+
+RUN npm run build
+
+FROM docker.io/golang:1.19.1-alpine as build
 
 ARG TARGETPLATFORM
 ENV TARGETPLATFORM=${TARGETPLATFORM:-linux/amd64}
@@ -10,6 +22,8 @@ WORKDIR /build
 
 COPY . .
 
+COPY --from=build-frontend /build/frontend/build /build/frontend/build
+
 RUN \
     export GOOS=$(echo ${TARGETPLATFORM} | cut -d / -f1) \
     && \
@@ -19,11 +33,11 @@ RUN \
     && \
     go mod download \
     && \
-    go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o hajimari /build/main.go \
+    go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o hajimari /build/cmd/hajimari/main.go \
     && \
     chmod +x hajimari
 
-FROM alpine:3.16
+FROM docker.io/alpine:3.16
 
 RUN \
     apk add --no-cache \

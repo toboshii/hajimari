@@ -13,8 +13,10 @@ tmp
 *.out
 
 # Project specific
+/data
 /config.yaml
 /hajimari
+/.kubeconfig
 
 # Chart dependencies
 charts/hajimari/charts

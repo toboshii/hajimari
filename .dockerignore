@@ -1,7 +1,11 @@
 .git
 .github/
+.vscode/
 .gitignore
+.kubeconfig
 assets/
+charts/
+data/
 docs/
 Dockerfile
 LICENSE

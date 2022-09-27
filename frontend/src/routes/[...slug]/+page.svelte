@@ -51,8 +51,6 @@
 			restoreTheme = data.startpage.lightTheme as string;
 		}
 
-		console.log(restoreTheme);
-
 		let themeData = $themes.find((t) => t.name === restoreTheme);
 
 		setTheme({
@@ -115,6 +113,7 @@
 
 <style>
 	#modal_init a {
+		z-index: 25;
 		bottom: 1vh;
 		color: var(--color-text-acc);
 		left: 1vw;

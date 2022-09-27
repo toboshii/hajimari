@@ -122,13 +122,14 @@
         left: 0;
         width: 100%;
         height: 100%;
-        /* background: rgba(0,0,0,0.3); */
     }
 
     .modal {
         position: fixed;
         left: 50%;
         top: 50%;
+        max-width: 982px;
+        max-height: 70vh;
         overflow-y: auto;
         transform: translate(-50%, -50%);
         padding: 2em;
@@ -141,8 +142,14 @@
         flex-direction: column;
     }
 
-    button {
-        display: block;
+    @media screen and (max-width: 910px) {
+        .modal {
+            left: 0;
+            top: 0;
+            transform: none;
+            height: 100vh;
+            max-height: 100vh;
+        }
     }
 
     .modal h1 {
@@ -168,6 +175,11 @@
     footer a {
         margin-right: 0.25em;
         color: rgba(0, 0, 0, 0.35);
+        transition: all 0.3s ease 0s;
+    }
+
+    footer a:hover {
+        color: rgba(0, 0, 0, 0.5);
     }
 
     .modal-close {
@@ -182,7 +194,8 @@
     }
 
     .editor {
-        height: 30rem;
+        height: 35vh;
+        min-height: 350px;
     }
 
     /* .help {
@@ -197,7 +210,6 @@
 
     #save-config {
         float: right;
-        /* margin-top: 1em; */
         color: var(--color-text-acc);
         text-transform: uppercase;
         padding: 5px 10px;
@@ -211,4 +223,5 @@
         color: var(--color-background);
         border: 1px solid var(--color-background) !important;
     }
+    
 </style>

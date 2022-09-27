@@ -73,28 +73,13 @@
     {#each $themes as theme}
         <button
             data-theme={theme.name}
-            class="theme-button"
-            style="background-color: {theme.backgroundColor}; border: 1px solid {theme.accentColor}; color: {theme.primaryColor};"
+            style="--color-background: {theme.backgroundColor}; --color-text-acc: {theme.accentColor}; --color-text-pri: {theme.primaryColor};"
             >{theme.name}</button
         >
     {/each}
 </div>
 
 <style>
-
-    .theme-button{
-        font-size: 0.8em;
-        margin: 2px;
-        width:128px;
-        line-height: 3em;
-        text-align: center;
-        text-transform: uppercase;
-    }
-
-    button {
-        display: block;
-    }
-
     .theme-mode-selector h2,
     :global(.theme-mode-selector svg) {
         display: inline;
@@ -130,5 +115,26 @@
         display: flex;
         flex-wrap: wrap;
         margin-bottom: 2em;
+    }
+
+    .theme-selector button {
+        font-family: var(--font);
+        font-weight: 700;
+        font-size: 0.8em;
+        margin: 2px;
+        width:128px;
+        line-height: 3em;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--color-text-pri);
+        border: 1px solid var(--color-text-acc);
+        background-color: var(--color-background);
+        transition: all 0.3s ease 0s;
+    }
+
+    .theme-selector button:hover {
+        background-color: var(--color-text-acc);
+        color: var(--color-background);
+        border: 1px solid var(--color-background) !important;
     }
 </style>

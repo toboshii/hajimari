@@ -67,8 +67,8 @@ func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request
 	startpage := r.Context().Value(contextKeyStartpage).(*models.Startpage)
 	appConfig, err := config.GetConfig()
 	if err != nil {
-		logger.Error("Failed to read configuration for hajimari", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		logger.Error("Failed to read configuration for hajimari: ", err)
+		render.Render(w, r, ErrServerError(err))
 		return
 	}
 
@@ -85,8 +85,8 @@ func (sr *startpageResource) GetDefaultStartpage(w http.ResponseWriter, r *http.
 
 	appConfig, err := config.GetConfig()
 	if err != nil {
-		logger.Error("Failed to read configuration for hajimari", err)
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		logger.Error("Failed to read configuration for hajimari: ", err)
+		render.Render(w, r, ErrServerError(err))
 		return
 	}
 
@@ -108,7 +108,12 @@ func (sr *startpageResource) CreateStartpage(w http.ResponseWriter, r *http.Requ
 	}
 
 	startpage := data.Startpage
-	_, _ = sr.service.NewStartpage(startpage)
+
+	if _, err := sr.service.NewStartpage(startpage); err != nil {
+		logger.Error("Error writing startpage data: ", err)
+		render.Render(w, r, ErrServerError(err))
+		return
+	}
 
 	render.Status(r, http.StatusCreated)
 	render.Render(w, r, NewStartpageResponse(startpage))
@@ -122,8 +127,14 @@ func (sr *startpageResource) UpdateStartpage(w http.ResponseWriter, r *http.Requ
 		render.Render(w, r, ErrInvalidRequest(err))
 		return
 	}
+
 	startpage = data.Startpage
-	_, _ = sr.service.UpdateStartpage(startpage.ID, startpage)
+
+	if _, err := sr.service.UpdateStartpage(startpage.ID, startpage); err != nil {
+		logger.Error("Error writing startpage data: ", err)
+		render.Render(w, r, ErrServerError(err))
+		return
+	}
 
 	render.Render(w, r, NewStartpageResponse(startpage))
 }

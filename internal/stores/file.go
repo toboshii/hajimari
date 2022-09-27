@@ -1,14 +1,15 @@
 package stores
 
 import (
-	"errors"
-	"io/ioutil"
+	"fmt"
 	"os"
 
 	gonanoid "github.com/matoous/go-nanoid/v2"
 	"github.com/toboshii/hajimari/internal/models"
 	"gopkg.in/yaml.v3"
 )
+
+const filePath = "/data/%s.yaml"
 
 type fileStore struct {
 	StartpageStore
@@ -26,13 +27,9 @@ func (s *fileStore) NewStartpage(startpage *models.Startpage) (string, error) {
 
 	startpage.ID = id
 
-	data, err2 := yaml.Marshal(&startpage)
-	if err != nil {
-		return "", err2
-	}
-
-	err3 := ioutil.WriteFile("/data/"+id+".yaml", data, 0600)
-	if err3 != nil {
+	if data, err := yaml.Marshal(&startpage); err != nil {
+		return "", err
+	} else if err := os.WriteFile(fmt.Sprintf(filePath, id), data, 0600); err != nil {
 		return "", err
 	}
 
@@ -40,9 +37,9 @@ func (s *fileStore) NewStartpage(startpage *models.Startpage) (string, error) {
 }
 
 func (s *fileStore) GetStartpage(id string) (*models.Startpage, error) {
-	file, err := ioutil.ReadFile("/data/" + id + ".yaml")
+	file, err := os.ReadFile(fmt.Sprintf(filePath, id))
 	if err != nil {
-		return nil, errors.New("startpage not found")
+		return nil, fmt.Errorf("startpage %s doesn't exist", id)
 	}
 	startpage := models.Startpage{}
 
@@ -55,18 +52,14 @@ func (s *fileStore) GetStartpage(id string) (*models.Startpage, error) {
 }
 
 func (s *fileStore) UpdateStartpage(id string, startpage *models.Startpage) (*models.Startpage, error) {
-	_, err := ioutil.ReadFile("/data/" + id + ".yaml")
+	_, err := os.ReadFile(fmt.Sprintf(filePath, id))
 	if err != nil {
-		return nil, errors.New("startpage not found")
+		return nil, fmt.Errorf("startpage %s doesn't exist", id)
 	}
 
-	data, err2 := yaml.Marshal(&startpage)
-	if err != nil {
-		return nil, err2
-	}
-
-	err3 := ioutil.WriteFile("/data/"+id+".yaml", data, 0600)
-	if err3 != nil {
+	if data, err := yaml.Marshal(&startpage); err != nil {
+		return nil, err
+	} else if err := os.WriteFile(fmt.Sprintf(filePath, id), data, 0600); err != nil {
 		return nil, err
 	}
 
@@ -74,21 +67,13 @@ func (s *fileStore) UpdateStartpage(id string, startpage *models.Startpage) (*mo
 }
 
 func (s *fileStore) RemoveStartpage(id string) (*models.Startpage, error) {
-	file, err := ioutil.ReadFile("/data/" + id + ".yaml")
-	if err != nil {
-		return nil, errors.New("startpage not found")
-	}
-	startpage := models.Startpage{}
-
-	err2 := yaml.Unmarshal(file, &startpage)
-	if err2 != nil {
-		return nil, err2
+	if _, err := os.Stat(fmt.Sprintf(filePath, id)); err != nil {
+		return nil, fmt.Errorf("startpage %s doesn't exist", id)
 	}
 
-	err3 := os.Remove("/data/" + id + ".yaml")
-	if err3 != nil {
-		return nil, err3
+	if err := os.Remove(fmt.Sprintf(filePath, id)); err != nil {
+		return nil, err
 	}
 
-	return &startpage, nil
+	return nil, nil
 }

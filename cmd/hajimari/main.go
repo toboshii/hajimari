@@ -46,6 +46,6 @@ func main() {
 
 	httpHandler := handlers.NewHandler()
 
-	logger.Printf("Listening on :%d\n", 3000)
+	logger.Printf("Listening on :%d", 3000)
 	logger.Fatal(http.ListenAndServe(":3000", httpHandler))
 }

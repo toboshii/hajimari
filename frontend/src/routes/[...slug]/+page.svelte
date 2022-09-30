@@ -63,23 +63,13 @@
 
 <svelte:head>
 	<title>{data.startpage.title}</title>
-	<!-- <style>
-		:root{
-			--color-background: #232530;
-			--color-text-pri: #FAB795;
-			--color-text-acc: #E95678;
-			--font: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, sans-serif;
-			--font-code: monospace;
-			--font-mono: monospace;
-		}
-	</style> -->
 </svelte:head>
 
 {#if showModal}
 	<Modal settings={data.startpage} on:close={() => (showModal = false)} />
 {/if}
 
-<Search />
+<Search providers={data.startpage.searchProviders} />
 
 {#if data.startpage.showGreeting}
 	<Greeting name={data.startpage.name} />
@@ -88,8 +78,9 @@
 <AppList
 	apps={$filteredApps}
 	showGroups={data.startpage.showAppGroups}
-	showUrls={data.startpage.showAppUrls}
+	showUrl={data.startpage.showAppUrls}
 	showInfo={data.startpage.showAppInfo}
+	showStatus={data.startpage.showAppStatus}
 />
 
 <BookmarkList

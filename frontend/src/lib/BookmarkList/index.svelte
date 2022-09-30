@@ -16,7 +16,7 @@
         <h3>{header}</h3>
         <div class="links_loop">
             {#each bookmarks as bookmarkGroup}
-                {#if showGroups === true}
+                {#if showGroups}
                     <div class="links_item">
                         <h4>{bookmarkGroup.group}</h4>
                         <BookmarkGroup {bookmarkGroup} />

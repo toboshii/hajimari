@@ -30,7 +30,7 @@
 		grid-column-gap: 20px;
 		grid-row-gap: 3vh;
 		grid-template-columns: 1fr;
-		grid-template-rows: 8vh auto;
+		grid-template-rows: 5vh auto;
 		justify-items: stretch;
 		margin-left: auto;
 		margin-right: auto;

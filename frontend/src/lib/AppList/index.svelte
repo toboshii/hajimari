@@ -5,8 +5,9 @@
     export let apps: any;
     export let showGroups: boolean;
     export let defaultIcon: string = "mdi:application";
-    export let showUrls: boolean = true;
+    export let showUrl: boolean = true;
     export let showInfo: boolean = true;
+    export let showStatus: boolean = true;
 </script>
 
 <div class="apps">
@@ -14,16 +15,17 @@
     {#if apps.length === 0}
         <p>No apps here...yet</p>
     {:else}
-        <div class="apps_loop" class:grouped={showGroups === true}>
+        <div class="apps_loop" class:grouped={showGroups}>
             {#each apps as group}
-                {#if showGroups === true}
+                {#if showGroups}
                     <div class="links_item" in:fade={{ duration: 300 }}>
                         <h4>{group.group}</h4>
                         <div class="apps_group">
                             <AppGroup
                                 {group}
-                                showUrl={showUrls}
+                                {showUrl}
                                 {showInfo}
+                                {showStatus}
                                 {defaultIcon}
                             />
                         </div>
@@ -31,8 +33,9 @@
                 {:else}
                     <AppGroup
                         {group}
-                        showUrl={showUrls}
+                        {showUrl}
                         {showInfo}
+                        {showStatus}
                         {defaultIcon}
                     />
                 {/if}

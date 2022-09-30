@@ -114,10 +114,7 @@
 			autoCloseTags: true,
 			extraKeys: CodeMirrorMounted.normalizeKeyMap({
 				Enter: "newlineAndIndentContinueMarkdownList",
-				"Ctrl-Q": function (cm: CodeMirror.Editor) {
-					cm.foldCode(cm.getCursor());
-				},
-				"Cmd-Q": function (cm: CodeMirror.Editor) {
+				"Alt-R": function (cm: CodeMirror.Editor) {
 					cm.foldCode(cm.getCursor());
 				},
 				Tab: (cm: CodeMirror.Editor) => {

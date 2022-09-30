@@ -123,7 +123,7 @@ input:focus{
 /* TABLES */
 
 table{
-	border: thin solid #e4e4e4;
+	border: thin solid var(--color-text-acc);
 	border-collapse: collapse;
 	border-spacing: 0;
 	font-size: 1em;
@@ -136,8 +136,8 @@ table td:nth-of-type(2){
 }
 
 table td{
-	border: thin solid #e4e4e4;
-	color: #333333;
+	border: thin solid var(--color-text-acc);
+	color: var(--color-text-pri);
 	font-size: 1em;
 	overflow: hidden;
 	padding: 10px 5px;
@@ -145,14 +145,14 @@ table td{
 }
 
 table th{
-	border: thin solid #e4e4e4;
-	color: #333333;
+	border: thin solid var(--color-text-acc);
+	color: var(--color-text-pri);
 	font-weight: bold;
 	padding: 10px 5px;
 }
 
 table a{
-	color: #333333;
+	color: var(--color-text-pri);
 }
 
 /* MEDIA QUERIES */
@@ -172,22 +172,6 @@ table a{
 		margin-right: auto;
 		width: 90%;
 	}
-
-	#apps_loop{
-		grid-template-columns: 1fr 1fr 1fr;
-		width: 90vw;
-	}
-
-	#links_loop	{
-		grid-template-columns: 1fr 1fr 1fr;
-	}
-
-    #modal>div{
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 5vh;
-        width: 90%;
-    }
 }
 
 @media screen and (max-width: 667px) {
@@ -209,39 +193,5 @@ table a{
 
 	h3 {
 		font-size: 1em;
-	}
-
-	#apps_loop{
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
-		grid-template-columns: 1fr 1fr;
-		width: 90vw;
-	}
-
-	.apps_icon{
-		height: 64px;
-		margin-right: 0.8em;
-		padding-top: 14px;
-	}
-
-	.apps_icon span{
-		font-size: 2em;
-		line-height: 2.5rem;
-	}
-
-	#links_loop{
-		display: grid;
-		flex-wrap: nowrap;
-		grid-column-gap: 20px;
-		grid-row-gap: 0px;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: auto;
-	}
-}
-
-/* Small Screens */
-@media only screen and (max-width: 400px) {
-	#app-address {
-		display: none;
 	}
 }

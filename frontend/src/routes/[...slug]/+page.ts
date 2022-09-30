@@ -14,8 +14,10 @@ type Startpage = {
     showAppGroups: boolean;
     showAppUrls: boolean;
     showAppInfo: boolean;
+    showAppStatus: boolean;
     showBookmarkGroups: boolean;
     showGlobalBookmarks: boolean;
+    searchProviders: Array<Record<string, string>>;
     bookmarks: any;
 };
 

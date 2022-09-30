@@ -76,7 +76,11 @@ func (iw *IngressWrapper) GetStatusCheckEnabled() bool {
 // @default false
 func (iw *IngressWrapper) GetTargetBlank() string {
 	if targetBlankFromAnnotation := iw.GetAnnotationValue(annotations.HajimariTargetBlankAnnotation); targetBlankFromAnnotation != "" {
-		return targetBlankFromAnnotation
+		if utilStrings.ParseBool(targetBlankFromAnnotation) {
+			return "1"
+		} else {
+			return "0"
+		}
 	}
 	return ""
 }

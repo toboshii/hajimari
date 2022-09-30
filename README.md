@@ -74,6 +74,7 @@ Hajimari supports the following configuration options that can be modified by ei
 | instanceName      |                                      Name of the Hajimari instance                                         |           ""            | string            |
 | customApps        |                A list of custom apps that you would like to add to the Hajimari instance                   |           {}            | []CustomApp       |
 | groups            |                A list of bookmark groups to add to the Hajimari instance                                   |           {}            | []groups          |
+| targetBlank       |                  Set to true to open apps/bookmarks in a new window by default                     |          false          | bool
 
 #### NamespaceSelector
 
@@ -98,6 +99,7 @@ If you want to add any apps that are not exposed through ingresses or are extern
 | url               | URL of the custom app                     | String            |
 | info              | Short description of the custom app       | String            |
 | group             | Group for the custom app                  | String            |
+| targetBlank       | Open app in a new window                  | Bool              |
 
 #### Bookmarks
 
@@ -106,7 +108,7 @@ Bookmark groups can be added by creating an array of group names and links.
 | Field            | Description                               | Type              |
 | -----------------| ----------------------------------------- | ----------------- |
 | name             | Name of the bookmark group                | String            |
-| links            | Array of links                            | Array             |
+| bookmarks        | Array of bookmarks                        | Array             |
 
 Bookmarks can be added by configuring a list of bookmarks under a group.
 
@@ -114,6 +116,7 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 | ----------------- | ----------------------------------------- | ----------------- |
 | name              | Name of the bookmark                      | String            |
 | url               | URL of the bookmark                       | String            |
+| targetBlank       | Open link in a new window                 | Bool              |
 
 ### Custom startpage setup
 

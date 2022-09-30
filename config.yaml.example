@@ -11,6 +11,7 @@ showGreeting: true
 showAppGroups: false
 showAppUrls: true
 showAppInfo: false
+targetBlank: false
 showAppStatus: true
 showBookmarkGroups: true
 showGlobalBookmarks: false

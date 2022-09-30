@@ -81,11 +81,13 @@
 	showUrl={data.startpage.showAppUrls}
 	showInfo={data.startpage.showAppInfo}
 	showStatus={data.startpage.showAppStatus}
+	targetBlank={data.startpage.targetBlank}
 />
 
 <BookmarkList
 	bookmarks={data.startpage.bookmarks}
 	showGroups={data.startpage.showBookmarkGroups}
+	targetBlank={data.startpage.targetBlank}
 />
 
 {#if data.startpage.showGlobalBookmarks && data.slug !== ""}
@@ -93,6 +95,7 @@
 		header="Global Bookmarks"
 		bookmarks={data.globalBookmarks}
 		showGroups={data.startpage.showBookmarkGroups}
+		targetBlank={data.startpage.targetBlank}
 	/>
 {/if}
 

@@ -4,6 +4,7 @@
     export let header: string = "Bookmarks";
     export let bookmarks: [];
     export let showGroups: boolean;
+    export let targetBlank: boolean;
 </script>
 
 {#if bookmarks.length === 0}
@@ -19,10 +20,10 @@
                 {#if showGroups}
                     <div class="links_item">
                         <h4>{bookmarkGroup.group}</h4>
-                        <BookmarkGroup {bookmarkGroup} />
+                        <BookmarkGroup {bookmarkGroup} {targetBlank} />
                     </div>
                 {:else}
-                    <BookmarkGroup {bookmarkGroup} />
+                    <BookmarkGroup {bookmarkGroup} {targetBlank} />
                 {/if}
             {/each}
         </div>

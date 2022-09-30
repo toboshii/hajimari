@@ -17,4 +17,6 @@ const (
 	HajimariInfoAnnotation = "hajimari.io/info"
 	// HajimariStatusCheckAnnotation boolean used for enabling status indicators.
 	HajimariStatusCheckEnabledAnnotation = "hajimari.io/statusCheckEnabled"
+	// HajimariTargetBlankAnnotation boolean used for making links open in a new window.
+	HajimariTargetBlankAnnotation = "hajimari.io/targetBlank"
 )

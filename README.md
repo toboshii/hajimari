@@ -59,6 +59,7 @@ Hajimari looks for specific annotations on ingresses.
 | `hajimari.io/group`              | A custom group name. Use if you want the application to show in a different group than the namespace it is running in                                                   | `false`  |
 | `hajimari.io/instance`           | A comma separated list of name/s of the Hajimari instance/s where you want this application to appear. Use when you have multiple Hajimari instances                    | `false`  |
 | `hajimari.io/url`                | A URL for the Hajimari app (This will override the ingress URL). It MUST begin with a scheme i.e., `http://` or `https://`                                              | `false`  |
+| `hajimari.io/targetBlank`        | Determines if links should open in new tabs/windows                                                                                                                     | `false`  |
 | `hajimari.io/info`               | A short description of the Hajimari app                                                                                | `false`  | 
 
 ### Config

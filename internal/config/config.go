@@ -3,7 +3,6 @@ package config
 import (
 	"time"
 
-	"github.com/creasty/defaults"
 	"github.com/spf13/viper"
 	"github.com/toboshii/hajimari/internal/models"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -11,31 +10,27 @@ import (
 
 // Config struct for hajimari
 type Config struct {
-	NamespaceSelector   NamespaceSelector      `json:"namespaceSelector"`
-	DefaultEnable       bool                   `default:"false"      json:"defaultEnable"`
-	InstanceName        string                 `default:""           json:"instanceName"`
-	Title               string                 `default:"Hajimari"   json:"title"`
-	Name                string                 `default:"You"        json:"name"`
-	LightTheme          string                 `default:"gazette"    json:"lightTheme"`
-	DarkTheme           string                 `default:"blackboard" json:"darkTheme"`
-	CustomThemes        []models.Theme         `default:"[]"         json:"customThemes"`
-	ShowGreeting        bool                   `default:"true"       json:"showGreeting"`
-	ShowAppGroups       bool                   `default:"false"      json:"showAppGroups"`
-	ShowAppUrls         bool                   `default:"true"       json:"showAppUrls"`
-	ShowAppInfo         bool                   `default:"true"       json:"showAppInfo"`
-	ShowBookmarkGroups  bool                   `default:"true"       json:"showBookmarkGroups"`
-	ShowGlobalBookmarks bool                   `default:"false"      json:"showGlobalBookmarks"`
-	CustomApps          []models.AppGroup      `default:"[]"         json:"customApps"`
-	GlobalBookmarks     []models.BookmarkGroup `default:"[]"         json:"globalBookmarks"`
-	SearchProviders     []SearchProvider       `default:"[]"         json:"searchProviders"`
-	Modules             []Module               `default:"[]"         json:"modules"`
-	Experimental        []ExperimentalFeature
-}
-
-type SearchProvider struct {
-	Name   string
-	URL    string
-	Prefix string
+	NamespaceSelector     NamespaceSelector       `json:"namespaceSelector"`
+	DefaultEnable         bool                    `json:"defaultEnable"`
+	InstanceName          string                  `json:"instanceName"`
+	Title                 string                  `json:"title"`
+	Name                  string                  `json:"name"`
+	LightTheme            string                  `json:"lightTheme"`
+	DarkTheme             string                  `json:"darkTheme"`
+	CustomThemes          []models.Theme          `json:"customThemes"`
+	ShowGreeting          bool                    `json:"showGreeting"`
+	ShowAppGroups         bool                    `json:"showAppGroups"`
+	ShowAppUrls           bool                    `json:"showAppUrls"`
+	ShowAppInfo           bool                    `json:"showAppInfo"`
+	ShowAppStatus         bool                    `json:"showAppStatus"`
+	ShowBookmarkGroups    bool                    `json:"showBookmarkGroups"`
+	ShowGlobalBookmarks   bool                    `json:"showGlobalBookmarks"`
+	DefaultSearchProvider string                  `json:"defaultSearchProvider"`
+	SearchProviders       []models.SearchProvider `json:"searchProviders"`
+	CustomApps            []models.AppGroup       `json:"customApps"`
+	GlobalBookmarks       []models.BookmarkGroup  `json:"globalBookmarks"`
+	Modules               []Module                `json:"modules"`
+	Experimental          []ExperimentalFeature
 }
 
 type Module struct {
@@ -59,10 +54,72 @@ type ExperimentalFeature struct {
 	Properties map[string]bool
 }
 
+func SetDefaults() {
+	viper.SetDefault("DefaultEnable", false)
+	viper.SetDefault("Title", "Hajimari")
+	viper.SetDefault("Name", "You")
+	viper.SetDefault("LightTheme", "gazette")
+	viper.SetDefault("DarkTheme", "blackboard")
+	viper.SetDefault("CustomThemes", []models.Theme{})
+	viper.SetDefault("ShowGreeting", true)
+	viper.SetDefault("ShowAppGroups", false)
+	viper.SetDefault("ShowAppUrls", true)
+	viper.SetDefault("ShowAppInfo", false)
+	viper.SetDefault("ShowAppStatus", true)
+	viper.SetDefault("ShowBookmarkGroups", true)
+	viper.SetDefault("ShowGlobalBookmarks", false)
+	viper.SetDefault("DefaultSearchProvider", "Google")
+	viper.SetDefault("SearchProviders", []models.SearchProvider{
+		{
+			Name:      "Google",
+			Token:     "g",
+			Icon:      "simple-icons:google",
+			SearchUrl: "https://www.google.com/search?q={query}",
+			URL:       "https://www.google.com",
+		},
+		{
+			Name:      "DuckDuckGo",
+			Token:     "d",
+			Icon:      "simple-icons:duckduckgo",
+			SearchUrl: "https://duckduckgo.com/?q={query}",
+			URL:       "https://duckduckgo.com",
+		},
+		{
+			Name:      "IMDB",
+			Token:     "i",
+			Icon:      "simple-icons:imdb",
+			SearchUrl: "https://www.imdb.com/find?q={query}",
+			URL:       "https://www.imdb.com",
+		},
+		{
+			Name:      "Reddit",
+			Token:     "r",
+			Icon:      "simple-icons:reddit",
+			SearchUrl: "https://www.reddit.com/search?q={query}",
+			URL:       "https://www.reddit.com",
+		},
+		{
+			Name:      "YouTube",
+			Token:     "y",
+			Icon:      "simple-icons:youtube",
+			SearchUrl: "https://www.youtube.com/results?search_query={query}",
+			URL:       "https://www.youtube.com",
+		},
+		{
+			Name:      "Spotify",
+			Token:     "s",
+			Icon:      "simple-icons:spotify",
+			SearchUrl: "hhttps://open.spotify.com/search/{query}",
+			URL:       "https://open.spotify.com",
+		},
+	})
+	viper.SetDefault("GlobalBookmarks", []models.BookmarkGroup{})
+}
+
 // GetConfig returns hajimari configuration
 func GetConfig() (*Config, error) {
 	var c Config
-	defaults.Set(&c)
+
 	err := viper.Unmarshal(&c)
 	if err != nil {
 		return nil, err

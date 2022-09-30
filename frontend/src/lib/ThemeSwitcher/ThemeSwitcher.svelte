@@ -6,6 +6,7 @@
     import yaml from "js-yaml";
 
     export let settings: Record<string, unknown>;
+    export let showHelp: boolean;
 
     $: darkMode =
         window.matchMedia &&
@@ -57,18 +58,15 @@
         }
     });
 </script>
-
-<div class="theme-mode-selector">
-    {#if darkMode}
-        <h2>Dark Theme</h2>
-    {:else}
-        <h2>Light Theme</h2>
-    {/if}
-    <button on:click={() => (darkMode = !darkMode)}
-        ><Icon icon="mdi:theme-light-dark" height="24px" /></button
-    >
-</div>
-
+{#if showHelp}
+    <span class="help">Setting theme for <b>{darkMode ? 'dark' : 'light'}</b> mode. Active mode will be chosen based on the browser's preference</span>
+{/if}
+<button
+    class="theme-mode"
+    class:dark={darkMode}
+    on:click={() => (darkMode = !darkMode)}
+    ><Icon icon="mdi:theme-light-dark" inline /> {darkMode ? 'dark' : 'light'}</button
+>
 <div class="theme-selector">
     {#each $themes as theme}
         <button
@@ -80,41 +78,34 @@
 </div>
 
 <style>
-    .theme-mode-selector h2,
-    :global(.theme-mode-selector svg) {
-        display: inline;
-        vertical-align: middle;
-    }
-
-    .theme-mode-selector button {
-        margin-left: 10px;
-        display: inline-block;
+    .theme-mode {
+        font: var(--font);
         color: var(--color-text-acc);
         text-transform: uppercase;
         padding: 5px 5px;
         background-color: var(--color-background);
         border: 1px solid var(--color-text-acc) !important;
         transition: all 0.3s ease 0s;
+        float: right;
+        font-size: 1em;
+        margin: 1em 0.125em 0 0;
     }
 
-    .theme-mode-selector button:hover {
+    .theme-mode:hover {
         background-color: var(--color-text-acc);
         color: var(--color-background);
         border: 1px solid var(--color-background) !important;
     }
 
-    /* .help {
-        color: var(--color-text-acc);
-        font-size: 0.9em;
-        margin-top: 0.4em;
-    } */
+    .theme-mode.dark {
+        color: var(--color-background);
+        background-color: var(--color-text-acc);
+    }
 
     .theme-selector {
-        margin-top: 10px;
         border-bottom: 0px solid var(--color-text-acc);
         display: flex;
         flex-wrap: wrap;
-        margin-bottom: 2em;
     }
 
     .theme-selector button {
@@ -136,5 +127,12 @@
         background-color: var(--color-text-acc);
         color: var(--color-background);
         border: 1px solid var(--color-background) !important;
+    }
+
+    .help {
+        color: var(--color-text-pri);
+        font-size: 0.9em;
+        display: inline-block;
+        margin-left: 0.5em;
     }
 </style>

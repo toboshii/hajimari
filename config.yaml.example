@@ -1,28 +1,58 @@
-instanceName: null
-defaultEnable: true
-namespaceSelector:
-  matchNames:
-    - downloads
-    - media
-title: null
-name: "You"
-theme: null
+name: You
+title: Hajimari
 lightTheme: gazette
 darkTheme: blackboard
+customThemes:
+  - name: danger
+    backgroundColor: '#0c0e0c'
+    primaryColor: '#eaebea'
+    accentColor: '#d8323c'
 showGreeting: true
 showAppGroups: false
-showAppInfo: true
+showAppUrls: true
+showAppInfo: false
+showAppStatus: true
 showBookmarkGroups: true
+showGlobalBookmarks: false
+defaultSearchProvider: Google
+searchProviders:
+  - name: Google
+    token: g
+    icon: simple-icons:google
+    searchUrl: https://www.google.com/search?q={query}
+    url: https://www.google.com
+  - name: DuckDuckGo
+    token: d
+    icon: simple-icons:duckduckgo
+    searchUrl: https://duckduckgo.com/?q={query}
+    url: https://duckduckgo.com
+  - name: IMDB
+    token: i
+    icon: simple-icons:imdb
+    searchUrl: https://www.imdb.com/find?q={query}
+    url: https://www.imdb.com
+  - name: Reddit
+    token: r
+    icon: simple-icons:reddit
+    searchUrl: https://www.reddit.com/search?q={query}
+    url: https://www.reddit.com
+  - name: YouTube
+    token: 'y'
+    icon: simple-icons:youtube
+    searchUrl: https://www.youtube.com/results?search_query={query}
+    url: https://www.youtube.com
+  - name: Spotify
+    token: s
+    icon: simple-icons:spotify
+    searchUrl: hhttps://open.spotify.com/search/{query}
+    url: https://open.spotify.com
 customApps:
   - group: Media
     apps:
       - name: Test
         url: 'https://example.com'
-        icon: test-tube
+        icon: mdi:test-tube
         info: This is a test app
-      - name: Test2
-        url: 'https://example.net'
-        icon: test-tube
 globalBookmarks:
   - group: Communicate
     links:

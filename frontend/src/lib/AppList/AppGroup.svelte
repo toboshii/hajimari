@@ -7,16 +7,17 @@
     export let defaultIcon: string = "mdi:application";
     export let showUrl: boolean = true;
     export let showInfo: boolean = true;
+    export let showStatus: boolean = true;
 </script>
 
 {#each group.apps || [] as app (app.name)}
     <div
         class="apps_item"
-        in:fade={{ duration: 300 }}
+        in:fade|local={{ duration: 300 }}
         animate:flip={{ duration: 300 }}
     >
         <div class="apps_icon">
-            <a href={app.url}>
+            <a href={app.url} rel="noopener noreferrer">
                 {#if app.icon.includes("//")}
                     <img src={app.icon} alt="app icon for {app.name}" />
                 {:else if app.icon.includes(":") || !app.icon}
@@ -26,7 +27,7 @@
                     <Icon icon="mdi:{app.icon ? app.icon : defaultIcon}" />
                 {/if}
             </a>
-            {#if app?.replicas}
+            {#if app.replicas.total > 0 && showStatus}
                 <hr
                     class="app_status"
                     style="background-image: linear-gradient(to right, var(--color-text-acc) 0 {app
@@ -36,11 +37,11 @@
             {/if}
         </div>
         <div class="apps_text">
-            <a href={app.url}>{app.name}</a>
-            {#if showUrl === true}
+            <a href={app.url} rel="noopener noreferrer">{app.name}</a>
+            {#if showUrl}
                 <span class="app_address">{app.url}</span>
             {/if}
-            {#if showInfo === true}
+            {#if showInfo}
                 <span class="app_info">{app.info}</span>
             {/if}
         </div>

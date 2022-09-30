@@ -5,7 +5,7 @@
 
 <div class="links_item">
     {#each bookmarkGroup.bookmarks as link}
-        <a href={link.url} class="theme_color-border theme_text-select"
+        <a href={link.url} rel="noopener noreferrer"
             >{link.name}</a
         >
     {/each}

@@ -12,10 +12,12 @@ type Startpage = {
     customThemes: Array<Record<string, string>>;
     targetBlank: boolean;
     showGreeting: boolean;
+    showApps: boolean;
     showAppGroups: boolean;
     showAppUrls: boolean;
     showAppInfo: boolean;
     showAppStatus: boolean;
+    showBookmarks: boolean;
     showBookmarkGroups: boolean;
     showGlobalBookmarks: boolean;
     searchProviders: Array<Record<string, string>>;

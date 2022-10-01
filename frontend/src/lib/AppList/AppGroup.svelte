@@ -47,10 +47,6 @@
             {/if}
         </div>
     </div>
-{:else}
-    <div class="apps_item">
-        <p>No Apps in this Group</p>
-    </div>
 {/each}
 
 <style>

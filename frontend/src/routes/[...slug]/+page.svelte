@@ -75,20 +75,24 @@
 	<Greeting name={data.startpage.name} />
 {/if}
 
-<AppList
-	apps={$filteredApps}
-	showGroups={data.startpage.showAppGroups}
-	showUrl={data.startpage.showAppUrls}
-	showInfo={data.startpage.showAppInfo}
-	showStatus={data.startpage.showAppStatus}
-	targetBlank={data.startpage.targetBlank}
-/>
+{#if data.startpage.showApps}
+	<AppList
+		apps={$filteredApps}
+		showGroups={data.startpage.showAppGroups}
+		showUrl={data.startpage.showAppUrls}
+		showInfo={data.startpage.showAppInfo}
+		showStatus={data.startpage.showAppStatus}
+		targetBlank={data.startpage.targetBlank}
+	/>
+{/if}
 
-<BookmarkList
-	bookmarks={data.startpage.bookmarks}
-	showGroups={data.startpage.showBookmarkGroups}
-	targetBlank={data.startpage.targetBlank}
-/>
+{#if data.startpage.showBookmarks}
+	<BookmarkList
+		bookmarks={data.startpage.bookmarks}
+		showGroups={data.startpage.showBookmarkGroups}
+		targetBlank={data.startpage.targetBlank}
+	/>
+{/if}
 
 {#if data.startpage.showGlobalBookmarks && data.slug !== ""}
 	<BookmarkList

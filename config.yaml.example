@@ -7,11 +7,11 @@ customThemes:
     backgroundColor: '#0c0e0c'
     primaryColor: '#eaebea'
     accentColor: '#d8323c'
+targetBlank: false
 showGreeting: true
 showAppGroups: false
 showAppUrls: true
 showAppInfo: false
-targetBlank: false
 showAppStatus: true
 showBookmarkGroups: true
 showGlobalBookmarks: false

@@ -18,7 +18,7 @@
         animate:flip={{ duration: 300 }}
     >
         <div class="apps_icon">
-            <a href={app.url} target="{app.targetBlank == "" ? (targetBlank ? "_blank" : "_self") : (app.targetBlank == "1" ? "_blank" : "_self")}" rel="noopener noreferrer">
+            <a href={app.url} target="{(app.targetBlank || targetBlank) ? '_blank' : null}" rel="noopener noreferrer">
                 {#if app.icon.includes("//")}
                     <img src={app.icon} alt="app icon for {app.name}" />
                 {:else if app.icon.includes(":") || !app.icon}
@@ -38,7 +38,7 @@
             {/if}
         </div>
         <div class="apps_text">
-            <a href={app.url} target="{app.targetBlank == "" ? (targetBlank ? "_blank" : "_self") : (app.targetBlank == "1" ? "_blank" : "_self")}" rel="noopener noreferrer">{app.name}</a>
+            <a href={app.url} target="{(app.targetBlank || targetBlank) ? '_blank' : null}" rel="noopener noreferrer">{app.name}</a>
             {#if showUrl}
                 <span class="app_address">{app.url}</span>
             {/if}

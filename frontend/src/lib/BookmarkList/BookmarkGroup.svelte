@@ -6,7 +6,7 @@
 
 <div class="links_item">
     {#each bookmarkGroup.bookmarks as link}
-        <a href={link.url} target="{link.targetBlank == "" ? (targetBlank ? "_blank" : "_self") : (link.targetBlank == "1" ? "_blank" : "_self")}" rel="noopener noreferrer"
+        <a href={link.url} target="{(link.targetBlank || targetBlank) ? '_blank' : null}" rel="noopener noreferrer"
             >{link.name}</a
         >
     {/each}

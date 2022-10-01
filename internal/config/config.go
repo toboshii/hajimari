@@ -18,11 +18,11 @@ type Config struct {
 	LightTheme            string                  `json:"lightTheme"`
 	DarkTheme             string                  `json:"darkTheme"`
 	CustomThemes          []models.Theme          `json:"customThemes"`
+	TargetBlank           bool                    `json:"targetBlank"`
 	ShowGreeting          bool                    `json:"showGreeting"`
 	ShowAppGroups         bool                    `json:"showAppGroups"`
 	ShowAppUrls           bool                    `json:"showAppUrls"`
 	ShowAppInfo           bool                    `json:"showAppInfo"`
-	TargetBlank           bool                    `json:"targetBlank"`
 	ShowAppStatus         bool                    `json:"showAppStatus"`
 	ShowBookmarkGroups    bool                    `json:"showBookmarkGroups"`
 	ShowGlobalBookmarks   bool                    `json:"showGlobalBookmarks"`
@@ -62,11 +62,11 @@ func SetDefaults() {
 	viper.SetDefault("LightTheme", "gazette")
 	viper.SetDefault("DarkTheme", "blackboard")
 	viper.SetDefault("CustomThemes", []models.Theme{})
+	viper.SetDefault("TargetBlank", false)
 	viper.SetDefault("ShowGreeting", true)
 	viper.SetDefault("ShowAppGroups", false)
 	viper.SetDefault("ShowAppUrls", true)
 	viper.SetDefault("ShowAppInfo", false)
-	viper.SetDefault("TargetBlank", false)
 	viper.SetDefault("ShowAppStatus", true)
 	viper.SetDefault("ShowBookmarkGroups", true)
 	viper.SetDefault("ShowGlobalBookmarks", false)

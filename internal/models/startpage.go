@@ -7,11 +7,11 @@ type Startpage struct {
 	LightTheme            string           `json:"lightTheme"`
 	DarkTheme             string           `json:"darkTheme"`
 	CustomThemes          []Theme          `json:"customThemes"`
+	TargetBlank           *bool            `json:"targetBlank"`
 	ShowGreeting          *bool            `json:"showGreeting"`
 	ShowAppGroups         *bool            `json:"showAppGroups"`
 	ShowAppUrls           *bool            `json:"showAppUrls"`
 	ShowAppInfo           *bool            `json:"showAppInfo"`
-	TargetBlank           *bool            `json:"targetBlank"`
 	ShowAppStatus         *bool            `json:"showAppStatus"`
 	ShowBookmarkGroups    *bool            `json:"showBookmarkGroups"`
 	ShowGlobalBookmarks   *bool            `json:"showGlobalBookmarks"`

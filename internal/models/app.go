@@ -5,6 +5,6 @@ type App struct {
 	Icon        string      `json:"icon"`
 	URL         string      `json:"url"`
 	Info        string      `json:"info"`
-	TargetBlank string      `json:"targetBlank"`
+	TargetBlank bool        `json:"targetBlank"`
 	Replicas    ReplicaInfo `json:"replicas"`
 }

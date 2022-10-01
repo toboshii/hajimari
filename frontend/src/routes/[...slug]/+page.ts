@@ -10,11 +10,11 @@ type Startpage = {
     lightTheme: string;
     darkTheme: string;
     customThemes: Array<Record<string, string>>;
+    targetBlank: boolean;
     showGreeting: boolean;
     showAppGroups: boolean;
     showAppUrls: boolean;
     showAppInfo: boolean;
-    targetBlank: boolean;
     showAppStatus: boolean;
     showBookmarkGroups: boolean;
     showGlobalBookmarks: boolean;

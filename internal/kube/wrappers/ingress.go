@@ -72,6 +72,19 @@ func (iw *IngressWrapper) GetStatusCheckEnabled() bool {
 	return true
 }
 
+// GetTargetBlank func extracts open in new window feature gate from the ingress
+// @default false
+func (iw *IngressWrapper) GetTargetBlank() string {
+	if targetBlankFromAnnotation := iw.GetAnnotationValue(annotations.HajimariTargetBlankAnnotation); targetBlankFromAnnotation != "" {
+		if utilStrings.ParseBool(targetBlankFromAnnotation) {
+			return "1"
+		} else {
+			return "0"
+		}
+	}
+	return ""
+}
+
 // GetURL func extracts url of the ingress wrapped by the object
 func (iw *IngressWrapper) GetURL() string {
 

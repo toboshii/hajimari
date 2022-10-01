@@ -11,6 +11,7 @@ showGreeting: true
 showAppGroups: false
 showAppUrls: true
 showAppInfo: false
+targetBlank: false
 showAppStatus: true
 showBookmarkGroups: true
 showGlobalBookmarks: false
@@ -53,17 +54,19 @@ customApps:
         url: 'https://example.com'
         icon: mdi:test-tube
         info: This is a test app
+        targetBlank: true
 globalBookmarks:
   - group: Communicate
-    links:
+    bookmarks:
       - name: Discord
         url: 'https://discord.com'
       - name: Gmail
         url: 'http://gmail.com'
+        targetBlank: true
       - name: Slack
         url: 'https://slack.com/signin'
   - group: Cloud
-    links:
+    bookmarks:
       - name: Box
         url: 'https://box.com'
       - name: Dropbox
@@ -71,7 +74,7 @@ globalBookmarks:
       - name: Drive
         url: 'https://drive.google.com'
   - group: Design
-    links:
+    bookmarks:
       - name: Awwwards
         url: 'https://awwwards.com'
       - name: Dribbble
@@ -79,7 +82,7 @@ globalBookmarks:
       - name: Muz.li
         url: 'https://medium.muz.li/'
   - group: Dev
-    links:
+    bookmarks:
       - name: Codepen
         url: 'https://codepen.io/'
       - name: Devdocs
@@ -87,7 +90,7 @@ globalBookmarks:
       - name: Devhints
         url: 'https://devhints.io'
   - group: Lifestyle
-    links:
+    bookmarks:
       - name: Design Milk
         url: 'https://design-milk.com/category/interior-design/'
       - name: Dwell
@@ -95,7 +98,7 @@ globalBookmarks:
       - name: Freshome
         url: 'https://www.mymove.com/freshome/'
   - group: Media
-    links:
+    bookmarks:
       - name: Spotify
         url: 'http://browse.spotify.com'
       - name: Trakt
@@ -103,7 +106,7 @@ globalBookmarks:
       - name: YouTube
         url: 'https://youtube.com/feed/subscriptions'
   - group: Reading
-    links:
+    bookmarks:
       - name: Instapaper
         url: 'https://www.instapaper.com/u'
       - name: Medium
@@ -111,7 +114,7 @@ globalBookmarks:
       - name: Reddit
         url: 'http://reddit.com'
   - group: Tech
-    links:
+    bookmarks:
       - name: TheNextWeb
         url: 'https://thenextweb.com/'
       - name: The Verge

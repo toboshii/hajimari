@@ -59,6 +59,7 @@ Hajimari looks for specific annotations on ingresses.
 | `hajimari.io/group`              | A custom group name. Use if you want the application to show in a different group than the namespace it is running in                                                   | `false`  |
 | `hajimari.io/instance`           | A comma separated list of name/s of the Hajimari instance/s where you want this application to appear. Use when you have multiple Hajimari instances                    | `false`  |
 | `hajimari.io/url`                | A URL for the Hajimari app (This will override the ingress URL). It MUST begin with a scheme i.e., `http://` or `https://`                                              | `false`  |
+| `hajimari.io/targetBlank`        | Determines if links should open in new tabs/windows                                                                                                                     | `false`  |
 | `hajimari.io/info`               | A short description of the Hajimari app                                                                                | `false`  | 
 
 ### Config
@@ -73,6 +74,7 @@ Hajimari supports the following configuration options that can be modified by ei
 | instanceName      |                                      Name of the Hajimari instance                                         |           ""            | string            |
 | customApps        |                A list of custom apps that you would like to add to the Hajimari instance                   |           {}            | []CustomApp       |
 | groups            |                A list of bookmark groups to add to the Hajimari instance                                   |           {}            | []groups          |
+| targetBlank       |                  Set to true to open apps/bookmarks in a new window by default                     |          false          | bool
 
 #### NamespaceSelector
 
@@ -97,6 +99,7 @@ If you want to add any apps that are not exposed through ingresses or are extern
 | url               | URL of the custom app                     | String            |
 | info              | Short description of the custom app       | String            |
 | group             | Group for the custom app                  | String            |
+| targetBlank       | Open app in a new window                  | Bool              |
 
 #### Bookmarks
 
@@ -105,7 +108,7 @@ Bookmark groups can be added by creating an array of group names and links.
 | Field            | Description                               | Type              |
 | -----------------| ----------------------------------------- | ----------------- |
 | name             | Name of the bookmark group                | String            |
-| links            | Array of links                            | Array             |
+| bookmarks        | Array of bookmarks                        | Array             |
 
 Bookmarks can be added by configuring a list of bookmarks under a group.
 
@@ -113,6 +116,7 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 | ----------------- | ----------------------------------------- | ----------------- |
 | name              | Name of the bookmark                      | String            |
 | url               | URL of the bookmark                       | String            |
+| targetBlank       | Open link in a new window                 | Bool              |
 
 ### Custom startpage setup
 

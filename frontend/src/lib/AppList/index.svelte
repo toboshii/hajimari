@@ -8,6 +8,7 @@
     export let showUrl: boolean = true;
     export let showInfo: boolean = true;
     export let showStatus: boolean = true;
+    export let targetBlank: boolean = false;
 </script>
 
 <div class="apps">
@@ -27,6 +28,7 @@
                                 {showInfo}
                                 {showStatus}
                                 {defaultIcon}
+                                {targetBlank}
                             />
                         </div>
                     </div>
@@ -37,6 +39,7 @@
                         {showInfo}
                         {showStatus}
                         {defaultIcon}
+                        {targetBlank}
                     />
                 {/if}
             {/each}

@@ -17,6 +17,7 @@ tmp
 /config.yaml
 /hajimari
 /.kubeconfig
+/bin
 
 # Chart dependencies
 charts/hajimari/charts

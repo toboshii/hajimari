@@ -97,7 +97,9 @@
     }
 
     .app_address {
-        overflow-wrap: break-word;
+        white-space:nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis ellipsis;
     }
 
     .app_info {

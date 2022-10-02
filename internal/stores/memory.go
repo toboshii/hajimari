@@ -5,16 +5,30 @@ import (
 
 	gonanoid "github.com/matoous/go-nanoid/v2"
 	"github.com/toboshii/hajimari/internal/models"
+	"github.com/toboshii/hajimari/internal/util/pointer"
 )
 
 var startpages = []*models.Startpage{
 	{
-		ID:   "108ZTGB77K09P4QJfu4vG",
-		Name: "Adam",
-		Groups: []models.Group{
+		ID:                  "108ZTGB77K09P4QJfu4vG",
+		Name:                "Adam",
+		ShowAppGroups:       pointer.Of(true),
+		ShowGlobalBookmarks: pointer.Of(true),
+		ShowAppUrls:         pointer.Of(true),
+		ShowAppInfo:         pointer.Of(true),
+		AlwaysTargetBlank:   pointer.Of(false),
+		CustomThemes: []models.Theme{
 			{
-				Name: "Media",
-				Links: []models.Link{
+				Name:            "danger",
+				BackgroundColor: "#0c0e0c",
+				PrimaryColor:    "#eaebea",
+				AccentColor:     "#d8323c",
+			},
+		},
+		Bookmarks: []models.BookmarkGroup{
+			{
+				Group: "Media",
+				Bookmarks: []models.Bookmark{
 					{
 						Name: "Youtube",
 						URL:  "https://youtube.com",
@@ -26,8 +40,8 @@ var startpages = []*models.Startpage{
 				},
 			},
 			{
-				Name: "Code",
-				Links: []models.Link{
+				Group: "Code",
+				Bookmarks: []models.Bookmark{
 					{
 						Name: "Github",
 						URL:  "https://github.com",

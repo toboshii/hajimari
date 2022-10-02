@@ -22,6 +22,13 @@ func New() *logrus.Logger {
 		Level:     logrus.InfoLevel,
 	}
 
+	logLevel, err := logrus.ParseLevel(os.Getenv("LOG_LEVEL"))
+	if err != nil {
+		logLevel = logrus.InfoLevel
+	}
+
+	log.SetLevel(logLevel)
+
 	log.Hooks.Add(filenameHook)
 
 	return log

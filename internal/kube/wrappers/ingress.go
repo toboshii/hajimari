@@ -6,6 +6,7 @@ import (
 
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/log"
+	utilStrings "github.com/toboshii/hajimari/internal/util/strings"
 	v1 "k8s.io/api/networking/v1"
 )
 
@@ -52,6 +53,32 @@ func (iw *IngressWrapper) GetGroup() string {
 		return groupFromAnnotation
 	}
 	return iw.GetNamespace()
+}
+
+// GetGroup func extracts group name from the ingress
+func (iw *IngressWrapper) GetInfo() string {
+	if infoFromAnnotation := iw.GetAnnotationValue(annotations.HajimariInfoAnnotation); infoFromAnnotation != "" {
+		return infoFromAnnotation
+	}
+	return ""
+}
+
+// GetStatusCheckEnabled func extracts statusCheck feature gate from the ingress
+// @default true
+func (iw *IngressWrapper) GetStatusCheckEnabled() bool {
+	if statusCheckEnabledFromAnnotation := iw.GetAnnotationValue(annotations.HajimariStatusCheckEnabledAnnotation); statusCheckEnabledFromAnnotation != "" {
+		return utilStrings.ParseBool(statusCheckEnabledFromAnnotation)
+	}
+	return true
+}
+
+// GetTargetBlank func extracts open in new window feature gate from the ingress
+// @default false
+func (iw *IngressWrapper) GetTargetBlank() bool {
+	if targetBlankFromAnnotation := iw.GetAnnotationValue(annotations.HajimariTargetBlankAnnotation); targetBlankFromAnnotation != "" {
+		return utilStrings.ParseBool(targetBlankFromAnnotation)
+	}
+	return false
 }
 
 // GetURL func extracts url of the ingress wrapped by the object

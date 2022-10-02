@@ -1,20 +1,17 @@
 package customapps
 
 import (
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari"
-	"github.com/toboshii/hajimari/internal/log"
-)
+	"strings"
 
-var (
-	logger = log.New()
+	"github.com/toboshii/hajimari/internal/config"
+	"github.com/toboshii/hajimari/internal/models"
 )
 
 // List struct is used for listing hajimari apps
 type List struct {
 	appConfig config.Config
 	err       error // Used for forwarding errors
-	items     []hajimari.App
+	items     []models.AppGroup
 }
 
 // NewList func creates a new instance of apps lister
@@ -26,27 +23,20 @@ func NewList(appConfig config.Config) *List {
 
 // Populate function that populates a list of custom apps
 func (al *List) Populate() *List {
-	al.items = convertCustomAppsToHajimariApps(al.appConfig.CustomApps)
+
+	var customApps []models.AppGroup
+
+	for _, group := range al.appConfig.CustomApps {
+		group.Group = strings.ToLower(group.Group)
+		customApps = append(customApps, group)
+	}
+
+	al.items = customApps
 
 	return al
 }
 
 // Get function returns the apps currently present in List
-func (al *List) Get() ([]hajimari.App, error) {
+func (al *List) Get() ([]models.AppGroup, error) {
 	return al.items, al.err
-}
-
-func convertCustomAppsToHajimariApps(customApps []config.CustomApp) (apps []hajimari.App) {
-	for _, customApp := range customApps {
-		logger.Debugf("Found custom app with Name '%v'", customApp.Name)
-
-		apps = append(apps, hajimari.App{
-			Name:  customApp.Name,
-			URL:   customApp.URL,
-			Icon:  customApp.Icon,
-			Group: customApp.Group,
-		})
-	}
-
-	return apps
 }

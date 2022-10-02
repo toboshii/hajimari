@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+tmp
 
 # Test binary, built with `go test -c`
 *.test
@@ -12,10 +13,19 @@
 *.out
 
 # Project specific
+/data
 /config.yaml
 /hajimari
+/.kubeconfig
+/bin
 
 # Chart dependencies
 charts/hajimari/charts
 charts/hajimari/Chart.lock
 charts/hajimari/local.yaml
+
+# UI dependencies
+node_modules
+public/build/
+
+.DS_Store

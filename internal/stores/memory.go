@@ -50,7 +50,21 @@ var startpages = []*models.Startpage{
 			},
 		},
 	},
-	{ID: "r1NqSpS1C0z3cMHyzX-Y5", Name: "Bob"},
+	{
+		ID:   "r1NqSpS1C0z3cMHyzX-Y5",
+		Name: "Bob",
+		Groups: []map[string]interface{}{
+			{
+				"name": "communicate",
+				"links": []map[string]interface{}{
+					{
+						"name": "Discord",
+						"url":  "https://discord.im",
+					},
+				},
+			},
+		},
+	},
 	{ID: "NmcvYTdRozUDNpbjAxFTO", Name: "Carol"},
 	{ID: "3OG1X_GuRS_TrCcWb5YjK", Name: "Derrick"},
 	{ID: "Qq4EF6MaSKaYZpEldtLTn", Name: "Emily"},

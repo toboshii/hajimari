@@ -66,10 +66,6 @@ func (sr *startpageResource) StartpageCtx(next http.Handler) http.Handler {
 func (sr *startpageResource) GetStartpage(w http.ResponseWriter, r *http.Request) {
 	startpage := r.Context().Value(contextKeyStartpage).(*models.Startpage)
 
-	if len(startpage.Bookmarks) == 0 {
-		startpage.Bookmarks = []models.BookmarkGroup{}
-	}
-
 	appConfig, err := config.GetConfig()
 	if err != nil {
 		logger.Error("Failed to read configuration for hajimari: ", err)

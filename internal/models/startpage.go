@@ -22,4 +22,6 @@ type Startpage struct {
 	DefaultSearchProvider string           `json:"defaultSearchProvider"`
 	SearchProviders       []SearchProvider `json:"searchProviders"`
 	Bookmarks             []BookmarkGroup  `json:"bookmarks"`
+	// Deprecated
+	Groups []map[string]interface{} `json:"groups,omitempty"`
 }

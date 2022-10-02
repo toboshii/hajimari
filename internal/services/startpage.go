@@ -31,7 +31,20 @@ func (s *startpageService) NewStartpage(startpage *models.Startpage) (string, er
 }
 
 func (s *startpageService) GetStartpage(id string) (*models.Startpage, error) {
-	return s.store.GetStartpage(id)
+	startpage, err := s.store.GetStartpage(id)
+	if err != nil {
+		return startpage, err
+	}
+
+	if len(startpage.Bookmarks) == 0 {
+		startpage.Bookmarks = []models.BookmarkGroup{}
+	}
+
+	if len(startpage.Groups) > 0 {
+		logger.Warnf("Startpage %s contains deprecated option `groups`, please convert it to `bookmarks`", startpage.ID)
+	}
+
+	return startpage, err
 }
 
 func (s *startpageService) UpdateStartpage(id string, startpage *models.Startpage) (*models.Startpage, error) {

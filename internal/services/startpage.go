@@ -1,6 +1,8 @@
 package services
 
 import (
+	"encoding/json"
+
 	"github.com/sirupsen/logrus"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/models"
@@ -12,7 +14,6 @@ type StartpageService interface {
 	GetStartpage(id string) (*models.Startpage, error)
 	UpdateStartpage(id string, startpage *models.Startpage) (*models.Startpage, error)
 	RemoveStartpage(id string) (*models.Startpage, error)
-	ConvertStartpageToConfig(appConfig *config.Config, startpage *models.Startpage)
 	ConvertConfigToStartpage(appConfig *config.Config, startpage *models.Startpage)
 }
 
@@ -30,11 +31,20 @@ func (s *startpageService) NewStartpage(startpage *models.Startpage) (string, er
 }
 
 func (s *startpageService) GetStartpage(id string) (*models.Startpage, error) {
-	log := s.logger.WithFields(logrus.Fields{
-		"startpageId": id,
-	})
-	log.Info("GetStartpage")
-	return s.store.GetStartpage(id)
+	startpage, err := s.store.GetStartpage(id)
+	if err != nil {
+		return startpage, err
+	}
+
+	if len(startpage.Bookmarks) == 0 {
+		startpage.Bookmarks = []models.BookmarkGroup{}
+	}
+
+	if len(startpage.Groups) > 0 {
+		logger.Warnf("Startpage %s contains deprecated option `groups`, please convert it to `bookmarks`", startpage.ID)
+	}
+
+	return startpage, err
 }
 
 func (s *startpageService) UpdateStartpage(id string, startpage *models.Startpage) (*models.Startpage, error) {
@@ -45,38 +55,31 @@ func (s *startpageService) RemoveStartpage(id string) (*models.Startpage, error)
 	return s.store.RemoveStartpage(id)
 }
 
-func (s *startpageService) ConvertStartpageToConfig(appConfig *config.Config, startpage *models.Startpage) {
-	appConfig.Name = startpage.Name
-	appConfig.Groups = []config.Group{}
-
-	for _, g := range startpage.Groups {
-		links := []config.Link{}
-
-		for _, l := range g.Links {
-			links = append(links, config.Link(l))
-		}
-
-		appConfig.Groups = append(appConfig.Groups, config.Group{
-			Name:  g.Name,
-			Links: links,
-		})
-	}
-}
-
 func (s *startpageService) ConvertConfigToStartpage(appConfig *config.Config, startpage *models.Startpage) {
-	startpage.Name = appConfig.Name
-	startpage.Groups = []models.Group{}
+	var configInterface map[string]interface{}
+	var startpageInterface map[string]interface{}
 
-	for _, g := range appConfig.Groups {
-		links := []models.Link{}
+	configJson, _ := json.Marshal(appConfig)
+	json.Unmarshal(configJson, &configInterface)
 
-		for _, l := range g.Links {
-			links = append(links, models.Link(l))
+	startpageJson, _ := json.Marshal(startpage)
+	json.Unmarshal(startpageJson, &startpageInterface)
+
+	for k, v := range startpageInterface {
+		switch v := v.(type) {
+		case string:
+			if v == "" && startpageInterface[k] != configInterface[k] {
+				startpageInterface[k] = configInterface[k]
+			}
+		case int:
+			if v == 0 && startpageInterface[k] != configInterface[k] {
+				startpageInterface[k] = configInterface[k]
+			}
+		case nil:
+			startpageInterface[k] = configInterface[k]
 		}
-
-		startpage.Groups = append(startpage.Groups, models.Group{
-			Name:  g.Name,
-			Links: links,
-		})
 	}
+
+	mergedJson, _ := json.Marshal(startpageInterface)
+	json.Unmarshal(mergedJson, &startpage)
 }

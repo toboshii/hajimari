@@ -1,12 +1,13 @@
+{{- include "common.values.setup" . }}
 {{- if .Values.serviceAccount.create }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: {{ include "common.names.fullname" . }}
-  labels: {{- include "common.labels" . | nindent 4 }}
+  labels: {{- include "common.labels" . | nindent 4 }} 
 rules:
-- apiGroups: ["", "extensions"]
-  resources: ["ingresses", "namespaces"]
+- apiGroups: ["", "extensions", "networking.k8s.io", "discovery.k8s.io"]
+  resources: ["ingresses", "namespaces", "endpointslices"]
   verbs: ["get", "list"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1

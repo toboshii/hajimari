@@ -1,0 +1,31 @@
+{
+	"name": "hajimari",
+	"version": "0.3.0",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+	},
+	"devDependencies": {
+		"@iconify/svelte": "^3.0.0",
+		"@sveltejs/adapter-static": "1.0.0-next.44",
+		"@sveltejs/kit": "1.0.0-next.507",
+		"@types/codemirror": "^5.60.5",
+		"@types/js-yaml": "^4.0.5",
+		"svelte": "^3.46.0",
+		"svelte-check": "^2.7.1",
+		"svelte-preprocess": "^4.10.6",
+		"tslib": "^2.3.1",
+		"typescript": "^4.7.4",
+		"vite": "^3.1.4"
+	},
+	"type": "module",
+	"dependencies": {
+		"@fontsource/roboto": "^4.5.8",
+		"codemirror": "^5.65.9",
+		"js-yaml": "^4.1.0",
+		"svelte-portal": "^2.2.0"
+	}
+}

@@ -1,13 +1,16 @@
 package ingressapps
 
 import (
+	"math"
+
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari"
 	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
+	"github.com/toboshii/hajimari/internal/kube/util"
 	"github.com/toboshii/hajimari/internal/kube/wrappers"
 	"github.com/toboshii/hajimari/internal/log"
-	"k8s.io/api/extensions/v1beta1"
+	"github.com/toboshii/hajimari/internal/models"
+	v1 "k8s.io/api/networking/v1"
 	"k8s.io/client-go/kubernetes"
 )
 
@@ -19,7 +22,7 @@ var (
 type List struct {
 	appConfig  config.Config
 	err        error // Used for forwarding errors
-	items      []hajimari.App
+	items      []models.AppGroup
 	kubeClient kubernetes.Interface
 }
 
@@ -47,27 +50,64 @@ func (al *List) Populate(namespaces ...string) *List {
 		al.err = err
 	}
 
-	al.items = convertIngressesToHajimariApps(ingressList)
+	al.items = convertIngressesToHajimariApps(ingressList, *util.NewReplicaStatusGetter(al.kubeClient))
 
 	return al
 }
 
 // Get function returns the apps currently present in List
-func (al *List) Get() ([]hajimari.App, error) {
+func (al *List) Get() ([]models.AppGroup, error) {
 	return al.items, al.err
 }
 
-func convertIngressesToHajimariApps(ingresses []v1beta1.Ingress) (apps []hajimari.App) {
+func convertIngressesToHajimariApps(ingresses []v1.Ingress, rsg util.ReplicaStatusGetter) (appGroups []models.AppGroup) {
 	for _, ingress := range ingresses {
 		logger.Debugf("Found ingress with Name '%v' in Namespace '%v'", ingress.Name, ingress.Namespace)
+		replicaStatus := rsg.GetEndpointStatuses(ingress)
 
 		wrapper := wrappers.NewIngressWrapper(&ingress)
-		apps = append(apps, hajimari.App{
-			Name:  wrapper.GetName(),
-			Group: wrapper.GetGroup(),
-			Icon:  wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
-			URL:   wrapper.GetURL(),
-		})
+
+		groupMap := make(map[string]int, len(appGroups))
+		for i, v := range appGroups {
+			groupMap[v.Group] = i
+		}
+
+		if _, ok := groupMap[wrapper.GetGroup()]; !ok {
+			appGroups = append(appGroups, models.AppGroup{
+				Group: wrapper.GetGroup(),
+			})
+		}
+
+		appMap := make(map[string]int, len(appGroups))
+		for i, v := range appGroups {
+			appMap[v.Group] = i
+		}
+
+		if i, ok := appMap[wrapper.GetGroup()]; ok {
+			if wrapper.GetStatusCheckEnabled() && (replicaStatus.GetReplicas() != 0) {
+				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
+					Name:        wrapper.GetName(),
+					Icon:        wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+					URL:         wrapper.GetURL(),
+					Info:        wrapper.GetInfo(),
+					TargetBlank: wrapper.GetTargetBlank(),
+					Replicas: models.ReplicaInfo{
+						Total:     replicaStatus.GetReplicas(),
+						Available: replicaStatus.GetAvailableReplicas(),
+						PctReady:  math.Round(replicaStatus.GetRatio() * 100),
+					},
+				})
+			} else {
+				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
+					Name:        wrapper.GetName(),
+					Icon:        wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+					URL:         wrapper.GetURL(),
+					TargetBlank: wrapper.GetTargetBlank(),
+					Info:        wrapper.GetInfo(),
+				})
+			}
+		}
+
 	}
 	return
 }

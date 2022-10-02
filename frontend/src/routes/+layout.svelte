@@ -13,13 +13,6 @@
 {#if visible}
 	<main id="container" transition:fade>
 		<slot />
-
-		<!-- <section id="modules">
-			<h3>Modules</h3>
-			{{range .Modules}}
-				<p><span style="color: var(--color-text-acc);">{{.Name}}</span> - {{.Output}}</p>
-			{{end}}
-		</section> -->
 	</main>
 {/if}
 

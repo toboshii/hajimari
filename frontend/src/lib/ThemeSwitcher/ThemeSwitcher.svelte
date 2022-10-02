@@ -117,6 +117,9 @@
         line-height: 3em;
         text-align: center;
         text-transform: uppercase;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis ellipsis;
         color: var(--color-text-pri);
         border: 1px solid var(--color-text-acc);
         background-color: var(--color-background);

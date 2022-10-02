@@ -1,7 +1,14 @@
+instanceName: null
+defaultEnable: true
+namespaceSelector:
+  matchNames:
+    - default
+    - downloads
+    - media
 name: You
 title: Hajimari
 lightTheme: gazette
-darkTheme: blackboard
+darkTheme: horizon
 customThemes:
   - name: danger
     backgroundColor: '#0c0e0c'
@@ -52,9 +59,8 @@ customApps:
     apps:
       - name: Test
         url: 'https://example.com'
-        icon: mdi:test-tube
+        icon: 'mdi:test-tube'
         info: This is a test app
-        targetBlank: true
 globalBookmarks:
   - group: Communicate
     bookmarks:
@@ -62,7 +68,6 @@ globalBookmarks:
         url: 'https://discord.com'
       - name: Gmail
         url: 'http://gmail.com'
-        targetBlank: true
       - name: Slack
         url: 'https://slack.com/signin'
   - group: Cloud

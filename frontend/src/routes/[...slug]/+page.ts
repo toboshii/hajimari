@@ -17,6 +17,7 @@ type Startpage = {
     showAppUrls: boolean;
     showAppInfo: boolean;
     showAppStatus: boolean;
+    defaultAppIcon: string;
     showBookmarks: boolean;
     showBookmarkGroups: boolean;
     showGlobalBookmarks: boolean;

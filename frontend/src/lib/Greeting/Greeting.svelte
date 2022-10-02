@@ -33,7 +33,7 @@
 
     function greetingText(hours: number, name: string) {
         let greeting: string;
-        switch (hours / 6) {
+        switch (Math.floor(hours / 6)) {
             case 0:
                 greeting = "Good night";
                 break;

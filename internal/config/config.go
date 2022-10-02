@@ -25,6 +25,7 @@ type Config struct {
 	ShowAppUrls           bool                    `json:"showAppUrls"`
 	ShowAppInfo           bool                    `json:"showAppInfo"`
 	ShowAppStatus         bool                    `json:"showAppStatus"`
+	DefaultAppIcon        string                  `json:"defaultAppIcon"`
 	ShowBookmarks         bool                    `json:"showBookmarks"`
 	ShowGlobalBookmarks   bool                    `json:"showGlobalBookmarks"`
 	ShowBookmarkGroups    bool                    `json:"showBookmarkGroups"`
@@ -62,7 +63,7 @@ func SetDefaults() {
 	viper.SetDefault("Title", "Hajimari")
 	viper.SetDefault("Name", "You")
 	viper.SetDefault("LightTheme", "gazette")
-	viper.SetDefault("DarkTheme", "blackboard")
+	viper.SetDefault("DarkTheme", "horizon")
 	viper.SetDefault("CustomThemes", []models.Theme{})
 	viper.SetDefault("TargetBlank", false)
 	viper.SetDefault("ShowGreeting", true)
@@ -71,6 +72,7 @@ func SetDefaults() {
 	viper.SetDefault("ShowAppUrls", true)
 	viper.SetDefault("ShowAppInfo", false)
 	viper.SetDefault("ShowAppStatus", true)
+	viper.SetDefault("DefaultAppIcon", "mdi:application")
 	viper.SetDefault("ShowBookmarks", true)
 	viper.SetDefault("ShowGlobalBookmarks", false)
 	viper.SetDefault("ShowBookmarkGroups", true)

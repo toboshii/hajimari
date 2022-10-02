@@ -14,6 +14,7 @@ type Startpage struct {
 	ShowAppUrls           *bool            `json:"showAppUrls"`
 	ShowAppInfo           *bool            `json:"showAppInfo"`
 	ShowAppStatus         *bool            `json:"showAppStatus"`
+	DefaultAppIcon        string           `json:"defaultAppIcon"`
 	ShowBookmarks         *bool            `json:"showBookmarks"`
 	ShowGlobalBookmarks   *bool            `json:"showGlobalBookmarks"`
 	ShowBookmarkGroups    *bool            `json:"showBookmarkGroups"`

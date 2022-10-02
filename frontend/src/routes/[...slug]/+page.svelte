@@ -15,15 +15,17 @@
 
 	let showModal = false;
 
-	$: darkMode =
-		window.matchMedia &&
-		window.matchMedia("(prefers-color-scheme: dark)").matches;
+	$: darkMode = true;
 
 	if (data.startpage.customThemes) {
 		$themes.push(...(data.startpage.customThemes as Array<any>));
 	}
 
 	onMount(() => {
+		darkMode =
+			window.matchMedia &&
+			window.matchMedia("(prefers-color-scheme: dark)").matches;
+
 		const setValue = (property: string, value: string) => {
 			if (value) {
 				document.documentElement.style.setProperty(
@@ -79,6 +81,7 @@
 	<AppList
 		apps={$filteredApps}
 		showGroups={data.startpage.showAppGroups}
+		defaultIcon={data.startpage.defaultAppIcon}
 		showUrl={data.startpage.showAppUrls}
 		showInfo={data.startpage.showAppInfo}
 		showStatus={data.startpage.showAppStatus}

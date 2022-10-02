@@ -157,23 +157,6 @@ table a{
 
 /* MEDIA QUERIES */
 
-@media screen and (max-width: 1260px) {
-	#container
-	{
-		align-items: stretch;
-		display: grid;
-		grid-column-gap: 10px;
-		grid-row-gap: 0px;
-		grid-template-columns: 1fr;
-		grid-template-rows: 80px auto;
-		justify-items: stretch;
-		margin-bottom: 1vh;
-		margin-left: auto;
-		margin-right: auto;
-		width: 90%;
-	}
-}
-
 @media screen and (max-width: 667px) {
 	html {
 		font-size: calc(16px + 6 * ((100vw - 320px) / 680));

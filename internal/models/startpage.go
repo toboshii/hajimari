@@ -7,7 +7,7 @@ type Startpage struct {
 	LightTheme            string           `json:"lightTheme"`
 	DarkTheme             string           `json:"darkTheme"`
 	CustomThemes          []Theme          `json:"customThemes"`
-	TargetBlank           *bool            `json:"targetBlank"`
+	ShowSearch            *bool            `json:"showSearch"`
 	ShowGreeting          *bool            `json:"showGreeting"`
 	ShowApps              *bool            `json:"showApps"`
 	ShowAppGroups         *bool            `json:"showAppGroups"`
@@ -18,6 +18,7 @@ type Startpage struct {
 	ShowBookmarks         *bool            `json:"showBookmarks"`
 	ShowGlobalBookmarks   *bool            `json:"showGlobalBookmarks"`
 	ShowBookmarkGroups    *bool            `json:"showBookmarkGroups"`
+	AlwaysTargetBlank     *bool            `json:"alwaysTargetBlank"`
 	DefaultSearchProvider string           `json:"defaultSearchProvider"`
 	SearchProviders       []SearchProvider `json:"searchProviders"`
 	Bookmarks             []BookmarkGroup  `json:"bookmarks"`

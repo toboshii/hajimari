@@ -69,7 +69,6 @@
 
 <style>
     section {
-        border-bottom: 0px solid var(--color-text-acc);
         z-index: 1;
     }
 </style>

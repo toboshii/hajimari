@@ -14,14 +14,15 @@ customThemes:
     backgroundColor: '#0c0e0c'
     primaryColor: '#eaebea'
     accentColor: '#d8323c'
-targetBlank: false
 showGreeting: true
 showAppGroups: false
 showAppUrls: true
 showAppInfo: false
 showAppStatus: true
+defaultAppIcon: mdi:application
 showBookmarkGroups: true
 showGlobalBookmarks: false
+alwaysTargetBlank: false
 defaultSearchProvider: Google
 searchProviders:
   - name: Google

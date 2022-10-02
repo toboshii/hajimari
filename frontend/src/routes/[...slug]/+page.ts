@@ -10,7 +10,7 @@ type Startpage = {
     lightTheme: string;
     darkTheme: string;
     customThemes: Array<Record<string, string>>;
-    targetBlank: boolean;
+    showSearch: string;
     showGreeting: boolean;
     showApps: boolean;
     showAppGroups: boolean;
@@ -21,6 +21,8 @@ type Startpage = {
     showBookmarks: boolean;
     showBookmarkGroups: boolean;
     showGlobalBookmarks: boolean;
+    alwaysTargetBlank: boolean;
+    defaultSearchProvider: string;
     searchProviders: Array<Record<string, string>>;
     bookmarks: any;
 };

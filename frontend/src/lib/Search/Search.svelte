@@ -162,6 +162,10 @@
         margin-top: 0.6em;
     }
 
+    #search {
+        margin-bottom: 3vh;
+    }
+
     input {
         font-size: 1em;
         text-indent: 3em;

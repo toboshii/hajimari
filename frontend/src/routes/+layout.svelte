@@ -23,7 +23,7 @@
 		grid-column-gap: 20px;
 		grid-row-gap: 3vh;
 		grid-template-columns: 1fr;
-		grid-template-rows: 5vh auto;
+		grid-template-rows: auto;
 		justify-items: stretch;
 		margin-left: auto;
 		margin-right: auto;
@@ -38,7 +38,7 @@
 			grid-column-gap: 10px;
 			grid-row-gap: 0px;
 			grid-template-columns: 1fr;
-			grid-template-rows: 80px auto;
+			grid-template-rows: auto;
 			justify-items: stretch;
 			margin-bottom: 1vh;
 			margin-left: auto;
@@ -54,7 +54,7 @@
 			grid-column-gap: 20px;
 			grid-row-gap: 0px;
 			grid-template-columns: 1fr;
-			grid-template-rows: 80px auto;
+			grid-template-rows: auto;
 			justify-items: stretch;
 			margin-bottom: 1vh;
 			width: 90%;

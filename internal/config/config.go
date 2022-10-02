@@ -18,7 +18,7 @@ type Config struct {
 	LightTheme            string                  `json:"lightTheme"`
 	DarkTheme             string                  `json:"darkTheme"`
 	CustomThemes          []models.Theme          `json:"customThemes"`
-	TargetBlank           bool                    `json:"targetBlank"`
+	ShowSearch            bool                    `json:"showSearch"`
 	ShowGreeting          bool                    `json:"showGreeting"`
 	ShowApps              bool                    `json:"showApps"`
 	ShowAppGroups         bool                    `json:"showAppGroups"`
@@ -29,6 +29,7 @@ type Config struct {
 	ShowBookmarks         bool                    `json:"showBookmarks"`
 	ShowGlobalBookmarks   bool                    `json:"showGlobalBookmarks"`
 	ShowBookmarkGroups    bool                    `json:"showBookmarkGroups"`
+	AlwaysTargetBlank     bool                    `json:"alwaysTargetBlank"`
 	DefaultSearchProvider string                  `json:"defaultSearchProvider"`
 	SearchProviders       []models.SearchProvider `json:"searchProviders"`
 	CustomApps            []models.AppGroup       `json:"customApps"`
@@ -65,7 +66,7 @@ func SetDefaults() {
 	viper.SetDefault("LightTheme", "gazette")
 	viper.SetDefault("DarkTheme", "horizon")
 	viper.SetDefault("CustomThemes", []models.Theme{})
-	viper.SetDefault("TargetBlank", false)
+	viper.SetDefault("ShowSearch", true)
 	viper.SetDefault("ShowGreeting", true)
 	viper.SetDefault("ShowApps", true)
 	viper.SetDefault("ShowAppGroups", false)
@@ -76,6 +77,7 @@ func SetDefaults() {
 	viper.SetDefault("ShowBookmarks", true)
 	viper.SetDefault("ShowGlobalBookmarks", false)
 	viper.SetDefault("ShowBookmarkGroups", true)
+	viper.SetDefault("AlwaysTargetBlank", false)
 	viper.SetDefault("DefaultSearchProvider", "Google")
 	viper.SetDefault("SearchProviders", []models.SearchProvider{
 		{

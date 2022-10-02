@@ -71,7 +71,12 @@
 	<Modal settings={data.startpage} on:close={() => (showModal = false)} />
 {/if}
 
-<Search providers={data.startpage.searchProviders} />
+{#if data.startpage.showSearch}
+	<Search
+		providers={data.startpage.searchProviders}
+		defaultProvider={data.startpage.defaultSearchProvider}
+	/>
+{/if}
 
 {#if data.startpage.showGreeting}
 	<Greeting name={data.startpage.name} />
@@ -85,7 +90,7 @@
 		showUrl={data.startpage.showAppUrls}
 		showInfo={data.startpage.showAppInfo}
 		showStatus={data.startpage.showAppStatus}
-		targetBlank={data.startpage.targetBlank}
+		targetBlank={data.startpage.alwaysTargetBlank}
 	/>
 {/if}
 
@@ -93,7 +98,7 @@
 	<BookmarkList
 		bookmarks={data.startpage.bookmarks}
 		showGroups={data.startpage.showBookmarkGroups}
-		targetBlank={data.startpage.targetBlank}
+		targetBlank={data.startpage.alwaysTargetBlank}
 	/>
 {/if}
 
@@ -102,7 +107,7 @@
 		header="Global Bookmarks"
 		bookmarks={data.globalBookmarks}
 		showGroups={data.startpage.showBookmarkGroups}
-		targetBlank={data.startpage.targetBlank}
+		targetBlank={data.startpage.alwaysTargetBlank}
 	/>
 {/if}
 

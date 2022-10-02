@@ -16,7 +16,7 @@ var startpages = []*models.Startpage{
 		ShowGlobalBookmarks: pointer.Of(true),
 		ShowAppUrls:         pointer.Of(true),
 		ShowAppInfo:         pointer.Of(true),
-		TargetBlank:         pointer.Of(false),
+		AlwaysTargetBlank:   pointer.Of(false),
 		CustomThemes: []models.Theme{
 			{
 				Name:            "danger",

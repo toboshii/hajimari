@@ -152,7 +152,7 @@
             rel="noopener noreferrer"><Icon icon="mdi:github-box" /></a
         >
         <a
-            href="https://discord.gg/NswQwRQQ"
+            href="https://discord.gg/HWGZSWJsA8"
             target="_blank"
             rel="noopener noreferrer"><Icon icon="mdi:discord" /></a
         >

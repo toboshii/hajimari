@@ -1,6 +1,7 @@
 <script>
     import { page } from '$app/stores';
     import { dev } from '$app/environment';
+    import Icon from "@iconify/svelte";
     // we don't want to use <svelte:window bind:online> here,
     // because we only care about the online state when
     // the page first loads
@@ -14,6 +15,10 @@
 {#if online}
     <section id="error">
         <h1>Yikes!</h1>
+        
+        <nav>
+            <a href="/"><Icon icon="mdi:home" inline />Home</a>
+        </nav>
 
         {#if $page.error.message}
             <p class="error">{$page.status}: {$page.error.message}</p>
@@ -29,7 +34,7 @@
             {/if}
 
             <p>
-                If the error persists, please drop by the <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/NswQwRQQ">Discord</a
+                If the error persists, please drop by the <a target="_blank" rel="noopener noreferrer" href="https://discord.gg/HWGZSWJsA8">Discord</a
                 >
                 and let us know, or raise an issue on
                 <a target="_blank" rel="noopener noreferrer" href="https://github.com/toboshii/hajimari/issues/new/choose">GitHub</a>. Thanks!
@@ -51,6 +56,14 @@
 		padding: 15px;
 		font: 600 1.5em var(--font);
 	}
+
+    nav {
+        font: 600 1em var(--font);
+        text-transform: uppercase;
+    }
+    nav :global(svg) {
+        margin-right: 2px;
+    }
 
     pre {
         white-space: break-spaces;

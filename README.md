@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/toboshii/hajimari/main/assets/logo.png" align="left" height="144px"/>
 
-# Hajimari :sunrise:
+# Hajimari 🌅
 *...The beginning of a pleasant experience*
 
 <br />

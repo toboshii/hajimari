@@ -115,7 +115,7 @@
                             ><a
                                 href={provider.url}
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="external noopener noreferrer"
                                 ><Icon icon={provider.icon} inline />
                                 {provider.name}</a
                             ></td
@@ -149,17 +149,17 @@
         <a
             href="https://github.com/toboshii/hajimari"
             target="_blank"
-            rel="noopener noreferrer"><Icon icon="mdi:github-box" /></a
+            rel="external noopener noreferrer"><Icon icon="mdi:github-box" /></a
         >
         <a
             href="https://discord.gg/HWGZSWJsA8"
             target="_blank"
-            rel="noopener noreferrer"><Icon icon="mdi:discord" /></a
+            rel="external noopener noreferrer"><Icon icon="mdi:discord" /></a
         >
         <a
             href="https://icon-sets.iconify.design"
             target="_blank"
-            rel="noopener noreferrer"><Icon icon="mdi:material-design" /></a
+            rel="external noopener noreferrer"><Icon icon="mdi:material-design" /></a
         >
         <button
             on:click={handleSave}

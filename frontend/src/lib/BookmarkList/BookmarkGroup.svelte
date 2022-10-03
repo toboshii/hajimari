@@ -9,7 +9,7 @@
         <a
             href={link.url}
             target={link.targetBlank || targetBlank ? "_blank" : null}
-            rel="noopener noreferrer"
+            rel="external noopener noreferrer"
         >
             {#if link.icon}
                 {#if link.icon.includes("//")}

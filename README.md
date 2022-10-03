@@ -1,16 +1,27 @@
-<img src="https://raw.githubusercontent.com/toboshii/hajimari/main/assets/logo.png" align="left" height="144px"/>
+<img src="assets/logo.png" align="left" width="144px"/>
 
 # Hajimari 🌅
-*...The beginning of a pleasant experience*
+_...The beginning of a pleasant experience_
 
 <br />
-<br />
 
-![Hajimari](https://raw.githubusercontent.com/toboshii/hajimari/main/assets/screen01.png)
+<div align="center">
 
-![User config](https://raw.githubusercontent.com/toboshii/hajimari/main/assets/screen02.png)
+[![Discord](https://img.shields.io/discord/879246010977779753?style=for-the-badge&label=discord&logo=discord&logoColor=white)](https://discord.gg/HWGZSWJsA8)
+[![Go](https://img.shields.io/badge/go-v1.19-brightgreen?style=for-the-badge&logo=go&logoColor=white)](https://kubernetes.io/)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/toboshii/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/toboshii/home-ops/actions/workflows/schedule-renovate.yaml)
+[![Lines of code](https://img.shields.io/tokei/lines/github/toboshii/hajimari?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/toboshii/hajimari/graphs/contributors)
 
-![App groups](https://raw.githubusercontent.com/toboshii/hajimari/main/assets/screen03.png)
+</div>
+
+---
+
+
+![Hajimari](assets/screen01.png)
+
+![User config](assets/screen02.png)
+
+![App groups](assets/screen03.png)
 
 ## Features
 
@@ -215,6 +226,17 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 | icon        | Icon name or URL for the bookmark | String |
 | url         | URL of the bookmark               | String |
 | targetBlank | Open bookmark in a new window/tab | Bool   |
+
+### Search
+
+The search bar has a few functionalities:
+* If a query starts with `/` (similiar to vi/vim's search) it will filter the applications in real time allowing you to quickly find the app you're looking for.
+* If a query starts with `@<token>` and matches a token configured for a `searchProvider` then the request will be forwarded to the configured `searchUrl` with `{query}` replaced with the portion of the query after the token.
+* If no query is provided following the token or there is no `searchUrl` configured for the provider, then the user will be redirected to the contents of `url`. This allows you to use tokens to quickly access external sites.  
+
+### Icons
+
+Any `icon` field can be either an [Iconify](https://iconify.design/) supported icon (ex: `mdi:kubernetes`, `simple-icons:google`) or a URL to an image.
 
 ### Custom startpage setup
 

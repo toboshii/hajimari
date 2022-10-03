@@ -10,7 +10,6 @@ _...The beginning of a pleasant experience_
 [![Discord](https://img.shields.io/discord/879246010977779753?style=for-the-badge&label=discord&logo=discord&logoColor=white)](https://discord.gg/HWGZSWJsA8)
 [![Go](https://img.shields.io/badge/go-v1.19-brightgreen?style=for-the-badge&logo=go&logoColor=white)](https://kubernetes.io/)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/toboshii/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/toboshii/home-ops/actions/workflows/schedule-renovate.yaml)
-[![Lines of code](https://img.shields.io/tokei/lines/github/toboshii/hajimari?style=for-the-badge&color=brightgreen&label=lines&logo=codefactor&logoColor=white)](https://github.com/toboshii/hajimari/graphs/contributors)
 
 </div>
 

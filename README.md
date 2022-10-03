@@ -11,6 +11,9 @@ _...The beginning of a pleasant experience_
 
 ---
 
+## Hajiwhatsi?
+
+Hajimari is a simplistically beautiful startpage designed to be the entrypoint for your self-hosted Kubernetes cluster.
 
 ![Hajimari](assets/screen01.png)
 

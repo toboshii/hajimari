@@ -1,5 +1,25 @@
 {
   "extends": [
-    "config:base"
-  ]
+    "config:base",
+    "docker:enableMajor",
+    ":disableRateLimiting",
+    ":dependencyDashboard",
+    ":semanticCommits",
+    ":enablePreCommit",
+    ":automergeDigest",
+    ":automergeBranchPush",
+    "github>toboshii/home-ops//.github/renovate/commitMessage.json5",
+    "github>toboshii/home-ops//.github/renovate/labels.json5",
+    "github>toboshii/home-ops//.github/renovate/semanticCommits.json5"
+  ],
+  "platform": "github",
+  "username": "chii-bot[bot]",
+  "repositories": ["toboshii/hajimari"],
+  "onboarding": false,
+  "requireConfig": false,
+  "gitAuthor": "chii-bot <109454249+chii-bot[bot]@users.noreply.github.com>",
+  "dependencyDashboardTitle": "Renovate Dashboard 🤖",
+  "suppressNotifications": ["prIgnoreNotification"],
+  "rebaseWhen": "conflicted",
+  "commitBodyTable": true,
 }

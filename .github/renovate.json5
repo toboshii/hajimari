@@ -10,7 +10,8 @@
     ":automergeBranchPush",
     "github>toboshii/home-ops//.github/renovate/commitMessage.json5",
     "github>toboshii/home-ops//.github/renovate/labels.json5",
-    "github>toboshii/home-ops//.github/renovate/semanticCommits.json5"
+    "github>toboshii/home-ops//.github/renovate/semanticCommits.json5",
+    "github>toboshii/home-ops//.github/renovate/allowedVersions.json5"
   ],
   "platform": "github",
   "username": "chii-bot[bot]",

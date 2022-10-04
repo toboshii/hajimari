@@ -1,6 +1,6 @@
 # hajimari
 
-![Version: 2.0.1](https://img.shields.io/badge/Version-2.0.1-informational?style=flat-square) ![AppVersion: v0.3.1](https://img.shields.io/badge/AppVersion-v0.3.1-informational?style=flat-square)
+![Version: 2.0.2](https://img.shields.io/badge/Version-2.0.2-informational?style=flat-square) ![AppVersion: v0.3.1](https://img.shields.io/badge/AppVersion-v0.3.1-informational?style=flat-square)
 
 Hajimari is a beautiful & customizable browser startpage/dashboard with
 Kubernetes application discovery
@@ -171,7 +171,7 @@ Kubernetes: `>=1.16.0-0`
 
 | Repository | Name | Version |
 |------------|------|---------|
-| https://bjw-s.github.io/helm-charts/ | common | 0.2.1 |
+| https://bjw-s.github.io/helm-charts/ | common | 0.2.2 |
 
 ## Values
 
@@ -180,9 +180,9 @@ Kubernetes: `>=1.16.0-0`
 | env | object | See below | environment variables. |
 | env.TZ | string | `"UTC"` | Set the container timezone |
 | hajimari | object | See below | Configures Hajimari settings for this instance. |
-| hajimari.bookmarks | list | `[]` | Set default bookmarks |
 | hajimari.customApps | list | `[]` | Add custom applications to the discovered application list |
 | hajimari.defaultEnable | bool | `false` | Set to true to show all discovered applications by default. |
+| hajimari.globalBookmarks | list | `[]` | Set default bookmarks |
 | hajimari.instanceName | string | `nil` | The name of this instance, this allows running multiple  instances of Hajimari on the same cluster |
 | hajimari.name | string | `"You"` | Default name for welcome message |
 | hajimari.namespaceSelector | object | `{"matchNames":["media"]}` | Namespace selector to use for discovering applications |

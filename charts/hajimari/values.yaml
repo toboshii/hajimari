@@ -50,7 +50,7 @@ hajimari:
   #       info: This is a test app
   
   # -- Set default bookmarks
-  bookmarks: []
+  globalBookmarks: []
   # - group: Communicate
   #   bookmarks:
   #   - name: Discord

@@ -3,6 +3,32 @@ entries:
   hajimari:
   - apiVersion: v2
     appVersion: v0.3.1
+    created: "2022-10-04T23:47:26.112239109Z"
+    dependencies:
+    - name: common
+      repository: https://bjw-s.github.io/helm-charts/
+      version: 0.2.2
+    description: 'Hajimari is a beautiful & customizable browser startpage/dashboard
+      with  Kubernetes application discovery '
+    digest: 6b830179a9d4d3c65839f45301343545d4aa3e1df512969cdb9c69fcc78a6d51
+    home: https://github.com/toboshii/hajimari/tree/master/charts/hajimari
+    icon: https://raw.githubusercontent.com/toboshii/hajimari/main/assets/logo.png
+    keywords:
+    - hajimari
+    - startpage
+    - dashboard
+    kubeVersion: '>=1.16.0-0'
+    maintainers:
+    - email: toboshii@users.noreply.github.com
+      name: toboshii
+    name: hajimari
+    sources:
+    - https://github.com/toboshii/hajimari
+    urls:
+    - https://github.com/toboshii/hajimari/releases/download/hajimari-helm-chart-2.0.2/hajimari-2.0.2.tgz
+    version: 2.0.2
+  - apiVersion: v2
+    appVersion: v0.3.1
     created: "2022-10-03T03:59:17.714321047Z"
     dependencies:
     - name: common
@@ -131,4 +157,4 @@ entries:
     urls:
     - https://github.com/toboshii/hajimari/releases/download/hajimari-helm-chart-1.1.0/hajimari-1.1.0.tgz
     version: 1.1.0
-generated: "2022-10-03T03:59:17.714340547Z"
+generated: "2022-10-04T23:47:26.112278109Z"

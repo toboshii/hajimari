@@ -2,7 +2,6 @@ package handlers
 
 import (
 	"net/http"
-	"strings"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -53,7 +52,7 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 
 	for i, ingressAppGroup := range ingressApps {
 		for x, customAppGroup := range customApps {
-			if strings.EqualFold(customAppGroup.Group, ingressAppGroup.Group) {
+			if customAppGroup.Group == ingressAppGroup.Group {
 				ingressApps[i].Apps = append(ingressApps[i].Apps, customAppGroup.Apps...)
 				customApps = append(customApps[:x], customApps[x+1:]...)
 			}

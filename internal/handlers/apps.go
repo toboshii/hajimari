@@ -2,6 +2,8 @@ package handlers
 
 import (
 	"net/http"
+	"sort"
+	"strings"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -9,6 +11,7 @@ import (
 	"github.com/toboshii/hajimari/internal/hajimari/customapps"
 	"github.com/toboshii/hajimari/internal/models"
 	"github.com/toboshii/hajimari/internal/services"
+	utilStrings "github.com/toboshii/hajimari/internal/util/strings"
 )
 
 type appResource struct {
@@ -57,6 +60,16 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 				customApps = append(customApps[:x], customApps[x+1:]...)
 			}
 		}
+
+		sort.Slice(ingressApps[i].Apps, func(j, k int) bool {
+			switch strings.Compare(utilStrings.NormalizeString(ingressApps[i].Apps[j].Name), utilStrings.NormalizeString(ingressApps[i].Apps[k].Name)) {
+			case -1:
+				return true
+			case 1:
+				return false
+			}
+			return true
+		})
 	}
 
 	apps = append(ingressApps, customApps...)

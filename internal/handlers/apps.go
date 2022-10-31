@@ -61,14 +61,9 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
+		// Sort ingressApps[i].Apps alphabetically
 		sort.Slice(ingressApps[i].Apps, func(j, k int) bool {
-			switch strings.Compare(utilStrings.NormalizeString(ingressApps[i].Apps[j].Name), utilStrings.NormalizeString(ingressApps[i].Apps[k].Name)) {
-			case -1:
-				return true
-			case 1:
-				return false
-			}
-			return true
+			return strings.Compare(utilStrings.NormalizeString(ingressApps[i].Apps[j].Name), utilStrings.NormalizeString(ingressApps[i].Apps[k].Name)) == -1
 		})
 	}
 

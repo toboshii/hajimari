@@ -3,7 +3,6 @@ package handlers
 import (
 	"net/http"
 	"sort"
-	"strings"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -63,7 +62,7 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 
 		// Sort ingressApps[i].Apps alphabetically
 		sort.Slice(ingressApps[i].Apps, func(j, k int) bool {
-			return strings.Compare(utilStrings.NormalizeString(ingressApps[i].Apps[j].Name), utilStrings.NormalizeString(ingressApps[i].Apps[k].Name)) == -1
+			return utilStrings.CompareNormalized(ingressApps[i].Apps[j].Name, ingressApps[i].Apps[k].Name) == -1
 		})
 	}
 

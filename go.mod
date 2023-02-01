@@ -1,6 +1,6 @@
 module github.com/toboshii/hajimari
 
-go 1.19
+go 1.20
 
 require (
 	github.com/chi-middleware/logrus-logger v0.2.0

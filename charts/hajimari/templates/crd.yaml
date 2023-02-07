@@ -34,7 +34,6 @@ spec:
               required:
                 - name
                 - group
-                - icon
                 - url
               properties:
                 name:

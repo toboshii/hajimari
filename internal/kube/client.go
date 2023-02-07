@@ -36,7 +36,7 @@ func GetClient() kubernetes.Interface {
 
 	client, err := kubernetes.NewForConfig(config)
 	if err != nil {
-		logger.Fatalf("Cannot create new kubernetes client from config: %v", err)
+		logger.Fatalf("Can not create new kubernetes client from config: %v", err)
 	}
 
 	return client
@@ -50,7 +50,7 @@ func GetDynamicClient() dynamic.Interface {
 
 	client, err := dynamic.NewForConfig(config)
 	if err != nil {
-		logger.Fatalf("Cannot create new kubernetes client from config: %v", err)
+		logger.Fatalf("Can not create new kubernetes client from config: %v", err)
 	}
 
 	return client

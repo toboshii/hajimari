@@ -34,7 +34,7 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Collect Ingress apps
+	// Collect Kubernetes apps
 
 	cachedKubeApps := rs.service.GetCachedKubeApps()
 

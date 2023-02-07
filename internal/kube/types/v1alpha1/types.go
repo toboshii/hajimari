@@ -12,12 +12,12 @@ type Application struct {
 }
 
 type ApplicationSpec struct {
-	Name string `json:"name"`
-	Group string `json:"group,omitempty"`
-	Icon string `json:"icon,omitempty"`
-	URL string `json:"url"`
-	Info string `json:"info,omitempty"`
-	TargetBlank bool `json:"targetBlank,omitempty"`
+	Name        string `json:"name"`
+	Group       string `json:"group,omitempty"`
+	Icon        string `json:"icon,omitempty"`
+	URL         string `json:"url"`
+	Info        string `json:"info,omitempty"`
+	TargetBlank bool   `json:"targetBlank,omitempty"`
 }
 
 type ApplicationList struct {

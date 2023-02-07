@@ -1,16 +1,16 @@
 package crdapps
 
 import (
+	"github.com/mitchellh/mapstructure"
 	"github.com/toboshii/hajimari/internal/annotations"
 	"github.com/toboshii/hajimari/internal/config"
 	"github.com/toboshii/hajimari/internal/kube/lists/crdapps"
+	"github.com/toboshii/hajimari/internal/kube/types/v1alpha1"
 	"github.com/toboshii/hajimari/internal/kube/wrappers"
 	"github.com/toboshii/hajimari/internal/log"
 	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/kube/types/v1alpha1"
-	"k8s.io/client-go/dynamic"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
-	"github.com/mitchellh/mapstructure"
+	"k8s.io/client-go/dynamic"
 )
 
 var (
@@ -19,16 +19,16 @@ var (
 
 // List struct is used for listing hajimari apps
 type List struct {
-	appConfig  config.Config
-	err        error // Used for forwarding errors
-	items      []models.AppGroup
+	appConfig config.Config
+	err       error // Used for forwarding errors
+	items     []models.AppGroup
 	dynClient dynamic.Interface
 }
 
 // NewList func creates a new instance of apps lister
 func NewList(dynClient dynamic.Interface, appConfig config.Config) *List {
 	return &List{
-		appConfig:  appConfig,
+		appConfig: appConfig,
 		dynClient: dynClient,
 	}
 }

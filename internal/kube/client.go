@@ -4,8 +4,8 @@ import (
 	"os"
 
 	"github.com/toboshii/hajimari/internal/log"
-	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/dynamic"
+	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 )

@@ -6,17 +6,17 @@ import (
 	"math"
 
 	// v1 "k8s.io/api/apps/v1"
+	"github.com/toboshii/hajimari/internal/log"
 	networkingV1 "k8s.io/api/networking/v1"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/selection"
 	"k8s.io/client-go/kubernetes"
-	"github.com/toboshii/hajimari/internal/log"
 )
 
 const (
-	appNameLabelKey		= "app.kubernetes.io/name"
-	serviceNameLabelKey	= "kubernetes.io/service-name"
+	appNameLabelKey     = "app.kubernetes.io/name"
+	serviceNameLabelKey = "kubernetes.io/service-name"
 )
 
 var logger = log.New()
@@ -61,7 +61,7 @@ func (rsg *ReplicaStatusGetter) GetEndpointStatuses(ingress networkingV1.Ingress
 		logger.Debug(ingress.Name, " Multiple EndpointSlices found. Will try using all of them.")
 	}
 
-	if len(epslices.Items)==0 {
+	if len(epslices.Items) == 0 {
 		// This is indication that labels are mismatched somewhere
 		logger.Debug(ingress.Name, " No EndpointSlice Found")
 	}
@@ -124,7 +124,7 @@ func getServiceNames(ingress networkingV1.Ingress) []string {
 	if ingress.Spec.DefaultBackend != nil {
 		serviceNames = append(serviceNames, ingress.Spec.DefaultBackend.Service.Name)
 	}
-	if len(ingress.Spec.Rules)>0 {
+	if len(ingress.Spec.Rules) > 0 {
 		for _, rule := range ingress.Spec.Rules {
 			for _, path := range rule.HTTP.Paths {
 				serviceNames = append(serviceNames, path.Backend.Service.Name)

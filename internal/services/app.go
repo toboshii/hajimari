@@ -7,8 +7,8 @@ import (
 
 	"github.com/sirupsen/logrus"
 	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari/ingressapps"
 	"github.com/toboshii/hajimari/internal/hajimari/crdapps"
+	"github.com/toboshii/hajimari/internal/hajimari/ingressapps"
 	"github.com/toboshii/hajimari/internal/kube"
 	"github.com/toboshii/hajimari/internal/kube/util"
 	"github.com/toboshii/hajimari/internal/log"
@@ -17,9 +17,9 @@ import (
 )
 
 var (
-	logger          = log.New()
-	mutex           sync.RWMutex
-	kubeAppCache    []models.AppGroup
+	logger       = log.New()
+	mutex        sync.RWMutex
+	kubeAppCache []models.AppGroup
 )
 
 type AppService interface {

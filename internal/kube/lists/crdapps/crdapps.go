@@ -39,7 +39,7 @@ func (il *List) Populate(namespaces ...string) *List {
 		apps, err := il.dynClient.
 			Resource(appResource).
 			Namespace(namespace).
-			List(context.TODO(), metav1.ListOptions{})
+			List(context.Background(), metav1.ListOptions{})
 		if err != nil {
 			il.err = err
 		}

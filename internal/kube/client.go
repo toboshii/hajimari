@@ -17,7 +17,14 @@ var (
 func getConfig() *rest.Config {
 	var config *rest.Config
 
-	config, _ = rest.InClusterConfig()
+	config, err := rest.InClusterConfig()
+	if err != nil {
+		logger.Error("Could not load in-cluster config")
+	}
+
+	if err == nil {
+		return config
+	}
 
 	configPath := os.Getenv("KUBECONFIG")
 	if configPath == "" {

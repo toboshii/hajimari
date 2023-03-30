@@ -10,7 +10,7 @@ RUN npm install
 
 RUN npm run build
 
-FROM docker.io/golang:1.19.2-alpine as build
+FROM docker.io/golang:1.20.2-alpine as build
 
 ARG TARGETPLATFORM
 ENV TARGETPLATFORM=${TARGETPLATFORM:-linux/amd64}

@@ -1,0 +1,52 @@
+---
+
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: applications.hajimari.io
+spec:
+  conversion:
+    strategy: None
+  group: hajimari.io
+  names:
+    kind: Application
+    listKind: ApplicationList
+    plural: applications
+    singular: application
+  preserveUnknownFields: false
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            apiVersion:
+              type: string
+            kind:
+              type: string
+            metadata:
+              type: object
+            spec:
+              type: object
+              required:
+                - name
+                - group
+                - url
+              properties:
+                name:
+                  type: string
+                group:
+                  type: string
+                icon:
+                  type: string
+                url:
+                  type: string
+                info:
+                  type: string
+                targetBlank:
+                  type: boolean
+            status:
+              type: object

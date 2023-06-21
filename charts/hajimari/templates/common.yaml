@@ -10,5 +10,6 @@ volumeSpec:
     name: {{ include "common.names.fullname" . }}-settings
 {{- end -}}
 {{- $_ := set .Values.persistence "hajimari-settings" (include "hajimari.settingsVolume" . | fromYaml) -}}
+{{- $_ := set .Values.podAnnotations "checksum/config" (.Values.hajimari | toYaml | sha256sum) -}}
 
 {{ include "common.all" . }}

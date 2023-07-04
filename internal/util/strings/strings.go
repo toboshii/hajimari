@@ -23,3 +23,8 @@ func ContainsBetweenDelimiter(fullString string, search string, delimiter string
 	}
 	return false
 }
+
+// NormalizeString trims extra spaces and changes the string to lower-case
+func NormalizeString(str string) string {
+	return strings.TrimSpace(strings.ToLower(str))
+}

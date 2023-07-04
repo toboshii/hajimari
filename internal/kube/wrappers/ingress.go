@@ -45,9 +45,9 @@ func (iw *IngressWrapper) GetNamespace() string {
 // GetGroup func extracts group name from the ingress
 func (iw *IngressWrapper) GetGroup() string {
 	if groupFromAnnotation := iw.GetAnnotationValue(annotations.HajimariGroupAnnotation); groupFromAnnotation != "" {
-		return groupFromAnnotation
+		return utilStrings.NormalizeString(groupFromAnnotation)
 	}
-	return iw.GetNamespace()
+	return utilStrings.NormalizeString(iw.GetNamespace())
 }
 
 // GetGroup func extracts group name from the ingress

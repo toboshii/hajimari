@@ -12,7 +12,7 @@
 		"@iconify/svelte": "3.1.0",
 		"@sveltejs/adapter-static": "1.0.0-next.44",
 		"@sveltejs/kit": "1.0.0-next.507",
-		"@types/codemirror": "5.60.5",
+		"@types/codemirror": "5.60.15",
 		"@types/js-yaml": "4.0.5",
 		"svelte": "3.50.1",
 		"svelte-check": "2.9.1",
@@ -24,7 +24,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/roboto": "5.0.1",
-		"codemirror": "5.65.9",
+		"codemirror": "5.65.16",
 		"js-yaml": "4.1.0",
 		"svelte-portal": "2.2.0"
 	}

@@ -26,6 +26,6 @@
 		"@fontsource/roboto": "5.0.1",
 		"codemirror": "5.65.9",
 		"js-yaml": "4.1.0",
-		"svelte-portal": "2.2.0"
+		"svelte-portal": "2.2.1"
 	}
 }

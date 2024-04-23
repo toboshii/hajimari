@@ -39,7 +39,7 @@ jobs:
         run: ct lint
 
       - name: Create Kind cluster
-        uses: helm/kind-action@v1.5.0
+        uses: helm/kind-action@v1.10.0
         with:
           wait: 120s
         if: steps.list-changed.outputs.changed == 'true'

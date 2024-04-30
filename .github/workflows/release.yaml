@@ -7,7 +7,7 @@ on:
       - published
 
 env:
-  REGISTRY_IMAGE: ghcr.io/toboshii/hajimari
+  REGISTRY_IMAGE: ghcr.io/damacus/hajimari
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     if: "!contains(github.event.head_commit.message, '[ci-skip]')"
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Prepare
         id: prep

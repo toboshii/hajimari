@@ -5,14 +5,14 @@ import (
 	"time"
 
 	loggerMiddleware "github.com/chi-middleware/logrus-logger"
+	"github.com/damacus/hajimari/internal/log"
+	"github.com/damacus/hajimari/internal/services"
+	"github.com/damacus/hajimari/internal/stores"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/log"
-	"github.com/toboshii/hajimari/internal/services"
-	"github.com/toboshii/hajimari/internal/stores"
 )
 
 var (

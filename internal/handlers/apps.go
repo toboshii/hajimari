@@ -3,12 +3,12 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/damacus/hajimari/internal/config"
+	"github.com/damacus/hajimari/internal/hajimari/customapps"
+	"github.com/damacus/hajimari/internal/models"
+	"github.com/damacus/hajimari/internal/services"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari/customapps"
-	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/services"
 )
 
 type appResource struct {

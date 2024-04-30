@@ -126,7 +126,7 @@
             </table>
         </section>
     {/if}
-    
+
     <section id="themes">
         <h2>Themes</h2>
         <ThemeSwitcher bind:settings on:updateEditor={handleUpdateEditor} {showHelp} />
@@ -147,7 +147,7 @@
 
     <footer>
         <a
-            href="https://github.com/toboshii/hajimari"
+            href="https://github.com/damacus/hajimari"
             target="_blank"
             rel="external noopener noreferrer"><Icon icon="mdi:github-box" /></a
         >

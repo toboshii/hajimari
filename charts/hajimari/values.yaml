@@ -7,7 +7,7 @@
 
 image:
   # -- image repository
-  repository: ghcr.io/toboshii/hajimari
+  repository: ghcr.io/damacus/hajimari
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
@@ -22,7 +22,7 @@ env:
 # -- Configures Hajimari settings for this instance.
 # @default -- See below
 hajimari:
-  # -- The name of this instance, this allows running multiple 
+  # -- The name of this instance, this allows running multiple
   # instances of Hajimari on the same cluster
   instanceName: null
 
@@ -32,8 +32,8 @@ hajimari:
   # -- Namespace selector to use for discovering applications
   namespaceSelector:
     matchNames:
-    - media
-    
+      - media
+
   # -- Override the title of the Hajimari pages
   title: null
 
@@ -62,7 +62,6 @@ hajimari:
   #     url: 'http://gmail.com'
   #   - name: Slack
   #     url: 'https://slack.com/signin'
-
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml

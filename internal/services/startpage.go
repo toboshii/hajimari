@@ -3,10 +3,10 @@ package services
 import (
 	"encoding/json"
 
+	"github.com/damacus/hajimari/internal/config"
+	"github.com/damacus/hajimari/internal/models"
+	"github.com/damacus/hajimari/internal/stores"
 	"github.com/sirupsen/logrus"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/stores"
 )
 
 type StartpageService interface {

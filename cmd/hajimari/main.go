@@ -4,11 +4,11 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/damacus/hajimari/internal/config"
+	"github.com/damacus/hajimari/internal/handlers"
+	"github.com/damacus/hajimari/internal/log"
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/handlers"
-	"github.com/toboshii/hajimari/internal/log"
 )
 
 var (

@@ -3,10 +3,10 @@ package handlers
 import (
 	"net/http"
 
+	"github.com/damacus/hajimari/internal/config"
+	"github.com/damacus/hajimari/internal/models"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/models"
 )
 
 type bookmarkResource struct{}

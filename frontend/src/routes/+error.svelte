@@ -15,7 +15,7 @@
 {#if online}
     <section id="error">
         <h1>Yikes!</h1>
-        
+
         <nav>
             <a href="/"><Icon icon="mdi:home" inline />Home</a>
         </nav>
@@ -37,7 +37,7 @@
                 If the error persists, please drop by the <a target="_blank" rel="external noopener noreferrer" href="https://discord.gg/HWGZSWJsA8">Discord</a
                 >
                 and let us know, or raise an issue on
-                <a target="_blank" rel="external noopener noreferrer" href="https://github.com/toboshii/hajimari/issues/new/choose">GitHub</a>. Thanks!
+                <a target="_blank" rel="external noopener noreferrer" href="https://github.com/damacus/hajimari/issues/new/choose">GitHub</a>. Thanks!
             </p>
         {/if}
     </section>

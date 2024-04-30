@@ -3,9 +3,9 @@ package stores
 import (
 	"errors"
 
+	"github.com/damacus/hajimari/internal/models"
+	"github.com/damacus/hajimari/internal/util/pointer"
 	gonanoid "github.com/matoous/go-nanoid/v2"
-	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/util/pointer"
 )
 
 var startpages = []*models.Startpage{

@@ -1,13 +1,14 @@
 <img src="assets/logo.png" align="left" width="144px"/>
 
 # Hajimari 🌅
+
 _...The beginning of a pleasant experience_
 
 <br />
 
 [![Discord](https://img.shields.io/discord/879246010977779753?style=for-the-badge&label=discord&logo=discord&logoColor=white)](https://discord.gg/HWGZSWJsA8)
 [![Go](https://img.shields.io/badge/go-v1.19-brightgreen?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/toboshii/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/toboshii/hajimari/actions/workflows/ci.yaml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/damacus/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/damacus/hajimari/actions/workflows/ci.yaml)
 
 ---
 
@@ -124,7 +125,7 @@ spec:
   name: Hajimari Issues
   group: info
   icon: simple-icons:github
-  url: https://github.com/toboshii/hajimari/issues
+  url: https://github.com/damacus/hajimari/issues
   info: Submit issue to this project
   targetBlank: true
 ```
@@ -139,7 +140,7 @@ It is a selector for selecting namespaces either selecting all namespaces or a l
 | labelSelector |                Filter namespaces based on kubernetes metav1.LabelSelector type                |  null   | [metav1.LabelSelector](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1#LabelSelector) |
 |  matchNames   |                                    List of namespace names                                    |  null   | []string                                                                                     |
 
-*Note:* If you specify both `labelSelector` and `matchNames`, Hajimari will take a union of all namespaces matched and use them.
+_Note:_ If you specify both `labelSelector` and `matchNames`, Hajimari will take a union of all namespaces matched and use them.
 
 #### Theme
 
@@ -246,9 +247,9 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 ### Search
 
 The search bar has a few functionalities:
-* If a query starts with `/` (similiar to vi/vim's search) it will filter the applications in real time allowing you to quickly find the app you're looking for.
-* If a query starts with `@<token>` and matches a token configured for a `searchProvider` then the request will be forwarded to the configured `searchUrl` with `{query}` replaced with the portion of the query after the token.
-* If no query is provided following the token or there is no `searchUrl` configured for the provider, then the user will be redirected to the contents of `url`. This allows you to use tokens to quickly access external sites.  
+- If a query starts with `/` (similiar to vi/vim's search) it will filter the applications in real time allowing you to quickly find the app you're looking for.
+- If a query starts with `@<token>` and matches a token configured for a `searchProvider` then the request will be forwarded to the configured `searchUrl` with `{query}` replaced with the portion of the query after the token.
+- If no query is provided following the token or there is no `searchUrl` configured for the provider, then the user will be redirected to the contents of `url`. This allows you to use tokens to quickly access external sites.
 
 ### Icons
 
@@ -272,6 +273,7 @@ Please make sure to update tests as appropriate.
 Run `make help` for information on linting, tests, etc.
 
 ## About
+
 ### Why Hajimari?
 
 Hajimari (始まり) is Japanese for `beginnings`. Hajimari's original intended purpose is to be used as a browser startpage, so the name seemed fitting as it's the beginning of all new tabs/windows :)

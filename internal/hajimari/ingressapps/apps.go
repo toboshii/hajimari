@@ -3,13 +3,13 @@ package ingressapps
 import (
 	"math"
 
-	"github.com/toboshii/hajimari/internal/annotations"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/kube/lists/ingresses"
-	"github.com/toboshii/hajimari/internal/kube/util"
-	"github.com/toboshii/hajimari/internal/kube/wrappers"
-	"github.com/toboshii/hajimari/internal/log"
-	"github.com/toboshii/hajimari/internal/models"
+	"github.com/damacus/hajimari/internal/annotations"
+	"github.com/damacus/hajimari/internal/config"
+	"github.com/damacus/hajimari/internal/kube/lists/ingresses"
+	"github.com/damacus/hajimari/internal/kube/util"
+	"github.com/damacus/hajimari/internal/kube/wrappers"
+	"github.com/damacus/hajimari/internal/log"
+	"github.com/damacus/hajimari/internal/models"
 	v1 "k8s.io/api/networking/v1"
 	"k8s.io/client-go/kubernetes"
 )

@@ -1,31 +1,31 @@
 {
-	"name": "hajimari",
-	"version": "0.3.0",
-	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build",
-		"preview": "vite preview",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
-	},
-	"devDependencies": {
-		"@iconify/svelte": "3.1.0",
-		"@sveltejs/adapter-static": "1.0.0-next.44",
-		"@sveltejs/kit": "1.0.0-next.507",
-		"@types/codemirror": "5.60.5",
-		"@types/js-yaml": "4.0.5",
-		"svelte": "3.50.1",
-		"svelte-check": "2.9.1",
-		"svelte-preprocess": "4.10.7",
-		"tslib": "2.4.0",
-		"typescript": "4.8.4",
-		"vite": "3.1.7"
-	},
-	"type": "module",
-	"dependencies": {
-		"@fontsource/roboto": "5.0.1",
-		"codemirror": "5.65.9",
-		"js-yaml": "4.1.0",
-		"svelte-portal": "2.2.0"
-	}
+    "name": "hajimari",
+    "version": "0.4.0",
+    "scripts": {
+        "dev": "vite dev",
+        "build": "vite build",
+        "preview": "vite preview",
+        "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+        "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    },
+    "devDependencies": {
+        "@iconify/svelte": "4.0.2",
+        "@sveltejs/adapter-static": "3.0.1",
+        "@sveltejs/kit": "2.5.9",
+        "@types/codemirror": "5.60.15",
+        "@types/js-yaml": "4.0.9",
+        "svelte": "4.2.17",
+        "svelte-check": "3.7.1",
+        "svelte-preprocess": "5.1.4",
+        "tslib": "2.6.2",
+        "typescript": "5.4.5",
+        "vite": "5.2.11"
+    },
+    "type": "module",
+    "dependencies": {
+        "@fontsource/roboto": "5.0.13",
+        "codemirror": "5.65.16",
+        "js-yaml": "4.1.0",
+        "svelte-portal": "2.2.1"
+    }
 }

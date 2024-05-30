@@ -6,11 +6,11 @@ import (
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
-	"github.com/ullbergm/hajimari/internal/services"
-	utilStrings ullbergmcom/ullbergm/hajimari/internal/util/strings"
 	"github.com/ullbergm/hajimari/internal/config"
-	"github.com/ullbergm/hajullbergmternal/hajimari/customapps"
+	"github.com/ullbergm/hajimari/internal/hajimari/customapps"
 	"github.com/ullbergm/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/services"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 )
 
 type appResource struct {

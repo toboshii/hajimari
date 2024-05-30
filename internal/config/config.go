@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/models"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 

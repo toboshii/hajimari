@@ -4,8 +4,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/toboshii/hajimari/internal/annotations"
-	utilStrings "github.com/toboshii/hajimari/internal/util/strings"
+	"github.com/ullbergm/hajimari/internal/annotations"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 	v1 "k8s.io/api/networking/v1"
 )
 

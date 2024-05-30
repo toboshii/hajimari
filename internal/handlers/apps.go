@@ -66,9 +66,9 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 
-		// Sort ingressApps[i].Apps alphabetically
-		sort.Slice(ingressApps[i].Apps, func(j, k int) bool {
-			return utilStrings.CompareNormalized(ingressApps[i].Apps[j].Name, ingressApps[i].Apps[k].Name) == -1
+		// Sort kubeApps[i].Apps alphabetically
+		sort.Slice(kubeApps[i].Apps, func(j, k int) bool {
+			return utilStrings.CompareNormalized(kubeApps[i].Apps[j].Name, kubeApps[i].Apps[k].Name) == -1
 		})
 	}
 

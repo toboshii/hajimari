@@ -5,13 +5,13 @@
 Hajimari is a beautiful & customizable browser startpage/dashboard with
 Kubernetes application discovery
 
-**Homepage:** <https://github.com/toboshii/hajimari/tree/master/charts/hajimari>
+**Homepage:** <https://github.com/ullbergm/hajimari/tree/master/charts/hajimari>
 
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| toboshii | <toboshii@users.noreply.github.com> |  |
+| ullbergm | <ullbergm@users.noreply.github.com> |  |
 
 ## Example values to get started
 
@@ -163,7 +163,7 @@ persistence:
 
 ## Source Code
 
-* <https://github.com/toboshii/hajimari>
+* <https://github.com/ullbergm/hajimari>
 
 ## Requirements
 
@@ -188,7 +188,7 @@ Kubernetes: `>=1.16.0-0`
 | hajimari.namespaceSelector | object | `{"matchNames":["media"]}` | Namespace selector to use for discovering applications |
 | hajimari.title | string | `nil` | Override the title of the Hajimari pages |
 | image.pullPolicy | string | `"IfNotPresent"` | image pull policy |
-| image.repository | string | `"ghcr.io/toboshii/hajimari"` | image repository |
+| image.repository | string | `"ghcr.io/ullbergm/hajimari"` | image repository |
 | image.tag | string | `"v0.3.1"` | image tag |
 | ingress.main | object | See values.yaml | Enable and configure ingress settings for the chart under this key. |
 | persistence | object | See values.yaml | Configure persistence settings for the chart under this key. |

@@ -7,7 +7,7 @@ _...The beginning of a pleasant experience_
 
 [![Discord](https://img.shields.io/discord/879246010977779753?style=for-the-badge&label=discord&logo=discord&logoColor=white)](https://discord.gg/HWGZSWJsA8)
 [![Go](https://img.shields.io/badge/go-v1.19-brightgreen?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/toboshii/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/toboshii/hajimari/actions/workflows/ci.yaml)
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ullbergm/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/ullbergm/hajimari/actions/workflows/ci.yaml)
 
 ---
 
@@ -24,7 +24,7 @@ Hajimari is a simplistically beautiful startpage designed to be the entrypoint f
 ## Features
 
 - Web and app search with customizable search providers
-- Dynamically list apps discovered from Kubernetes ingresses
+- Dynamically list apps discovered from Kubernetes Ingresses or Custom Resources
 - Display replica status for ingress endpoints
 - Support for non-Kubernetes apps via custom apps config
 - Customizable list of bookmarks
@@ -69,7 +69,7 @@ Hajimari will need access to a kubeconfig file for a service account with [acces
 
 ### Ingresses
 
-Hajimari looks for specific annotations on ingresses.
+Hajimari looks for specific annotations on [Ingresses](https://kubernetes.io/docs/concepts/services-networking/ingress/).
 
 - Add the following annotations to your ingresses in order for it to be discovered by Hajimari:
 
@@ -110,6 +110,24 @@ Hajimari supports the following configuration options that can be modified by ei
 |    searchProviders    |                               A list of custom search providers                                | [[...](#default-search-providers)] | \[\][SearchProvider](#searchprovider) |
 |      customApps       |                      A list of custom apps to add to the discovered apps                       |                 []                 | \[\][AppGroup](#appgroup)             |
 |    globalBookmarks    |                                A list of bookmark groups to add                                |                 []                 | \[\][BookmarkGroup](#bookmarkgroup)   |
+
+### HajimariApp objects
+
+It also possible to define Apps via Kubernetes [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/) for those using Istio's [Virtual Services](https://istio.io/latest/docs/reference/config/networking/virtual-service/), Traefik's [IngressRoutes](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/) or other solutions, which does not reply on native Ingress objects:
+
+```yaml
+apiVersion: hajimari.io/v1alpha1
+kind: Application
+metadata:
+  name: hajimari-issues
+spec:
+  name: Hajimari Issues
+  group: info
+  icon: simple-icons:github
+  url: https://github.com/ullbergm/hajimari/issues
+  info: Submit issue to this project
+  targetBlank: true
+```
 
 #### NamespaceSelector
 

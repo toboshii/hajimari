@@ -1,4 +1,4 @@
-FROM docker.io/node:16.17-alpine AS build-frontend
+FROM docker.io/node:22.2-alpine AS build-frontend
 
 WORKDIR /build
 
@@ -10,7 +10,7 @@ RUN npm install
 
 RUN npm run build
 
-FROM docker.io/golang:1.19.2-alpine as build
+FROM docker.io/golang:1.22.3-alpine as build
 
 ARG TARGETPLATFORM
 ENV TARGETPLATFORM=${TARGETPLATFORM:-linux/amd64}
@@ -37,7 +37,7 @@ RUN \
     && \
     chmod +x hajimari
 
-FROM docker.io/alpine:3.16
+FROM docker.io/alpine:3.19
 
 RUN \
     apk add --no-cache \
@@ -54,4 +54,4 @@ USER hajimari:hajimari
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD [ "hajimari" ]
 
-LABEL org.opencontainers.image.source https://github.com/toboshii/hajimari
+LABEL org.opencontainers.image.source https://github.com/ullbergm/hajimari

@@ -2,13 +2,15 @@ package handlers
 
 import (
 	"net/http"
+	"sort"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari/customapps"
-	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/services"
+	"github.com/ullbergm/hajimari/internal/config"
+	"github.com/ullbergm/hajimari/internal/hajimari/customapps"
+	"github.com/ullbergm/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/services"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 )
 
 type appResource struct {
@@ -34,11 +36,15 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	cachedIngressApps := rs.service.GetCachedIngressApps()
+	// Collect Kubernetes apps
 
-	var ingressApps = make([]models.AppGroup, len(cachedIngressApps))
+	cachedKubeApps := rs.service.GetCachedKubeApps()
 
-	copy(ingressApps, cachedIngressApps)
+	var kubeApps = make([]models.AppGroup, len(cachedKubeApps))
+
+	copy(kubeApps, cachedKubeApps)
+
+	// Collect Custom apps
 
 	customAppsList := customapps.NewList(*appConfig)
 
@@ -48,18 +54,25 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 		render.Render(w, r, ErrServerError(err))
 	}
 
+	// Merge apps together
+
 	var apps []models.AppGroup
 
-	for i, ingressAppGroup := range ingressApps {
+	for i, kubeAppGroup := range kubeApps {
 		for x, customAppGroup := range customApps {
-			if customAppGroup.Group == ingressAppGroup.Group {
-				ingressApps[i].Apps = append(ingressApps[i].Apps, customAppGroup.Apps...)
+			if customAppGroup.Group == kubeAppGroup.Group {
+				kubeApps[i].Apps = append(kubeApps[i].Apps, customAppGroup.Apps...)
 				customApps = append(customApps[:x], customApps[x+1:]...)
 			}
 		}
+
+		// Sort kubeApps[i].Apps alphabetically
+		sort.Slice(kubeApps[i].Apps, func(j, k int) bool {
+			return utilStrings.CompareNormalized(kubeApps[i].Apps[j].Name, kubeApps[i].Apps[k].Name) == -1
+		})
 	}
 
-	apps = append(ingressApps, customApps...)
+	apps = append(kubeApps, customApps...)
 
 	if err := render.RenderList(w, r, NewAppListResponse(apps)); err != nil {
 		render.Render(w, r, ErrServerError(err))

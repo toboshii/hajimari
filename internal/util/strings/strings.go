@@ -28,3 +28,8 @@ func ContainsBetweenDelimiter(fullString string, search string, delimiter string
 func NormalizeString(str string) string {
 	return strings.TrimSpace(strings.ToLower(str))
 }
+
+// CompareNormalized compares two strings after normalizing them
+func CompareNormalized(a string, b string) int {
+	return strings.Compare(NormalizeString(a), NormalizeString(b))
+}

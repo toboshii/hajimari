@@ -4,9 +4,9 @@ import (
 	"encoding/json"
 
 	"github.com/sirupsen/logrus"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/stores"
+	"github.com/ullbergm/hajimari/internal/config"
+	"github.com/ullbergm/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/stores"
 )
 
 type StartpageService interface {

@@ -2,7 +2,7 @@
     import { createEventDispatcher, onDestroy, onMount } from "svelte";
 
     import { page } from "$app/stores";
-    import { portal } from "svelte-portal/src/Portal.svelte";
+    import { portal } from "svelte-portal";
     import Icon from "@iconify/svelte";
 
     import { api } from "$lib/api";
@@ -147,7 +147,7 @@
 
     <footer>
         <a
-            href="https://github.com/toboshii/hajimari"
+            href="https://github.com/ullbergm/hajimari"
             target="_blank"
             rel="external noopener noreferrer"><Icon icon="mdi:github-box" /></a
         >

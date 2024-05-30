@@ -10,13 +10,13 @@ keywords:
 - hajimari
 - startpage
 - dashboard
-home: https://github.com/toboshii/hajimari/tree/master/charts/hajimari
-icon: https://raw.githubusercontent.com/toboshii/hajimari/main/assets/logo.png
+home: https://github.com/ullbergm/hajimari/tree/master/charts/hajimari
+icon: https://raw.githubusercontent.com/ullbergm/hajimari/main/assets/logo.png
 sources:
-- https://github.com/toboshii/hajimari
+- https://github.com/ullbergm/hajimari
 maintainers:
-- name: toboshii
-  email: toboshii@users.noreply.github.com
+- name: ullbergm
+  email: ullbergm@users.noreply.github.com
 dependencies:
 - name: common
   version: 0.2.2

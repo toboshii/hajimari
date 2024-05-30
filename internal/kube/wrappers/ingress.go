@@ -4,14 +4,9 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/toboshii/hajimari/internal/annotations"
-	"github.com/toboshii/hajimari/internal/log"
-	utilStrings "github.com/toboshii/hajimari/internal/util/strings"
+	"github.com/ullbergm/hajimari/internal/annotations"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 	v1 "k8s.io/api/networking/v1"
-)
-
-var (
-	logger = log.New()
 )
 
 // IngressWrapper struct wraps a kubernetes ingress object

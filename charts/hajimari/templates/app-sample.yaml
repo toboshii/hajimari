@@ -8,7 +8,7 @@ spec:
   name: Hajimari Issues
   group: info
   icon: simple-icons:github
-  url: https://github.com/toboshii/hajimari/issues
+  url: https://github.com/ullbergm/hajimari/issues
   info: Submit issue to this project
   targetBlank: true
 

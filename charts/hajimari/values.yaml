@@ -7,11 +7,11 @@
 
 image:
   # -- image repository
-  repository: ghcr.io/toboshii/hajimari
+  repository: ghcr.io/ullbergm/hajimari
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag
-  tag: v0.3.1
+  tag: latest
 
 # -- environment variables.
 # @default -- See below

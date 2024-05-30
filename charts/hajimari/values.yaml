@@ -48,7 +48,10 @@ hajimari:
   #       url: 'https://example.com'
   #       icon: 'mdi:test-tube'
   #       info: This is a test app
-  
+
+  # -- Create sample Custom Resource Application
+  createCRAppSample: false
+
   # -- Set default bookmarks
   globalBookmarks: []
   # - group: Communicate

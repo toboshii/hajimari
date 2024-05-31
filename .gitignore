@@ -29,3 +29,8 @@ node_modules
 public/build/
 
 .DS_Store
+
+.cache/
+dist/
+.env
+.vscode/

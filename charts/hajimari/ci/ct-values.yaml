@@ -1,8 +1,8 @@
 hajimari:
   namespaceSelector:
     matchNames:
-    - downloads
-    - media
+      - downloads
+      - media
   customApps:
     - group: media
       apps:
@@ -15,20 +15,20 @@ hajimari:
   globalBookmarks:
     - group: Communicate
       bookmarks:
-      - name: Discord
-        url: 'https://discord.com'
-      - name: Gmail
-        url: 'http://gmail.com'
-      - name: Slack
-        url: 'https://slack.com/signin'
+        - name: Discord
+          url: "https://discord.com"
+        - name: Gmail
+          url: "http://gmail.com"
+        - name: Slack
+          url: "https://slack.com/signin"
     - group: Cloud
       bookmarks:
-      - name: Box
-        url: 'https://box.com'
-      - name: Dropbox
-        url: 'https://dropbox.com'
-      - name: Drive
-        url: 'https://drive.google.com'
+        - name: Box
+          url: "https://box.com"
+        - name: Dropbox
+          url: "https://dropbox.com"
+        - name: Drive
+          url: "https://drive.google.com"
 ingress:
   main:
     enabled: true

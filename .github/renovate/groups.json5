@@ -1,33 +1,33 @@
 {
-  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "packageRules": [
+  $schema: "https://docs.renovatebot.com/renovate-schema.json",
+  packageRules: [
     {
-      "description": "Go Group",
-      "groupName": "Go",
-      "matchDatasources": ["go"],
-      "versioning": "semver",
-      "group": {
-        "commitMessageTopic": "{{{groupName}}} group"
+      description: "Go Group",
+      groupName: "Go",
+      matchDatasources: ["go"],
+      versioning: "semver",
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
       },
-      "separateMinorPatch": true
+      separateMinorPatch: true,
     },
     {
-      "description": "NPM Group",
-      "groupName": "NPM",
-      "matchDatasources": ["npm"],
-      "group": {
-        "commitMessageTopic": "{{{groupName}}} group"
+      description: "NPM Group",
+      groupName: "NPM",
+      matchDatasources: ["npm"],
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
       },
-      "separateMinorPatch": true
+      separateMinorPatch: true,
     },
     {
-      "description": "Github Group",
-      "groupName": "Github",
-      "matchDatasources": ["github-tags"],
-      "group": {
-        "commitMessageTopic": "{{{groupName}}} group"
+      description: "Github Group",
+      groupName: "Github",
+      matchDatasources: ["github-tags"],
+      group: {
+        commitMessageTopic: "{{{groupName}}} group",
       },
-      "separateMinorPatch": true
-    }
-  ]
+      separateMinorPatch: true,
+    },
+  ],
 }

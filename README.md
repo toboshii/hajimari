@@ -1,6 +1,7 @@
 <img src="assets/logo.png" align="left" width="144px"/>
 
 # Hajimari 🌅
+
 _...The beginning of a pleasant experience_
 
 <br />
@@ -74,7 +75,7 @@ Hajimari looks for specific annotations on [Ingresses](https://kubernetes.io/doc
 - Add the following annotations to your ingresses in order for it to be discovered by Hajimari:
 
 | Annotation                | Description                                                                                                                                          | Required |
-|---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------|----------|
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
 | `hajimari.io/enable`      | Add this with value `true` to the ingress of the app you want to show in Hajimari                                                                    | `true`   |
 | `hajimari.io/icon`        | Icon name from [MDI icons](https://materialdesignicons.com/)                                                                                         | `false`  |
 | `hajimari.io/appName`     | A custom name for your application. Use if you don't want to use the name of the ingress                                                             | `false`  |
@@ -89,7 +90,7 @@ Hajimari looks for specific annotations on [Ingresses](https://kubernetes.io/doc
 Hajimari supports the following configuration options that can be modified by either ConfigMap or `values.yaml` if you are using Helm
 
 |         Field         |                                          Description                                           |              Default               | Type                                  |
-|:---------------------:|:----------------------------------------------------------------------------------------------:|:----------------------------------:|---------------------------------------|
+| :-------------------: | :--------------------------------------------------------------------------------------------: | :--------------------------------: | ------------------------------------- |
 |     instanceName      |                                 Name of the Hajimari instance                                  |                 ""                 | string                                |
 |     defaultEnable     |             Set to true to expose all ingresses in selected namespaces by default              |               false                | bool                                  |
 |   namespaceSelector   | Namespace selector which uses a combination of hardcoded namespaces as well as label selectors |             any: true              | NamespaceSelector                     |
@@ -134,19 +135,19 @@ spec:
 It is a selector for selecting namespaces either selecting all namespaces or a list of namespaces, or filtering namespaces through labels.
 
 |     Field     |                                          Description                                          | Default | Type                                                                                         |
-|:-------------:|:---------------------------------------------------------------------------------------------:|:-------:|----------------------------------------------------------------------------------------------|
+| :-----------: | :-------------------------------------------------------------------------------------------: | :-----: | -------------------------------------------------------------------------------------------- |
 |      any      | Boolean describing whether all namespaces are selected in contrast to a list restricting them |  false  | bool                                                                                         |
 | labelSelector |                Filter namespaces based on kubernetes metav1.LabelSelector type                |  null   | [metav1.LabelSelector](https://godoc.org/k8s.io/apimachinery/pkg/apis/meta/v1#LabelSelector) |
 |  matchNames   |                                    List of namespace names                                    |  null   | []string                                                                                     |
 
-*Note:* If you specify both `labelSelector` and `matchNames`, Hajimari will take a union of all namespaces matched and use them.
+_Note:_ If you specify both `labelSelector` and `matchNames`, Hajimari will take a union of all namespaces matched and use them.
 
 #### Theme
 
 If you want to add custom themes you can provide a list of custom theme atrributes.
 
 | Field           | Description                | Type   |
-|-----------------|----------------------------|--------|
+| --------------- | -------------------------- | ------ |
 | name            | Name of the theme          | String |
 | backgroundColor | Background color hex value | String |
 | primaryColor    | Primary color hex value    | String |
@@ -157,7 +158,7 @@ If you want to add custom themes you can provide a list of custom theme atrribut
 If you want to add custom search providers you can provide a list of custom providers to override the defaults.
 
 | Field     | Description                                                                  | Type   |
-|-----------|------------------------------------------------------------------------------|--------|
+| --------- | ---------------------------------------------------------------------------- | ------ |
 | name      | Name of the search provider                                                  | String |
 | token     | Short token used to activate this provider in the search bar                 | String |
 | icon      | Icon name or URL to use for this search provider                             | String |
@@ -191,7 +192,7 @@ searchProviders:
     searchUrl: https://www.reddit.com/search?q={query}
     url: https://www.reddit.com
   - name: YouTube
-    token: 'y'
+    token: "y"
     icon: simple-icons:youtube
     searchUrl: https://www.youtube.com/results?search_query={query}
     url: https://www.youtube.com
@@ -207,7 +208,7 @@ searchProviders:
 If you want to add any apps that are not exposed through ingresses or are external to the cluster, you can use the custom apps feature. You can pass a list of custom apps inside the config.
 
 | Field | Description                   | Type            |
-|-------|-------------------------------|-----------------|
+| ----- | ----------------------------- | --------------- |
 | group | Name of the group (namespace) | String          |
 | apps  | A list of custom apps         | \[\][App](#app) |
 
@@ -216,7 +217,7 @@ If you want to add any apps that are not exposed through ingresses or are extern
 Custom apps can be added by configuring a list of apps under an app group.
 
 | Field       | Description                         | Type   |
-|-------------|-------------------------------------|--------|
+| ----------- | ----------------------------------- | ------ |
 | name        | Name of the custom app              | String |
 | icon        | Icon name or URL for the custom app | String |
 | url         | URL of the custom app               | String |
@@ -228,7 +229,7 @@ Custom apps can be added by configuring a list of apps under an app group.
 Bookmark groups can be added by creating a list of groups and associated bookmarks.
 
 | Field     | Description                | Type                      |
-|-----------|----------------------------|---------------------------|
+| --------- | -------------------------- | ------------------------- |
 | group     | Name of the bookmark group | String                    |
 | bookmarks | Array of bookmarks         | \[\][Bookmark](#bookmark) |
 
@@ -237,7 +238,7 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 ##### Bookmark
 
 | Field       | Description                       | Type   |
-|-------------|-----------------------------------|--------|
+| ----------- | --------------------------------- | ------ |
 | name        | Name of the bookmark              | String |
 | icon        | Icon name or URL for the bookmark | String |
 | url         | URL of the bookmark               | String |
@@ -246,9 +247,10 @@ Bookmarks can be added by configuring a list of bookmarks under a group.
 ### Search
 
 The search bar has a few functionalities:
-* If a query starts with `/` (similiar to vi/vim's search) it will filter the applications in real time allowing you to quickly find the app you're looking for.
-* If a query starts with `@<token>` and matches a token configured for a `searchProvider` then the request will be forwarded to the configured `searchUrl` with `{query}` replaced with the portion of the query after the token.
-* If no query is provided following the token or there is no `searchUrl` configured for the provider, then the user will be redirected to the contents of `url`. This allows you to use tokens to quickly access external sites.  
+
+- If a query starts with `/` (similiar to vi/vim's search) it will filter the applications in real time allowing you to quickly find the app you're looking for.
+- If a query starts with `@<token>` and matches a token configured for a `searchProvider` then the request will be forwarded to the configured `searchUrl` with `{query}` replaced with the portion of the query after the token.
+- If no query is provided following the token or there is no `searchUrl` configured for the provider, then the user will be redirected to the contents of `url`. This allows you to use tokens to quickly access external sites.
 
 ### Icons
 
@@ -272,6 +274,7 @@ Please make sure to update tests as appropriate.
 Run `make help` for information on linting, tests, etc.
 
 ## About
+
 ### Why Hajimari?
 
 Hajimari (始まり) is Japanese for `beginnings`. Hajimari's original intended purpose is to be used as a browser startpage, so the name seemed fitting as it's the beginning of all new tabs/windows :)

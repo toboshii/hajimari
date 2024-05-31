@@ -1,180 +1,192 @@
-@import '@fontsource/roboto/400.css';
-@import '@fontsource/roboto/500.css';
-@import '@fontsource/roboto/700.css';
-@import '@fontsource/roboto/900.css';
+@import "@fontsource/roboto/400.css";
+@import "@fontsource/roboto/500.css";
+@import "@fontsource/roboto/700.css";
+@import "@fontsource/roboto/900.css";
 
-:root{
-	--color-background: #232530;
-    --color-text-pri: #FAB795;
-    --color-text-acc: #E95678;
-	--font: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, sans-serif;
-	--font-code: monospace;
-	--font-mono: monospace;
+:root {
+  --color-background: #232530;
+  --color-text-pri: #fab795;
+  --color-text-acc: #e95678;
+  --font: -apple-system, BlinkMacSystemFont, Helvetica Neue, Roboto, sans-serif;
+  --font-code: monospace;
+  --font-mono: monospace;
 }
 
-html{
-	box-sizing: border-box;
-	moz-box-sizing: border-box;
-	webkit-box-sizing: border-box;
-	webkit-text-size-adjust: none;
+html {
+  box-sizing: border-box;
+  moz-box-sizing: border-box;
+  webkit-box-sizing: border-box;
+  webkit-text-size-adjust: none;
 }
 
-::-webkit-scrollbar-thumb {background: var(--color-text-acc); border: 5px solid var(--color-background); border-radius: 10px;}
-::-webkit-scrollbar-track {background: var(--color-text-acc); border: 7px solid var(--color-background);}
-::-webkit-scrollbar {width: 15px;}
-::-webkit-scrollbar-corner { background: var(--color-background); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-text-acc);
+  border: 5px solid var(--color-background);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-text-acc);
+  border: 7px solid var(--color-background);
+}
+::-webkit-scrollbar {
+  width: 15px;
+}
+::-webkit-scrollbar-corner {
+  background: var(--color-background);
+}
 
 html,
-body{
-	background-color: var(--color-background);
-	color: var(--color-text-pri);
-	scrollbar-color: var(--color-text-acc) var(--color-background);
-    scrollbar-width: thin;
-	font-family: var(--font);
-	font-size: 14px;
-	font-weight: 400;
-	height: auto;
-	letter-spacing: -.012em;
-	margin: 0;
-	padding: 0;
-	webkit-font-smoothing: antialiased;
-	width: 100%;
+body {
+  background-color: var(--color-background);
+  color: var(--color-text-pri);
+  scrollbar-color: var(--color-text-acc) var(--color-background);
+  scrollbar-width: thin;
+  font-family: var(--font);
+  font-size: 14px;
+  font-weight: 400;
+  height: auto;
+  letter-spacing: -0.012em;
+  margin: 0;
+  padding: 0;
+  webkit-font-smoothing: antialiased;
+  width: 100%;
 }
 
 *,
 *:before,
-*:after{
-	box-sizing: inherit;
-	moz-box-sizing: inherit;
-	webkit-box-sizing: inherit;
+*:after {
+  box-sizing: inherit;
+  moz-box-sizing: inherit;
+  webkit-box-sizing: inherit;
 }
 
 /* TEXT STYLES */
 
-h1, h2{
-	font-weight: 300;
-	margin: 0;
-	padding: 0;
-	text-align: left;
+h1,
+h2 {
+  font-weight: 300;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
-h2, h3, h4{
-    text-transform: uppercase;
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
 }
 
-h1{
-	font-size: 4em;
-	font-weight: 700;
-	margin-bottom: 0.5em;
+h1 {
+  font-size: 4em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
 }
 
-h2{
-	font-size: 16px;
-	height: 30px;
-
+h2 {
+  font-size: 16px;
+  height: 30px;
 }
 
-h3{
-	font-size: 20px;
-	font-weight: 900;
-	height: 10px;
+h3 {
+  font-size: 20px;
+  font-weight: 900;
+  height: 10px;
 }
 
-h4{
-	font-size: 1.1em;
-	font-weight: 400;
-	height: 10px;
+h4 {
+  font-size: 1.1em;
+  font-weight: 400;
+  height: 10px;
 }
 
-a{
-	color: var(--color-text-pri);
-	text-decoration: none;
+a {
+  color: var(--color-text-pri);
+  text-decoration: none;
 }
 
-a:hover{
-	text-decoration: underline;
-	webkit-text-decoration-color: var(--color-text-acc);
-	webkit-text-decoration-skip: true;
+a:hover {
+  text-decoration: underline;
+  webkit-text-decoration-color: var(--color-text-acc);
+  webkit-text-decoration-skip: true;
 }
 
 /* FORMS */
 
-input{
-	background-color: transparent;
-	border: 0;
-	border-bottom: thin solid var(--color-text-acc);
-	color: var(--color-text-pri);
-	font-size: 0.8em;
-	height: 3.5em;
-	transition: all 0.4s ease;
-	width: 100%;
+input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: thin solid var(--color-text-acc);
+  color: var(--color-text-pri);
+  font-size: 0.8em;
+  height: 3.5em;
+  transition: all 0.4s ease;
+  width: 100%;
 }
 
-input:focus{
-	color-border: var(--color-text-pri);
-	outline: none;
+input:focus {
+  color-border: var(--color-text-pri);
+  outline: none;
 }
 
-input:focus{
-	opacity: 1;
+input:focus {
+  opacity: 1;
 }
-
 
 /* TABLES */
 
-table{
-	border: thin solid var(--color-text-acc);
-	border-collapse: collapse;
-	border-spacing: 0;
-	font-size: 1em;
-	text-align: left;
-	width: 100%;
+table {
+  border: thin solid var(--color-text-acc);
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+  text-align: left;
+  width: 100%;
 }
 
-table td:nth-of-type(2){
-	padding-right: 5em;
+table td:nth-of-type(2) {
+  padding-right: 5em;
 }
 
-table td{
-	border: thin solid var(--color-text-acc);
-	color: var(--color-text-pri);
-	font-size: 1em;
-	overflow: hidden;
-	padding: 10px 5px;
-	word-break: normal;
+table td {
+  border: thin solid var(--color-text-acc);
+  color: var(--color-text-pri);
+  font-size: 1em;
+  overflow: hidden;
+  padding: 10px 5px;
+  word-break: normal;
 }
 
-table th{
-	border: thin solid var(--color-text-acc);
-	color: var(--color-text-pri);
-	font-weight: bold;
-	padding: 10px 5px;
+table th {
+  border: thin solid var(--color-text-acc);
+  color: var(--color-text-pri);
+  font-weight: bold;
+  padding: 10px 5px;
 }
 
-table a{
-	color: var(--color-text-pri);
+table a {
+  color: var(--color-text-pri);
 }
 
 /* MEDIA QUERIES */
 
 @media screen and (max-width: 667px) {
-	html {
-		font-size: calc(16px + 6 * ((100vw - 320px) / 680));
-	}
+  html {
+    font-size: calc(16px + 6 * ((100vw - 320px) / 680));
+  }
 
-	h1 {
-		font-size: 4em;
-		height: auto;
-		margin-bottom: 0em;
-	}
+  h1 {
+    font-size: 4em;
+    height: auto;
+    margin-bottom: 0em;
+  }
 
-	h2 {
-		font-size: 1em;
-		height: auto;
-		margin-bottom: 0em;
-	}
+  h2 {
+    font-size: 1em;
+    height: auto;
+    margin-bottom: 0em;
+  }
 
-	h3 {
-		font-size: 1em;
-	}
+  h3 {
+    font-size: 1em;
+  }
 }

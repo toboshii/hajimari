@@ -5,6 +5,7 @@ import (
 
 	"github.com/ullbergm/hajimari/internal/config"
 	"github.com/ullbergm/hajimari/internal/models"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 )
 
 // List struct is used for listing hajimari apps
@@ -28,7 +29,7 @@ func (al *List) Populate() *List {
 
 	for _, group := range al.appConfig.CustomApps {
 		group.Group = strings.ToLower(group.Group)
-		customApps = append(customApps, group)
+		group.Group = utilStrings.NormalizeString(group.Group)
 	}
 
 	al.items = customApps

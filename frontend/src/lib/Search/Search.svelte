@@ -42,7 +42,7 @@
             name: "Spotify",
             token: "s",
             icon: "simple-icons:spotify",
-            searchUrl: "hhttps://open.spotify.com/search/{query}",
+            searchUrl: "https://open.spotify.com/search/{query}",
             url: "https://open.spotify.com",
         },
         {

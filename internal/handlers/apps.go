@@ -2,13 +2,15 @@ package handlers
 
 import (
 	"net/http"
+	"sort"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/hajimari/customapps"
-	"github.com/toboshii/hajimari/internal/models"
-	"github.com/toboshii/hajimari/internal/services"
+	"github.com/ullbergm/hajimari/internal/config"
+	"github.com/ullbergm/hajimari/internal/hajimari/customapps"
+	"github.com/ullbergm/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/services"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 )
 
 type appResource struct {
@@ -65,7 +67,19 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Sort Apps alphabetically
+	for i := range kubeApps {
+		sort.Slice(kubeApps[i].Apps, func(j, k int) bool {
+			return utilStrings.CompareNormalized(kubeApps[i].Apps[j].Name, kubeApps[i].Apps[k].Name) == -1
+		})
+	}
+
 	apps = append(kubeApps, customApps...)
+
+	// Sort App Groups alphabetically
+	sort.Slice(apps, func(i, j int) bool {
+		return utilStrings.CompareNormalized(apps[i].Group, apps[j].Group) == -1
+	})
 
 	if err := render.RenderList(w, r, NewAppListResponse(apps)); err != nil {
 		render.Render(w, r, ErrServerError(err))

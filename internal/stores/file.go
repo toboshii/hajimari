@@ -5,7 +5,7 @@ import (
 	"os"
 
 	gonanoid "github.com/matoous/go-nanoid/v2"
-	"github.com/toboshii/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/models"
 	"gopkg.in/yaml.v3"
 )
 

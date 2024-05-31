@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/models"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
@@ -119,7 +119,7 @@ func SetDefaults() {
 			Name:      "Spotify",
 			Token:     "s",
 			Icon:      "simple-icons:spotify",
-			SearchUrl: "hhttps://open.spotify.com/search/{query}",
+			SearchUrl: "https://open.spotify.com/search/{query}",
 			URL:       "https://open.spotify.com",
 		},
 	})

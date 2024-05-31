@@ -7,7 +7,7 @@
 
 image:
   # -- image repository
-  repository: ghcr.io/toboshii/hajimari
+  repository: ghcr.io/ullbergm/hajimari
   # -- image pull policy
   pullPolicy: IfNotPresent
   # -- image tag

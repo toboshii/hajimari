@@ -4,8 +4,8 @@ import (
 	"net/url"
 	"strings"
 
-	"github.com/toboshii/hajimari/internal/annotations"
-	utilStrings "github.com/toboshii/hajimari/internal/util/strings"
+	"github.com/ullbergm/hajimari/internal/annotations"
+	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
 	v1 "k8s.io/api/networking/v1"
 )
 
@@ -45,9 +45,9 @@ func (iw *IngressWrapper) GetNamespace() string {
 // GetGroup func extracts group name from the ingress
 func (iw *IngressWrapper) GetGroup() string {
 	if groupFromAnnotation := iw.GetAnnotationValue(annotations.HajimariGroupAnnotation); groupFromAnnotation != "" {
-		return groupFromAnnotation
+		return utilStrings.NormalizeString(groupFromAnnotation)
 	}
-	return iw.GetNamespace()
+	return utilStrings.NormalizeString(iw.GetNamespace())
 }
 
 // GetGroup func extracts group name from the ingress

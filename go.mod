@@ -1,6 +1,8 @@
-module github.com/toboshii/hajimari
+module github.com/ullbergm/hajimari
 
-go 1.19
+go 1.22
+
+toolchain go1.22.3
 
 require (
 	github.com/chi-middleware/logrus-logger v0.2.0

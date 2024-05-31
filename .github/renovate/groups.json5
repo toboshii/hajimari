@@ -15,7 +15,6 @@
       "description": "NPM Group",
       "groupName": "NPM",
       "matchDatasources": ["npm"],
-      "versioning": "semver",
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       },
@@ -25,7 +24,6 @@
       "description": "Github Group",
       "groupName": "Github",
       "matchDatasources": ["github-tags"],
-      "versioning": "semver",
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"
       },

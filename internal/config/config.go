@@ -119,7 +119,7 @@ func SetDefaults() {
 			Name:      "Spotify",
 			Token:     "s",
 			Icon:      "simple-icons:spotify",
-			SearchUrl: "hhttps://open.spotify.com/search/{query}",
+			SearchUrl: "https://open.spotify.com/search/{query}",
 			URL:       "https://open.spotify.com",
 		},
 	})

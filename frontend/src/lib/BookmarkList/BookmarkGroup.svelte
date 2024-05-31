@@ -1,7 +1,7 @@
 <script type="ts">
     import Icon from "@iconify/svelte";
     export let bookmarkGroup;
-    export let targetBlank: boolean;
+    export let targetBlank;
 </script>
 
 <div class="links_item">

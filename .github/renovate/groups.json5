@@ -24,7 +24,7 @@
     {
       "description": "Github Group",
       "groupName": "Github",
-      "matchDatasources": ["github-actions"],
+      "matchDatasources": ["github-tags"],
       "versioning": "semver",
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"

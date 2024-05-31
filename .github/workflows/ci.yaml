@@ -2,8 +2,6 @@ name: ci
 
 on:
   push:
-    branches: 
-      - main
     paths-ignore:
       - "charts/hajimari/**"
 
@@ -20,7 +18,7 @@ jobs:
       - name: Prepare
         id: prep
         run: |
-          echo ::set-output name=version::${GITHUB_REF##*/}-$(git rev-parse --short HEAD)
+          echo ::set-output name=version::${GITHUB_REF##*/}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
         with:

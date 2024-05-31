@@ -4,7 +4,6 @@
     {
       "description": "Go Group",
       "groupName": "Go",
-      "matchPackagePatterns": ["go"],
       "matchDatasources": ["go"],
       "versioning": "semver",
       "group": {
@@ -15,8 +14,17 @@
     {
       "description": "NPM Group",
       "groupName": "NPM",
-      "matchPackagePatterns": ["npm"],
       "matchDatasources": ["npm"],
+      "versioning": "semver",
+      "group": {
+        "commitMessageTopic": "{{{groupName}}} group"
+      },
+      "separateMinorPatch": true
+    },
+    {
+      "description": "Github Group",
+      "groupName": "Github",
+      "matchDatasources": ["github-actions"],
       "versioning": "semver",
       "group": {
         "commitMessageTopic": "{{{groupName}}} group"

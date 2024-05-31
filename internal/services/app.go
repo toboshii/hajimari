@@ -79,20 +79,17 @@ func getKubeApps() []models.AppGroup {
 	ingressApps, err := ingressAppsList.Populate(namespaces...).Get()
 	if err != nil {
 		logger.Error("An error occurred while looking for hajimari Ingress apps", err)
-		return nil
+		ingressApps = make([]models.AppGroup, 0)
 	}
 
 	// Collect Custom Resource apps
-
 	crdAppsList := crdapps.NewList(dynClient, *appConfig)
 
 	crdApps, err := crdAppsList.Populate(namespaces...).Get()
 	if err != nil {
 		logger.Error("An error occurred while looking for hajimari Custom Resource apps", err)
-		return nil
+		crdApps = make([]models.AppGroup, 0)
 	}
-
-	// Merge together
 
 	ingressApps = append(ingressApps, crdApps...)
 

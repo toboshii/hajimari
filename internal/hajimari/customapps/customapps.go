@@ -3,8 +3,8 @@ package customapps
 import (
 	"strings"
 
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/config"
+	"github.com/ullbergm/hajimari/internal/models"
 )
 
 // List struct is used for listing hajimari apps

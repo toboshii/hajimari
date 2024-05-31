@@ -1,4 +1,4 @@
-module github.com/toboshii/hajimari
+module github.com/ullbergm/hajimari
 
 go 1.19
 

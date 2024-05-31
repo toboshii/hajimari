@@ -6,9 +6,9 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/handlers"
-	"github.com/toboshii/hajimari/internal/log"
+	"github.com/ullbergm/hajimari/internal/config"
+	"github.com/ullbergm/hajimari/internal/handlers"
+	"github.com/ullbergm/hajimari/internal/log"
 )
 
 var (

@@ -54,4 +54,4 @@ USER hajimari:hajimari
 ENTRYPOINT [ "/sbin/tini", "--" ]
 CMD [ "hajimari" ]
 
-LABEL org.opencontainers.image.source https://github.com/toboshii/hajimari
+LABEL org.opencontainers.image.source https://github.com/ullbergm/hajimari

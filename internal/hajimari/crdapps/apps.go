@@ -2,13 +2,13 @@ package crdapps
 
 import (
 	"github.com/mitchellh/mapstructure"
-	"github.com/toboshii/hajimari/internal/annotations"
-	"github.com/toboshii/hajimari/internal/config"
-	"github.com/toboshii/hajimari/internal/kube/lists/crdapps"
-	"github.com/toboshii/hajimari/internal/kube/types/v1alpha1"
-	"github.com/toboshii/hajimari/internal/kube/wrappers"
-	"github.com/toboshii/hajimari/internal/log"
-	"github.com/toboshii/hajimari/internal/models"
+	"github.com/ullbergm/hajimari/internal/annotations"
+	"github.com/ullbergm/hajimari/internal/config"
+	"github.com/ullbergm/hajimari/internal/kube/lists/crdapps"
+	"github.com/ullbergm/hajimari/internal/kube/types/v1alpha1"
+	"github.com/ullbergm/hajimari/internal/kube/wrappers"
+	"github.com/ullbergm/hajimari/internal/log"
+	"github.com/ullbergm/hajimari/internal/models"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/client-go/dynamic"
 )

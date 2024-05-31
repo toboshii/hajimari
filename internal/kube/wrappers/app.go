@@ -3,7 +3,7 @@ package wrappers
 import (
 	// "fmt"
 	// "k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
-	"github.com/toboshii/hajimari/internal/kube/types/v1alpha1"
+	"github.com/ullbergm/hajimari/internal/kube/types/v1alpha1"
 	// "k8s.io/apimachinery/pkg/api/meta"
 )
 

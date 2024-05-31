@@ -1,31 +1,29 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%sveltekit.assets%/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      if (document) {
+        const setValueFromLocalStorage = (property) => {
+          let value = localStorage.getItem(property);
+          if (value) {
+            document.documentElement.style.setProperty(`--${property}`, value);
+          }
+        };
 
-<head>
-	<meta charset="utf-8" />
-	<link rel="icon" href="%sveltekit.assets%/favicon.png" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<script>
-		if (document) {
-			const setValueFromLocalStorage = property => {
-				let value = localStorage.getItem(property);
-				if (value) {
-					document.documentElement.style.setProperty(`--${property}`, value);
-				}
-			};
+        document.addEventListener("DOMContentLoaded", () => {
+          setValueFromLocalStorage("color-background");
+          setValueFromLocalStorage("color-text-pri");
+          setValueFromLocalStorage("color-text-acc");
+        });
+      }
+    </script>
+    %sveltekit.head%
+  </head>
 
-			document.addEventListener('DOMContentLoaded', () => {
-				setValueFromLocalStorage('color-background');
-				setValueFromLocalStorage('color-text-pri');
-				setValueFromLocalStorage('color-text-acc');
-			});
-		}
-	</script>
-	%sveltekit.head%
-</head>
-
-<body>
-	<div>%sveltekit.body%</div>
-</body>
-
+  <body>
+    <div>%sveltekit.body%</div>
+  </body>
 </html>

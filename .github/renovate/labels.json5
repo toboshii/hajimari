@@ -1,44 +1,44 @@
 {
-  "packageRules": [
+  packageRules: [
     {
-      "matchUpdateTypes": ["major"],
-      "labels": ["type/major"]
+      matchUpdateTypes: ["major"],
+      labels: ["type/major"],
     },
     {
-      "matchUpdateTypes": ["minor"],
-      "labels": ["type/minor"]
+      matchUpdateTypes: ["minor"],
+      labels: ["type/minor"],
     },
     {
-      "matchUpdateTypes": ["patch"],
-      "labels": ["type/patch"]
+      matchUpdateTypes: ["patch"],
+      labels: ["type/patch"],
     },
     {
-      "matchDatasources": ["docker"],
-      "addLabels": ["renovate/container"]
+      matchDatasources: ["docker"],
+      addLabels: ["renovate/container"],
     },
     {
-      "matchDatasources": ["helm"],
-      "addLabels": ["renovate/helm"]
+      matchDatasources: ["helm"],
+      addLabels: ["renovate/helm"],
     },
     {
-      "matchDatasources": ["go", "golang-version"],
-      "addLabels": ["renovate/go"]
+      matchDatasources: ["go", "golang-version"],
+      addLabels: ["renovate/go"],
     },
     {
-      "matchDatasources": ["npm"],
-      "addLabels": ["renovate/js"]
+      matchDatasources: ["npm"],
+      addLabels: ["renovate/js"],
     },
     {
-      "matchDatasources": ["github-releases", "github-tags"],
-      "addLabels": ["renovate/github-release"]
+      matchDatasources: ["github-releases", "github-tags"],
+      addLabels: ["renovate/github-release"],
     },
     {
-      "matchManagers": ["github-actions"],
-      "addLabels": ["renovate/github-action"]
+      matchManagers: ["github-actions"],
+      addLabels: ["renovate/github-action"],
     },
     {
-      "matchDatasources": ["pypi"],
-      "addLabels": ["renovate/pip"]
-    }
-  ]
+      matchDatasources: ["pypi"],
+      addLabels: ["renovate/pip"],
+    },
+  ],
 }

@@ -1,15 +1,15 @@
 {
-  "commitMessageTopic": "{{depName}}",
-  "commitMessageExtra": "to {{newVersion}}",
-  "commitMessageSuffix": "",
-  "packageRules": [
+  commitMessageTopic: "{{depName}}",
+  commitMessageExtra: "to {{newVersion}}",
+  commitMessageSuffix: "",
+  packageRules: [
     {
-      "matchDatasources": ["helm"],
-      "commitMessageTopic": "chart {{depName}}"
+      matchDatasources: ["helm"],
+      commitMessageTopic: "chart {{depName}}",
     },
     {
-      "matchDatasources": ["docker"],
-      "commitMessageTopic": "image {{depName}}"
-    }
-  ]
+      matchDatasources: ["docker"],
+      commitMessageTopic: "image {{depName}}",
+    },
+  ],
 }

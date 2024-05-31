@@ -1,16 +1,16 @@
 ---
 area/ansible:
-- changed-files:
-  - any-glob-to-any-file: "ansible/**/*"
+  - changed-files:
+      - any-glob-to-any-file: "ansible/**/*"
 area/github:
-- changed-files:
-  - any-glob-to-any-file: ".github/**/*"
+  - changed-files:
+      - any-glob-to-any-file: ".github/**/*"
 area/cluster:
-- changed-files:
-  - any-glob-to-any-file: "cluster/**/*"
+  - changed-files:
+      - any-glob-to-any-file: "cluster/**/*"
 area/hack:
-- changed-files:
-  - any-glob-to-any-file: "hack/**/*"
+  - changed-files:
+      - any-glob-to-any-file: "hack/**/*"
 area/terraform:
-- changed-files:
-  - any-glob-to-any-file: "terraform/**/*"
+  - changed-files:
+      - any-glob-to-any-file: "terraform/**/*"

@@ -1,5 +1,5 @@
 {
-    "svelte.plugin.svelte.compilerWarnings": {
-        "a11y-autofocus": "ignore"
-    }
+  "svelte.plugin.svelte.compilerWarnings": {
+    "a11y-autofocus": "ignore"
+  }
 }

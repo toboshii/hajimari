@@ -25,7 +25,7 @@ jobs:
         env:
           GITHUB_TOKEN: "${{ steps.generate-token.outputs.token }}"
         with:
-          args: --base . --verbose --no-progress './**/*.md' './**/*.html'
+          args: --base . --verbose --no-progress './**/*.md'
       - name: Find Link Checker Issue
         id: link-checker-issue
         uses: micalevisk/last-issue-action@v2

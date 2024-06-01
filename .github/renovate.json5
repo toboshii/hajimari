@@ -16,6 +16,7 @@
   ],
   gitAuthor: "ullberg-github-app <ullberg-github-app[bot]@users.noreply.github.com>",
   dependencyDashboardTitle: "Renovate Dashboard 🤖",
+  repositories: ["ullbergm/hajimari"],
   suppressNotifications: ["prIgnoreNotification"],
   rebaseWhen: "conflicted",
   commitBodyTable: true,

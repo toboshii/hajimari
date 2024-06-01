@@ -6,8 +6,7 @@ _...The beginning of a pleasant experience_
 
 <br />
 
-[![Discord](https://img.shields.io/discord/879246010977779753?style=for-the-badge&label=discord&logo=discord&logoColor=white)](https://discord.gg/HWGZSWJsA8)
-[![Go](https://img.shields.io/badge/go-v1.19-brightgreen?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
+[![Go](https://img.shields.io/badge/go-v1.22-brightgreen?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
 [![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ullbergm/hajimari/ci?label=CI&logo=githubactions&style=for-the-badge)](https://github.com/ullbergm/hajimari/actions/workflows/ci.yaml)
 
 ---

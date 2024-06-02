@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"net/http"
-	"sort"
+	"slices"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/render"
@@ -39,6 +39,7 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 	// Collect Kubernetes apps
 
 	cachedKubeApps := rs.service.GetCachedKubeApps()
+	logger.Debug("CachedKubeApps: ", cachedKubeApps)
 
 	var kubeApps = make([]models.AppGroup, len(cachedKubeApps))
 
@@ -65,20 +66,18 @@ func (rs *appResource) ListApps(w http.ResponseWriter, r *http.Request) {
 				customApps = append(customApps[:x], customApps[x+1:]...)
 			}
 		}
-	}
 
-	// Sort Apps alphabetically
-	for i := range kubeApps {
-		sort.Slice(kubeApps[i].Apps, func(j, k int) bool {
-			return utilStrings.CompareNormalized(kubeApps[i].Apps[j].Name, kubeApps[i].Apps[k].Name) == -1
+		// Sort Apps alphabetically
+		slices.SortFunc(kubeApps[i].Apps, func(a, b models.App) int {
+			return utilStrings.CompareNormalized(a.Name, b.Name)
 		})
 	}
 
 	apps = append(kubeApps, customApps...)
 
 	// Sort App Groups alphabetically
-	sort.Slice(apps, func(i, j int) bool {
-		return utilStrings.CompareNormalized(apps[i].Group, apps[j].Group) == -1
+	slices.SortFunc(apps, func(a, b models.AppGroup) int {
+		return utilStrings.CompareNormalized(a.Group, b.Group)
 	})
 
 	if err := render.RenderList(w, r, NewAppListResponse(apps)); err != nil {

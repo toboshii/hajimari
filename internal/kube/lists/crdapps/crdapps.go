@@ -40,12 +40,12 @@ func (il *List) Populate(namespaces ...string) *List {
 			Resource(appResource).
 			Namespace(namespace).
 			List(context.Background(), metav1.ListOptions{})
+
 		if err != nil {
 			il.err = err
 		} else {
 			il.items = append(il.items, apps.Items...)
 		}
-		il.items = append(il.items, apps.Items...)
 	}
 
 	return il

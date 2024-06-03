@@ -19,4 +19,6 @@ const (
 	HajimariStatusCheckEnabledAnnotation = "hajimari.io/statusCheckEnabled"
 	// HajimariTargetBlankAnnotation boolean used for making links open in a new window.
 	HajimariTargetBlankAnnotation = "hajimari.io/targetBlank"
+	// HajimariLocationAnnotation int used for specifying the location of the app in the list
+	HajimariLocationAnnotation = "hajimari.io/location"
 )

@@ -7,4 +7,5 @@ type App struct {
 	Info        string      `json:"info"`
 	TargetBlank bool        `json:"targetBlank"`
 	Replicas    ReplicaInfo `json:"replicas"`
+	Location    int         `json:"location"`
 }

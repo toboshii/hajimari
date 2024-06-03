@@ -47,5 +47,7 @@ spec:
                   type: string
                 targetBlank:
                   type: boolean
+                location:
+                  type: integer
             status:
               type: object

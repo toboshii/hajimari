@@ -54,3 +54,8 @@ func (aw *AppWrapper) GetTargetBlank() bool {
 func (aw *AppWrapper) GetURL() string {
 	return aw.app.Spec.URL
 }
+
+// GetLocation func extracts sorting location of the app wrapped by the object
+func (aw *AppWrapper) GetLocation() int {
+	return aw.app.Spec.Location
+}

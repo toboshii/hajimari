@@ -91,12 +91,18 @@ func appsToHajimariApps(apps []unstructured.Unstructured) (appGroups []models.Ap
 		}
 
 		if i, ok := appMap[wrapper.GetGroup()]; ok {
+			location := 1000
+			if wrapper.GetLocation() != 0 {
+				location = wrapper.GetLocation()
+			}
+
 			appGroups[i].Apps = append(appGroups[i].Apps, models.App{
 				Name:        wrapper.GetName(),
 				Icon:        wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
 				URL:         wrapper.GetURL(),
 				TargetBlank: wrapper.GetTargetBlank(),
 				Info:        wrapper.GetInfo(),
+				Location:    location,
 			})
 		}
 

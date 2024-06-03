@@ -1,11 +1,9 @@
 package customapps
 
 import (
-	"strings"
-
 	"github.com/ullbergm/hajimari/internal/config"
 	"github.com/ullbergm/hajimari/internal/models"
-	utilStrings "github.com/ullbergm/hajimari/internal/util/strings"
+	"github.com/ullbergm/hajimari/internal/util/strings"
 )
 
 // List struct is used for listing hajimari apps
@@ -24,12 +22,19 @@ func NewList(appConfig config.Config) *List {
 
 // Populate function that populates a list of custom apps
 func (al *List) Populate() *List {
-
 	var customApps []models.AppGroup
 
 	for _, group := range al.appConfig.CustomApps {
-		group.Group = strings.ToLower(group.Group)
-		group.Group = utilStrings.NormalizeString(group.Group)
+		group.Group = strings.NormalizeString(group.Group)
+
+		for i, app := range group.Apps {
+			if app.Location == 0 {
+				app.Location = 1000
+			}
+			group.Apps[i] = app
+		}
+
+		customApps = append(customApps, group)
 	}
 
 	al.items = customApps

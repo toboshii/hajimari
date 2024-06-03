@@ -18,6 +18,7 @@ type ApplicationSpec struct {
 	URL         string `json:"url"`
 	Info        string `json:"info,omitempty"`
 	TargetBlank bool   `json:"targetBlank,omitempty"`
+	Location    int    `json:"location"`
 }
 
 type ApplicationList struct {

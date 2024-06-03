@@ -96,6 +96,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, rsg util.ReplicaStat
 						Available: replicaStatus.GetAvailableReplicas(),
 						PctReady:  math.Round(replicaStatus.GetRatio() * 100),
 					},
+					Location: wrapper.GetLocation(),
 				})
 			} else {
 				appGroups[i].Apps = append(appGroups[i].Apps, models.App{

@@ -20,4 +20,5 @@
   suppressNotifications: ["prIgnoreNotification"],
   rebaseWhen: "conflicted",
   commitBodyTable: true,
+  baseBranch: "dev",
 }

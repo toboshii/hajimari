@@ -10,6 +10,7 @@
         commitMessageTopic: "{{{groupName}}} group",
       },
       separateMinorPatch: true,
+      "automerge": true,
     },
     {
       description: "NPM Group",
@@ -19,6 +20,7 @@
         commitMessageTopic: "{{{groupName}}} group",
       },
       separateMinorPatch: true,
+      "automerge": true,
     },
     {
       description: "Github Group",
@@ -28,6 +30,7 @@
         commitMessageTopic: "{{{groupName}}} group",
       },
       separateMinorPatch: true,
+      "automerge": true,
     },
   ],
 }

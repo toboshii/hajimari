@@ -158,3 +158,11 @@ func (iw *IngressWrapper) GetLocation() int {
 	}
 	return defaultLocation
 }
+
+// GetIconColor func extracts icon color of the ingress wrapped by the object
+func (iw *IngressWrapper) GetIconColor() string {
+	if iconColorFromAnnotation := iw.GetAnnotationValue(annotations.HajimariIconColorAnnotation); iconColorFromAnnotation != "" {
+		return iconColorFromAnnotation
+	}
+	return ""
+}

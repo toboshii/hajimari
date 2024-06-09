@@ -44,6 +44,11 @@ func (aw *AppWrapper) GetAnnotationValue(annotationKey string) string {
 	return aw.app.Spec.Icon
 }
 
+// GetIconColor func extracts icon color of the app wrapped by the object
+func (aw *AppWrapper) GetIconColor() string {
+	return aw.app.Spec.IconColor
+}
+
 // GetTargetBlank func extracts open in new window feature gate from the app
 // @default false
 func (aw *AppWrapper) GetTargetBlank() bool {

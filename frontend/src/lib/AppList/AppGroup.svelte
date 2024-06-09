@@ -26,10 +26,10 @@
         {#if app.icon.includes("//")}
           <img src={app.icon} alt="app icon for {app.name}" />
         {:else if app.icon.includes(":") || !app.icon}
-          <Icon icon={app.icon ? app.icon : defaultIcon} />
+          <Icon icon={app.icon ? app.icon : defaultIcon} color="{app.iconColor}" />
         {:else}
           <!-- support old icon format to ease transition -->
-          <Icon icon="mdi:{app.icon ? app.icon : defaultIcon}" />
+          <Icon icon="mdi:{app.icon ? app.icon : defaultIcon}" color="{app.iconColor}" />
         {/if}
       </a>
       {#if app.replicas.total > 0 && showStatus}

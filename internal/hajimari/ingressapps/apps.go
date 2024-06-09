@@ -88,6 +88,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, rsg util.ReplicaStat
 				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
 					Name:        wrapper.GetName(),
 					Icon:        wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+					IconColor:   wrapper.GetIconColor(),
 					URL:         wrapper.GetURL(),
 					Info:        wrapper.GetInfo(),
 					TargetBlank: wrapper.GetTargetBlank(),
@@ -102,6 +103,7 @@ func convertIngressesToHajimariApps(ingresses []v1.Ingress, rsg util.ReplicaStat
 				appGroups[i].Apps = append(appGroups[i].Apps, models.App{
 					Name:        wrapper.GetName(),
 					Icon:        wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+					IconColor:   wrapper.GetIconColor(),
 					URL:         wrapper.GetURL(),
 					TargetBlank: wrapper.GetTargetBlank(),
 					Info:        wrapper.GetInfo(),

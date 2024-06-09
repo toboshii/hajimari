@@ -41,6 +41,8 @@ spec:
                   type: string
                 icon:
                   type: string
+                iconColor:
+                  type: string
                 url:
                   type: string
                 info:

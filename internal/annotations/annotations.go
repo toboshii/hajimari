@@ -3,6 +3,8 @@ package annotations
 const (
 	// HajimariIconAnnotation const used for hajimari icon
 	HajimariIconAnnotation = "hajimari.io/icon"
+	// HajimariIconColorAnnotation const used for hajimari icon color
+	HajimariIconColorAnnotation = "hajimari.io/iconColor"
 	// HajimariEnableAnnotation const used for checking whether an ingress is exposed to hajimari
 	HajimariEnableAnnotation = "hajimari.io/enable"
 	// HajimariAppNameAnnotation const used for overriding the name of the app

@@ -99,6 +99,7 @@ func appsToHajimariApps(apps []unstructured.Unstructured) (appGroups []models.Ap
 			appGroups[i].Apps = append(appGroups[i].Apps, models.App{
 				Name:        wrapper.GetName(),
 				Icon:        wrapper.GetAnnotationValue(annotations.HajimariIconAnnotation),
+				IconColor:   wrapper.GetIconColor(),
 				URL:         wrapper.GetURL(),
 				TargetBlank: wrapper.GetTargetBlank(),
 				Info:        wrapper.GetInfo(),

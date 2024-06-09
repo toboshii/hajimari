@@ -17,6 +17,7 @@ type ApplicationSpec struct {
 	Name        string `json:"name"`
 	Group       string `json:"group,omitempty"`
 	Icon        string `json:"icon,omitempty"`
+	IconColor   string `json:"icon,omitempty"`
 	URL         string `json:"url"`
 	Info        string `json:"info,omitempty"`
 	TargetBlank bool   `json:"targetBlank,omitempty"`

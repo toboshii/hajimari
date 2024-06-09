@@ -5,4 +5,5 @@ type Bookmark struct {
 	Icon        string `json:"icon"`
 	URL         string `json:"url"`
 	TargetBlank bool   `json:"targetBlank"`
+	Location    int    `json:"location"`
 }

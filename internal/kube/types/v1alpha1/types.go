@@ -4,6 +4,8 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 )
 
+// Application
+
 type Application struct {
 	metav1.TypeMeta   `json:",inline"`
 	metav1.ObjectMeta `json:"metadata,omitempty"`
@@ -26,4 +28,29 @@ type ApplicationList struct {
 	metav1.ListMeta `json:"metadata,omitempty"`
 
 	Items []Application `json:"items"`
+}
+
+// Bookmark
+type Bookmark struct {
+	metav1.TypeMeta   `json:",inline"`
+	metav1.ObjectMeta `json:"metadata,omitempty"`
+
+	Spec BookmarkSpec `json:"spec"`
+}
+
+type BookmarkSpec struct {
+	Name        string `json:"name"`
+	Group       string `json:"group,omitempty"`
+	Icon        string `json:"icon,omitempty"`
+	URL         string `json:"url"`
+	Info        string `json:"info,omitempty"`
+	TargetBlank bool   `json:"targetBlank,omitempty"`
+	Location    int    `json:"location"`
+}
+
+type BookmarkList struct {
+	metav1.TypeMeta `json:",inline"`
+	metav1.ListMeta `json:"metadata,omitempty"`
+
+	Items []Bookmark `json:"items"`
 }

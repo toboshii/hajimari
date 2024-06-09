@@ -93,7 +93,7 @@
 
 {#if data.startpage.showBookmarks}
   <BookmarkList
-    bookmarks={data.startpage.bookmarks}
+    bookmarks={data.globalBookmarks}
     showGroups={data.startpage.showBookmarkGroups}
     targetBlank={data.startpage.alwaysTargetBlank}
   />

@@ -129,6 +129,23 @@ spec:
   targetBlank: true
 ```
 
+### HajimariBookmark objects
+
+It also possible to define Bookmarks via Kubernetes [Custom Resources](https://kubernetes.io/docs/concepts/extend-kubernetes/api-extension/custom-resources/):
+
+```yaml
+apiVersion: hajimari.io/v1alpha1
+kind: Bookmark
+metadata:
+  name: netflix
+spec:
+  name: Netflix
+  group: media
+  icon: simple-icons:netflix
+  url: https://netflix.com/
+  targetBlank: true
+```
+
 #### NamespaceSelector
 
 It is a selector for selecting namespaces either selecting all namespaces or a list of namespaces, or filtering namespaces through labels.

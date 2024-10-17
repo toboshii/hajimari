@@ -1,4 +1,4 @@
-FROM docker.io/node:16.20-alpine AS build-frontend
+FROM docker.io/node:23.0-alpine AS build-frontend
 
 WORKDIR /build
 

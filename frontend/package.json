@@ -24,7 +24,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/roboto": "5.0.1",
-		"codemirror": "5.65.9",
+		"codemirror": "6.0.2",
 		"js-yaml": "4.1.0",
 		"svelte-portal": "2.2.0"
 	}
